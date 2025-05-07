@@ -4,7 +4,7 @@ host: &commonHost msbi.ipb-halle.de
 pathPrefix: &commonPathPrefix MassBank3
 # release name of the helm install of massbank3-frontend, required for dbtool
 # to identify the hostname of the postgres database
-massbank3ReleaseName: massbank
+massbankReleaseName: massbank
 
 # postgres settings
 # the password for the postgres admin user
@@ -18,10 +18,10 @@ database: &commonDatabase "massbank"
 
 
 # set the values in the dependencies, do not change
-massbank3-export-service:
+massbank-export-api:
   host: *commonHost
   pathPrefix: *commonPathPrefix
-massbank3-server:
+massbank-api:
   host: *commonHost
   pathPrefix: *commonPathPrefix
   postgresql:
@@ -33,7 +33,7 @@ massbank3-server:
     primary:
       initdb:
         password: *commonPostgresPassword
-  massbank3-similarity-service:
+  massbank-similarity-api:
     host: *commonHost
     pathPrefix: *commonPathPrefix
 
