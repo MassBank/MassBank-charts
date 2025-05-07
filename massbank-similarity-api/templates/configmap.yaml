@@ -6,3 +6,4 @@ metadata:
     {{- include "massbank-similarity-api.labels" . | nindent 4 }}
 data:
   MSP: "/msp/MassBank.msp"
+  VERBOSE: "true"
