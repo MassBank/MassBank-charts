@@ -1,4 +1,4 @@
-# Default values for massbank3-export-service.
+# Default values for massbank-export-api.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -9,8 +9,7 @@ host: "msbi.ipb-halle.de"
 pathPrefix: "MassBank"
 
 image:
-  repository: quay.io/massbank/massbank3-export-service
-  pullPolicy: IfNotPresent
+  repository: quay.io/massbank/massbank-export-api
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
@@ -36,7 +35,7 @@ podAnnotations: {}
 # This is for setting Kubernetes Labels to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels:
-  app: massbank3-export-service
+  app: massbank-export-api
 
 podSecurityContext: {}
   # fsGroup: 2000
