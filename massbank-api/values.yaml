@@ -5,9 +5,7 @@ host: "msbi.ipb-halle.de"
 pathPrefix: "MassBank"
 
 image:
-  repository: ipbhalle/massbank3-server
-  tag: "dev"
-  pullPolicy: Always
+  repository: quay.io/massbank/massbank-api
 
 # postggresql config
 # for massbank we need a special version of postgres with bingo cartridge
@@ -19,14 +17,14 @@ postgresql:
     tag: "15"
     debug: true
   auth:
-    postgresPassword: "massbank3adminpassword"
-    username: "massbank3"
-    password: "massbank3password"
-    database: "massbank3"
+    postgresPassword: "massbankAdminPassword"
+    username: "massbank"
+    password: "massbankPassword"
+    database: "massbank"
   primary:
     initdb:
       user: "postgres"
-      password: "massbank3adminpassword"
+      password: "massbankAdminPassword"
       scriptsConfigMap: "postgres-config"
     initContainers:
       - name: bingo-init
@@ -77,7 +75,7 @@ podAnnotations: {}
 # This is for setting Kubernetes Labels to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels:
-  app: massbank3-server
+  app: massbank-api
 
 podSecurityContext:
   {}

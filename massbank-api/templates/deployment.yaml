@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "massbank3-server.fullname" . }}
+  name: {{ include "massbank-api.fullname" . }}
   labels:
-    {{- include "massbank3-server.labels" . | nindent 4 }}
+    {{- include "massbank-api.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "massbank3-server.selectorLabels" . | nindent 6 }}
+      {{- include "massbank-api.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "massbank3-server.labels" . | nindent 8 }}
+        {{- include "massbank-api.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "massbank3-server.serviceAccountName" . }}
+      serviceAccountName: {{ include "massbank-api.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
@@ -42,7 +42,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - configMapRef:
-                name: {{ include "massbank3-server.fullname" . }}-env-configmap
+                name: {{ include "massbank-api.fullname" . }}-env-configmap
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

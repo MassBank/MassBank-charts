@@ -1,0 +1,9 @@
+dependencies:
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 16.6.2
+- name: massbank-similarity-api
+  repository: file://../massbank-similarity-api
+  version: 0.1.0
+digest: sha256:31d002de55e29162d214f6a607b845ead3a7810481f285a6662fcf1fb437b10b
+generated: "2025-05-07T13:50:45.68004262+02:00"

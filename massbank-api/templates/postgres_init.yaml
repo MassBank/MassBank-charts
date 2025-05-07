@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: postgres-config
   labels:
-    {{- include "massbank3-server.labels" . | nindent 4 }}
+    {{- include "massbank-api.labels" . | nindent 4 }}
 data:
   000_bingo_install.sql: |
     \c {{ .Values.postgresql.auth.database }}

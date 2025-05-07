@@ -1,16 +1,16 @@
 apiVersion: v2
-name: massbank3-server
-description: A Helm chart for massbank3-server
+name: massbank-api
+description: A Helm chart for massbank-api
 
 type: application
 version: 0.1.0
-appVersion: "v0.1"
+appVersion: "v2025.05"
 
 
 dependencies:
   - name: postgresql
     repository: https://charts.bitnami.com/bitnami
     version: 16.6.2
-  - name: massbank3-similarity-service
-    repository: file://../massbank3-similarity-service
+  - name: massbank-similarity-api
+    repository: file://../massbank-similarity-api
     version: 0.1.0

@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "massbank3-server.fullname" . }}
+  name: {{ include "massbank-api.fullname" . }}
   labels:
-    {{- include "massbank3-server.labels" . | nindent 4 }}
+    {{- include "massbank-api.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "massbank3-server.fullname" . }}
+    name: {{ include "massbank-api.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
