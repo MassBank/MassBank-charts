@@ -1,6 +1,6 @@
 apiVersion: v2
-name: massbank3-similarity-service
-description: A Helm chart for massbank3-similarity-service
+name: massbank-similarity-api
+description: A Helm chart for massbank-similarity-api
 
 type: application
 version: 0.1.0
