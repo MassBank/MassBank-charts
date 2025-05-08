@@ -28,7 +28,7 @@ postgresql:
       scriptsConfigMap: "postgres-config"
     initContainers:
       - name: bingo-init
-        image: quay.io/massbank/postgres-bingo-init:v15-bingo-1.28.0
+        image: quay.io/massbank/postgres-bingo-init:v15-bingo-1.29.0
         command:
           - "sh"
           - "-c"
