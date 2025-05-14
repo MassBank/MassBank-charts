@@ -4,4 +4,4 @@ description: A Helm chart for massbank-export-api
 
 type: application
 version: 0.1.0
-appVersion: "v1.7"
+appVersion: "v1.8"
