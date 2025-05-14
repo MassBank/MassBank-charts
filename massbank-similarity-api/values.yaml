@@ -60,14 +60,14 @@ service:
 ingress:
   enabled: true
   className: "nginx"
-  annotations:
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  annotations: {}
+#    nginx.ingress.kubernetes.io/use-regex: "true"
+#    nginx.ingress.kubernetes.io/rewrite-target: /$2
   hosts:
     - host: "{{ .Values.host }}"
       paths:
-        - path: "/{{ .Values.pathPrefix }}-similarity(/|$)(.*)"
-          pathType: ImplementationSpecific
+        - path: "/{{ .Values.pathPrefix }}-similarity"
+          pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -88,11 +88,11 @@ resources: {}
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
   httpGet:
-    path: /version
+    path: "/{{ .Values.pathPrefix }}-similarity/version"
     port: http
 readinessProbe:
   httpGet:
-    path: /version
+    path: "/{{ .Values.pathPrefix }}-similarity/version"
     port: http
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/

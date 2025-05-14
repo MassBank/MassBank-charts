@@ -7,3 +7,4 @@ metadata:
 data:
   MSP: "/msp/MassBank.msp"
   VERBOSE: "true"
+  CONTEXT_PATH: "/{{ .Values.pathPrefix }}-similarity"
