@@ -15,3 +15,5 @@ data:
   GOOGLE_SEARCH_CONSOLE_KEY: "4aoZgYg2lHeh7TlOxtyVzjHa3YJirrsEHPqwSU3luoU"
   DISTRIBUTOR_TEXT: "This website is hosted and distributed by the Leibniz Institute of Plant Biochemistry, Halle (Saale), Germany."
   DISTRIBUTOR_URL: "https://www.ipb-halle.de/kontakt/impressum"
+  MB3_FRONTEND_BROWSER_TAB_TITLE: "MassBank"
+  MB3_FRONTEND_HOMEPAGE_INTRO_TEXT: "Welcome to MassBank, an open-source mass spectral library for the identification of small chemical molecules of metabolomics, exposomics and environmental relevance."
