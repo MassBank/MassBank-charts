@@ -12,14 +12,13 @@ postgresPassword: &commonPostgresPassword "massbankAdminPassword"
 # the username for the postgres user
 username: &commonUsername "massbank"
 # the password for the postgres user
-password: &commonPassword "massbankAdminPassword"
+password: &commonPassword "massbankPassword"
 # the name of the postgres database
 database: &commonDatabase "massbank"
 
 image:
   tag: "dev"
-  PullPolicy: Always
-
+  pullPolicy: Always
 
 # set the values in the dependencies, do not change
 massbank-export-api:
@@ -28,7 +27,7 @@ massbank-export-api:
 massbank-api:
   image:
     tag: "dev"
-    PullPolicy: Always
+    pullPolicy: Always
   host: *commonHost
   pathPrefix: *commonPathPrefix
   postgresql:
