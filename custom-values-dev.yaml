@@ -22,6 +22,9 @@ image:
 
 # set the values in the dependencies, do not change
 massbank-export-api:
+  image:
+    tag: "dev"
+    pullPolicy: Always
   host: *commonHost
   pathPrefix: *commonPathPrefix
 massbank-api:
@@ -40,6 +43,9 @@ massbank-api:
       initdb:
         password: *commonPostgresPassword
   massbank-similarity-api:
+    image:
+      tag: "dev"
+      pullPolicy: Always
     host: *commonHost
     pathPrefix: *commonPathPrefix
 
