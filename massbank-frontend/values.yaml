@@ -59,7 +59,7 @@ service:
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
   enabled: true
-  className: "nginx"
+  className: nginx
   annotations: {}
   hosts:
     - host: "{{ .Values.host }}"
@@ -88,10 +88,18 @@ livenessProbe:
   httpGet:
     path: "/{{ .Values.pathPrefix }}"
     port: http
+  initialDelaySeconds: 120
+  periodSeconds: 60
+  timeoutSeconds: 10
+  failureThreshold: 6
 readinessProbe:
   httpGet:
     path: "/{{ .Values.pathPrefix }}"
     port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 3
+  failureThreshold: 3
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
