@@ -1,6 +1,18 @@
 # Default values for massbank-frontend.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+HTML_HEAD_FILE: ""
+HTML_HEAD_FILE_CONTENT: ""
+HTML_BODY_FILE: ""
+HTML_BODY_FILE_CONTENT: ""
+DISTRIBUTOR_TEXT: ""
+DISTRIBUTOR_URL: "https://github.com/MassBank"
+MB3_FRONTEND_BROWSER_TAB_TITLE: "MassBank"
+MB3_FRONTEND_HOMEPAGE_INTRO_TEXT: "Welcome to MassBank, an open-source mass spectral library for the identification of small chemical molecules of metabolomics, exposomics and environmental relevance."
+MB3_FRONTEND_HOMEPAGE_NEWS_SECTION_TEXT: ""
+MB3_FRONTEND_HOMEPAGE_FUNDING_SECTION_TEXT: ""
+MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_NAME: ""
+MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_TEXT: ""
 
 # This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 replicaCount: 1

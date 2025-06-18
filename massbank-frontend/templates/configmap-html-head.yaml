@@ -1,0 +1,11 @@
+{{- if .Values.HTML_HEAD_FILE }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: html-head
+  labels:
+    {{- include "massbank-frontend.labels" . | nindent 4 }}
+data:
+  html-head.html: |-
+    {{ .Values.HTML_HEAD_FILE_CONTENT }}
+{{- end }}

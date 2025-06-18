@@ -1,0 +1,76 @@
+# hostname of the host serving massbank
+host: &commonHost msbi.ipb-halle.de
+# base path of the public url serving massbank
+pathPrefix: &commonPathPrefix MassBank3
+# release name of the helm install of massbank3-frontend, required for dbtool
+# to identify the hostname of the postgres database
+massbankReleaseName: massbank-dev
+
+# postgres settings
+# the password for the postgres admin user
+postgresPassword: &commonPostgresPassword "massbankAdminPassword"
+# the username for the postgres user
+username: &commonUsername "massbank"
+# the password for the postgres user
+password: &commonPassword "massbankPassword"
+# the name of the postgres database
+database: &commonDatabase "massbank"
+
+HTML_HEAD_FILE: "/html-insert/html-head.html"
+HTML_HEAD_FILE_CONTENT: |
+  <meta name="google-site-verification" content="o3yPKbs7xQhjmcT8HdNIDFFlIXdkBm2Y8GYJrr3UH6o">
+HTML_BODY_FILE: ""
+HTML_BODY_FILE_CONTENT: |
+DISTRIBUTOR_TEXT: "This website is hosted and distributed by the Leibniz Institute of Plant Biochemistry, Halle (Saale), Germany."
+DISTRIBUTOR_URL: "https://www.ipb-halle.de/kontakt/impressum"
+MB3_FRONTEND_BROWSER_TAB_TITLE: "MassBank"
+MB3_FRONTEND_HOMEPAGE_INTRO_TEXT: "Welcome to MassBank, an open-source mass spectral library for the identification of small chemical molecules of metabolomics, exposomics and environmental relevance."
+MB3_FRONTEND_HOMEPAGE_NEWS_SECTION_TEXT: ""
+MB3_FRONTEND_HOMEPAGE_FUNDING_SECTION_TEXT: ""
+MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_NAME: ""
+MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_TEXT: ""
+
+volumes:
+  - name: html-head
+    configMap:
+      name : html-head
+
+volumeMounts:
+  - name: html-head
+    mountPath: /html-insert/html-head.html
+    subPath: html-head.html
+    readOnly: true
+
+image:
+  tag: "dev"
+  pullPolicy: Always
+
+# set the values in the dependencies, do not change
+massbank-export-api:
+  image:
+    tag: "dev"
+    pullPolicy: Always
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
+massbank-api:
+  image:
+    tag: "dev"
+    pullPolicy: Always
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
+  postgresql:
+    auth:
+      postgresPassword: *commonPostgresPassword
+      username: *commonUsername
+      password: *commonPassword
+      database: *commonDatabase
+    primary:
+      initdb:
+        password: *commonPostgresPassword
+  massbank-similarity-api:
+    image:
+      tag: "dev"
+      pullPolicy: Always
+    host: *commonHost
+    pathPrefix: *commonPathPrefix
+

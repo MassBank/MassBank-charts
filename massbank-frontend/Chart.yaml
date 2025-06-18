@@ -4,7 +4,7 @@ description: A Helm chart for massbank-frontend
 
 type: application
 version: 0.1.0
-appVersion: "v2025.05.1"
+appVersion: "v2025.06.1"
 
 dependencies:
   - name: massbank-api
