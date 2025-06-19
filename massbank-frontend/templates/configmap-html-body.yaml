@@ -6,6 +6,6 @@ metadata:
   labels:
     {{- include "massbank-frontend.labels" . | nindent 4 }}
 data:
-  html-head.html: |-
-    {{ .Values.HTML_BODY_FILE_CONTENT }}
+  html-body.html: |-
+    {{ .Values.HTML_BODY_FILE_CONTENT | nindent 4}}
 {{- end }}

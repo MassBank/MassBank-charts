@@ -20,7 +20,7 @@ HTML_HEAD_FILE: "/html-insert/html-head.html"
 HTML_HEAD_FILE_CONTENT: |
   <meta name="google-site-verification" content="HUHU_Test_1234">
   <script src="https://www.ufz.de/stats/piwik.js"></script>
-HTML_BODY_FILE: ""
+HTML_BODY_FILE: "/html-insert/html-body.html"
 HTML_BODY_FILE_CONTENT: |
   <div id="data-privacy-container" style="display: none; text-align: center">
     <p style="text-align: left">
@@ -112,6 +112,24 @@ MB3_FRONTEND_HOMEPAGE_NEWS_SECTION_TEXT: ""
 MB3_FRONTEND_HOMEPAGE_FUNDING_SECTION_TEXT: ""
 MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_NAME: ""
 MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_TEXT: ""
+
+volumes:
+  - name: html-head
+    configMap:
+      name : html-head
+  - name: html-body
+    configMap:
+      name: html-body
+
+volumeMounts:
+  - name: html-head
+    mountPath: /html-insert/html-head.html
+    subPath: html-head.html
+    readOnly: true
+  - name: he
+    mountPath: /html-insert/html-body.html
+    subPath: html-body.html
+    readOnly: true
 
 # set the values in the dependencies, do not change
 massbank-export-api:

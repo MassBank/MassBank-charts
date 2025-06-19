@@ -7,5 +7,5 @@ metadata:
     {{- include "massbank-frontend.labels" . | nindent 4 }}
 data:
   html-head.html: |-
-    {{ .Values.HTML_HEAD_FILE_CONTENT }}
+    {{ .Values.HTML_HEAD_FILE_CONTENT | nindent 4 }}
 {{- end }}
