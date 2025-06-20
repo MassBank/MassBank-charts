@@ -125,7 +125,7 @@ volumeMounts:
     mountPath: /html-insert/html-head.html
     subPath: html-head.html
     readOnly: true
-  - name: he
+  - name: html-body
     mountPath: /html-insert/html-body.html
     subPath: html-body.html
     readOnly: true
