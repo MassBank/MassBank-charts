@@ -57,15 +57,15 @@ HTML_BODY_FILE_CONTENT: |
       />
     </div>
   </div>
-
+  
   <script>
     function handleOnChange(checked) {
       setAnalytics(checked);
     }
-
+  
     function setAnalytics(checked) {
       localStorage.setItem("analytics", checked ? "1" : "0");
-
+  
       if (checked === true) {
         try {
           const piwikTracker = Piwik.getTracker(
@@ -82,27 +82,26 @@ HTML_BODY_FILE_CONTENT: |
         // console.log("setAnalytics() - no tracking");
       }
     }
-
-    window.onload = function () {
-      const localStorageItem = localStorage.getItem("analytics");
-      // console.log("localStorage.getItem('analytics'): " + localStorageItem);
-      const analyticsCheckbox = document.getElementById("analytics-checkbox");
-      if (localStorageItem === null) {
-        localStorage.setItem("analytics", "1");
+  
+    const localStorageItem = localStorage.getItem("analytics");
+    // console.log("localStorage.getItem('analytics'): " + localStorageItem);
+    const analyticsCheckbox = document.getElementById("analytics-checkbox");
+  
+    if (localStorageItem === null) {
+      localStorage.setItem("analytics", "1");
+      analyticsCheckbox.setAttribute("checked", true);
+      setAnalytics(true);
+      // Show the modal if no choice has been made yet
+      window.showDataPrivacyModal = true;
+    } else {
+      window.showDataPrivacyModal = false;
+      if (localStorageItem === "1") {
         analyticsCheckbox.setAttribute("checked", true);
         setAnalytics(true);
-        // Show the modal if no choice has been made yet
-        window.showDataPrivacyModal = true;
       } else {
-        window.showDataPrivacyModal = false;
-        if (localStorageItem === "1") {
-          analyticsCheckbox.setAttribute("checked", true);
-          setAnalytics(true);
-        } else {
-          setAnalytics(false);
-        }
+        setAnalytics(false);
       }
-    };
+    }
   </script>
 DISTRIBUTOR_TEXT: "This website is hosted and distributed by the Helmholtz-Zentrum für Umweltforschung GmbH - UFZ, Leipzig, Germany."
 DISTRIBUTOR_URL: "https://www.ufz.de/index.php?en=36683"
