@@ -8,17 +8,17 @@ massbankReleaseName: massbank
 
 # postgres settings
 # the password for the postgres admin user
-postgresPassword: &commonPostgresPassword "msbi-raab"
+postgresPassword: &commonPostgresPassword "massbankAdminPassword"
 # the username for the postgres user
 username: &commonUsername "massbank"
 # the password for the postgres user
-password: &commonPassword "msbi-raab  "
+password: &commonPassword "massbankPassword"
 # the name of the postgres database
 database: &commonDatabase "massbank"
 
 HTML_HEAD_FILE: "/html-insert/html-head.html"
 HTML_HEAD_FILE_CONTENT: |
-  <meta name="google-site-verification" content="HUHU_Test_1234">
+  <meta name="google-site-verification" content="Nm_AOgSnvO8PruDNvAsDdeQLUdOQ4Eviq5NWSDjvJiM">
   <script src="https://www.ufz.de/stats/piwik.js"></script>
 HTML_BODY_FILE: "/html-insert/html-body.html"
 HTML_BODY_FILE_CONTENT: |
@@ -111,6 +111,12 @@ MB3_FRONTEND_HOMEPAGE_NEWS_SECTION_TEXT: ""
 MB3_FRONTEND_HOMEPAGE_FUNDING_SECTION_TEXT: ""
 MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_NAME: ""
 MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_TEXT: ""
+
+ingress:
+  hosts:
+    - paths:
+        - path: "/"
+          pathType: Prefix
 
 volumes:
   - name: html-head
