@@ -46,6 +46,12 @@ image:
   pullPolicy: Always
 
 # set the values in the dependencies, do not change
+massbank-frontend:
+  image:
+    tag: "dev"
+    pullPolicy: Always
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
 massbank-export-api:
   image:
     tag: "dev"
