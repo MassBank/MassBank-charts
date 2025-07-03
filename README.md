@@ -13,6 +13,9 @@ helm dependency build massbank-frontend
 
 When changing something, you can check nothing broke via `helm lint massbank-frontend`,
 and you could dry-run a helm action to see the resulting k8s yaml files via `helm upgrade massbank ./massbank-frontend ... --dry-run`.
+(Note: the sub-charts like massbank-api or massbank-similarity-api are
+usually NOT deployed separately, but come in as dependencies of
+massbank-frontend.)
 
 To install, we recommend keeping (local) values files with the variables and real passwords:
 ```
