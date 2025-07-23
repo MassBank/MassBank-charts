@@ -9,7 +9,7 @@ appVersion: "v2025.07.1"
 dependencies:
   - name: postgresql
     repository: https://charts.bitnami.com/bitnami
-    version: 16.6.2
+    version: 16.7.21
   - name: massbank-similarity-api
     repository: file://../massbank-similarity-api
     version: 0.1.0

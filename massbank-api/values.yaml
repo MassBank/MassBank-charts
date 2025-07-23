@@ -14,7 +14,7 @@ global:
     allowInsecureImages: true
 postgresql:
   image:
-    tag: "15"
+    tag: "17"
     debug: true
   auth:
     postgresPassword: "massbankAdminPassword"
@@ -28,7 +28,7 @@ postgresql:
       scriptsConfigMap: "postgres-config"
     initContainers:
       - name: bingo-init
-        image: quay.io/massbank/postgres-bingo-init:v15-bingo-1.29.0
+        image: quay.io/massbank/postgres-bingo-init:v17-bingo-1.32.0
         command:
           - "sh"
           - "-c"
