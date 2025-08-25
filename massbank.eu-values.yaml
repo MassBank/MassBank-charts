@@ -48,7 +48,7 @@ HTML_BODY_FILE_CONTENT: |
       "
     >
       <label id="checkbox-label" style="font-weight: bold"
-        >Click here to disable or allow the tracking:</label
+        >Allow GDPR compliant tracking:</label
       ><input
         type="checkbox"
         id="analytics-checkbox"
