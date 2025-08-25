@@ -1,7 +1,0 @@
-apiVersion: v2
-name: massbank-export-api
-description: A Helm chart for massbank-export-api
-
-type: application
-version: 0.1.0
-appVersion: "v1.13"
