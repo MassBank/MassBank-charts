@@ -1,0 +1,72 @@
+apiVersion: v1
+entries:
+  massbank-api:
+  - apiVersion: v2
+    appVersion: v2025.8.6
+    created: "2025-08-25T13:37:16.40396872Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.7.21
+    - name: massbank-similarity-api
+      repository: file://../massbank-similarity-api
+      version: 0.1.0
+    description: A Helm chart for massbank-api
+    digest: d5f7432e42cbb197535411bc2d21a8cf3d9c0da357f807f8691d4e0ff1ad20f4
+    name: massbank-api
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-api-0.1.0/massbank-api-0.1.0.tgz
+    version: 0.1.0
+  massbank-dbtool:
+  - apiVersion: v2
+    appVersion: v2025.8.6
+    created: "2025-08-25T13:37:16.627161697Z"
+    description: A Helm chart for Kubernetes
+    digest: e7b9db343139b2ec6cc4a524a7d6580818beb048c2ab8e4d7ecd96370cf7a7da
+    name: massbank-dbtool
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-dbtool-0.1.0/massbank-dbtool-0.1.0.tgz
+    version: 0.1.0
+  massbank-export-api:
+  - apiVersion: v2
+    appVersion: v1.13
+    created: "2025-08-25T13:37:16.806886968Z"
+    description: A Helm chart for massbank-export-api
+    digest: 38b2e4d4ba9a93b884928005a8443c9c43f9bc5b490b0063facf618e79acffd8
+    name: massbank-export-api
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-export-api-0.1.0/massbank-export-api-0.1.0.tgz
+    version: 0.1.0
+  massbank-frontend:
+  - apiVersion: v2
+    appVersion: v2025.8.6
+    created: "2025-08-25T13:37:17.035253322Z"
+    dependencies:
+    - name: massbank-api
+      repository: file://../massbank-api
+      version: 0.1.0
+    - name: massbank-export-api
+      repository: file://../massbank-export-api
+      version: 0.1.0
+    description: A Helm chart for massbank-frontend
+    digest: 2b8d691b06c5eb8c9b67f9094513ed52c32b7a16717d773228b647834c2a7b0f
+    name: massbank-frontend
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-frontend-0.1.0/massbank-frontend-0.1.0.tgz
+    version: 0.1.0
+  massbank-similarity-api:
+  - apiVersion: v2
+    appVersion: v1.5-matchms-0.30.2
+    created: "2025-08-25T13:37:17.214297778Z"
+    description: A Helm chart for massbank-similarity-api
+    digest: b62629f1c73fbbd3118cfaa5dead83eaca2ae2bbeebe84411a5cdf7cfeb13ced
+    name: massbank-similarity-api
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-08-25T13:37:17.214303709Z"
