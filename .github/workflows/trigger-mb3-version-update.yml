@@ -52,8 +52,10 @@ jobs:
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-          # stage any file changes to be committed
-          git add mb_version.txt
+          # stage file changes to be committed
+          git add charts/massbank-api/Chart.yaml
+          git add charts/massbank-frontend/Chart.yaml
+          git add charts/massbank-dbtool/Chart.yaml
 
           # make commit with staged changes
           git commit -m 'chore: update to MassBank3 version ${{ github.event.client_payload.version }}'
