@@ -1,0 +1,62 @@
+name: Update Chart.yml Files to latest MassBank3 Version (Trigger)
+
+on:
+  repository_dispatch:
+    types: [trigger-workflow]
+
+permissions:
+  contents: write
+
+jobs:
+  update-version:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.client_payload.sha }}
+
+      - name: Extract version and save into Chart.yml files related to MassBank3
+        run: |
+          # Parse the version name from the payload
+          version=${{ github.event.client_payload.version }}
+          echo "Version: $version"
+          sed "s/^appVersion: .*/appVersion: \"$version\"/g" charts/massbank-api/Chart.yaml > charts/massbank-api/Chart2.yaml
+          mv charts/massbank-api/Chart2.yaml charts/massbank-api/Chart.yaml
+          echo "MassBank-api version update complete"
+          sed "s/^appVersion: .*/appVersion: \"$version\"/g" charts/massbank-frontend/Chart.yaml > charts/massbank-frontend/Chart2.yaml
+          mv charts/massbank-frontend/Chart2.yaml charts/massbank-frontend/Chart.yaml
+          echo "MassBank-frontend version update complete"
+          sed "s/^appVersion: .*/appVersion: \"$version\"/g" charts/massbank-dbtool/Chart.yaml > charts/massbank-dbtool/Chart2.yaml
+          mv charts/massbank-dbtool/Chart2.yaml charts/massbank-dbtool/Chart.yaml
+          echo "MassBank-dbtool version update complete"
+          echo " -> Version updates complete"
+
+      - name: Check for Changes
+        id: check_changes
+        run: |
+          if [[ -n "$(git diff --exit-code)" ]]; then
+            echo "Changes detected"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "No changes detected -> no further action"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      # Commit and Push Changes if there are any
+      - name: Commit and Push Changes
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          # configure user
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+          # stage any file changes to be committed
+          git add mb_version.txt
+
+          # make commit with staged changes
+          git commit -m 'chore: update to MassBank3 version ${{ github.event.client_payload.version }}'
+
+          # push the commit back up to source GitHub repository
+          git push
