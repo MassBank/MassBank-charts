@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "MassBank-charts"
+version: "1.0"
+date-released: "2025-09-17"
+authors:
+  - name: "MassBank Consortium"
+    website: "https://github.com/MassBank"
+    email: "massbank@massbank.eu"
+repository-code: "https://github.com/MassBank/MassBank-charts"
+license: "MIT"
+url: "https://massbank.eu/"
+message: "If you use MassBank-charts in your research, please cite this project."
