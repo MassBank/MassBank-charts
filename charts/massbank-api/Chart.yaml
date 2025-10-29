@@ -4,7 +4,7 @@ description: A Helm chart for massbank-api
 
 type: application
 version: 0.1.0
-appVersion: "v2025.8.12"
+appVersion: "v2025.10.2"
 
 dependencies:
   - name: postgresql
