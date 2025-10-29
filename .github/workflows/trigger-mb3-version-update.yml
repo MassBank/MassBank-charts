@@ -9,12 +9,13 @@ permissions:
 
 jobs:
   update-version:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
+          persist-credentials: false
           ref: ${{ github.event.client_payload.sha }}
 
       - name: Extract version and save into Chart.yml files related to MassBank3
@@ -45,12 +46,12 @@ jobs:
           fi
 
       # Commit and Push Changes if there are any
-      - name: Commit and Push Changes
+      - name: Commit Changes
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
           # configure user
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
           # stage file changes to be committed
           git add charts/massbank-api/Chart.yaml
@@ -60,5 +61,8 @@ jobs:
           # make commit with staged changes
           git commit -m 'chore: update to MassBank3 version ${{ github.event.client_payload.version }}'
 
-          # push the commit back up to source GitHub repository
-          git push
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}    # push the commit back up to source GitHub repository
