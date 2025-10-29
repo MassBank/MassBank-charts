@@ -106,14 +106,6 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources:
-  requests:
-    cpu: 100m
-    memory: 200Mi
-  limits:
-    cpu: 1000m
-    memory: 400Mi
-
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
   httpGet:

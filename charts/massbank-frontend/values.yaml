@@ -83,15 +83,6 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources:
-  requests:
-    cpu: 1100m
-    memory: 400Mi
-  limits:
-    cpu: 3000m
-    memory: 800Mi
-
-
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
   httpGet:
@@ -109,14 +100,6 @@ readinessProbe:
   periodSeconds: 10
   timeoutSeconds: 3
   failureThreshold: 3
-
-# This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
-autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 4
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
 volumes: []

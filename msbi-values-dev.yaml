@@ -44,20 +44,35 @@ volumeMounts:
 image:
   tag: "dev"
   pullPolicy: Always
+resources:
+  requests:
+    cpu: 1100m
+    memory: 400Mi
+  limits:
+    cpu: 3000m
+    memory: 800Mi
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 80
+
 
 # set the values in the dependencies, do not change
-massbank-frontend:
-  image:
-    tag: "dev"
-    pullPolicy: Always
-  host: *commonHost
-  pathPrefix: *commonPathPrefix
 massbank-export-api:
   image:
     tag: "dev"
     pullPolicy: Always
   host: *commonHost
   pathPrefix: *commonPathPrefix
+  resources:
+    requests:
+      cpu: 100m
+      memory: 3000Mi
+    limits:
+      cpu: 1000m
+      memory: 6000Mi
+
 massbank-api:
   image:
     tag: "dev"
@@ -73,6 +88,14 @@ massbank-api:
     primary:
       initdb:
         password: *commonPostgresPassword
+  resources:
+    requests:
+      cpu: 100m
+      memory: 200Mi
+    limits:
+      cpu: 1000m
+      memory: 400Mi
+
   massbank-similarity-api:
     image:
       tag: "dev"
@@ -86,4 +109,9 @@ massbank-api:
       limits:
         cpu: 1500m
         memory: 1600Mi
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 8
+      targetCPUUtilizationPercentage: 50
 
