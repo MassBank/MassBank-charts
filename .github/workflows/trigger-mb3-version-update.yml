@@ -49,10 +49,8 @@ jobs:
       - name: Commit Changes
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
-          # configure user
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global credential.helper '!f() { sleep 1; echo "username=git token=${{ secrets.ACTIONS_PAT }}"; }; f'
+          # configure access to repository
+          git remote set-url origin https://${{ secrets.ACTIONS_PAT }}@github.com/MassBank/MassBank-charts.git
 
           # stage file changes to be committed
           git add charts/massbank-api/Chart.yaml
@@ -63,4 +61,4 @@ jobs:
           git commit -m 'chore: update to MassBank3 version ${{ github.event.client_payload.version }}'
 
           # push the commit back up to source GitHub repository
-          git push
+          git push -u origin main
