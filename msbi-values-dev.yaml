@@ -79,4 +79,11 @@ massbank-api:
       pullPolicy: Always
     host: *commonHost
     pathPrefix: *commonPathPrefix
+    resources:
+      requests:
+        cpu: 1000m
+        memory: 800Mi
+      limits:
+        cpu: 1500m
+        memory: 1600Mi
 
