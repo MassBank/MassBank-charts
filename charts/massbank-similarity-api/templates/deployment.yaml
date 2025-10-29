@@ -67,10 +67,13 @@ spec:
         - name: {{ .Chart.Name }}-init
           image: busybox:latest
           command:
-            - wget
-            - "-O"
-            - "/msp/MassBank.msp"
-            - https://github.com/MassBank/MassBank-data/releases/download/2025.05.1/MassBank.msp_NIST
+            - sh
+            - -c
+            - |
+              version=$(wget -q https://api.github.com/repos/MassBank/MassBank-data/releases/latest --output-document - | grep "tag_name" | sed "s/\"tag_name\": //g" | sed "s/\"//g" | sed "s/,//g" | sed "s/ //g")
+              echo "Downloading MassBank-data version: $version from https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz"
+              mkdir -p /MassBank-data
+              wget -qO- https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz | tar -xzf - -C /MassBank-data --strip-components=1
           {{- with .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}

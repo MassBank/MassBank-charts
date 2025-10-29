@@ -72,13 +72,14 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources:
-  requests:
-    cpu: 1000m
-    memory: 800Mi
-  limits:
-    cpu: 1500m
-    memory: 1600Mi
+# suggested values for resources requests and limits
+#resources:
+#  requests:
+#    cpu: 1000m
+#    memory: 800Mi
+#  limits:
+#    cpu: 1500m
+#    memory: 1600Mi
 
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
@@ -114,7 +115,7 @@ volumes:
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts:
   - name: massbank-data-volume
-    mountPath: "/msp"
+    mountPath: "/MassBank-data"
 
 nodeSelector: {}
 

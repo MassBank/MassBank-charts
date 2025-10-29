@@ -5,6 +5,6 @@ metadata:
   labels:
     {{- include "massbank-similarity-api.labels" . | nindent 4 }}
 data:
-  MSP: "/msp/MassBank.msp"
+  DATA_DIR: "/MassBank-data"
   VERBOSE: "true"
   CONTEXT_PATH: "/{{ .Values.pathPrefix }}-similarity"
