@@ -64,5 +64,5 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ACTIONS_PAT }}
           branch: ${{ github.ref }}    # push the commit back up to source GitHub repository
