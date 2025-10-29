@@ -50,6 +50,8 @@ jobs:
         if: steps.check_changes.outputs.has_changes == 'true'
         run: |
           # configure access to repository
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://${{ secrets.ACTIONS_PAT }}@github.com/MassBank/MassBank-charts.git
 
           # stage file changes to be committed
