@@ -1,0 +1,45 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "massbank-data.fullname" . }}-download
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: OnFailure
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "massbank-data.fullname" . }}-pvc
+      containers:
+        - name: download
+          image: alpine:latest
+          command:
+            - sh
+            - -c
+            - |
+              set -euo pipefail
+              apk add --no-cache wget tar gzip >/dev/null 2>&1 || true
+
+              version="{{ .Chart.AppVersion }}"
+              if [ "$version" = "latest" ]; then
+                echo "Resolving latest MassBank-data tag from GitHub API..."
+                version=$(wget -q https://api.github.com/repos/MassBank/MassBank-data/releases/latest --output-document - | grep "tag_name" | sed "s/\"tag_name\": //g" | sed "s/\"//g" | sed "s/,//g" | sed "s/ //g")
+                if [ -z "$version" ]; then
+                  echo "Failed to resolve latest version from GitHub API" >&2
+                  exit 1
+                fi
+                echo "Resolved latest tag: $version"
+              fi
+
+              echo "Downloading MassBank-data version: $version from https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz"
+              mkdir -p /MassBank-data
+              wget -q --show-progress --progress=dot:giga -O $version.tar.gz https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz
+              echo "Removing existing content in /MassBank-data"
+              rm -rf /MassBank-data/*
+              echo "Extract content of $version.tar.gz to /MassBank-data"
+              tar -xzf $version.tar.gz -C /MassBank-data --strip-components=1
+              echo "Download and extraction completed"
+          volumeMounts:
+            - name: data
+              mountPath: /MassBank-data
