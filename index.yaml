@@ -18,6 +18,17 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-api-0.1.0/massbank-api-0.1.0.tgz
     version: 0.1.0
+  massbank-data:
+  - apiVersion: v2
+    appVersion: "2025.10"
+    created: "2025-12-08T13:09:55.12418435Z"
+    description: Chart to provide MassBank-data in a volume
+    digest: c00b292a998f51c7a2e51af7c0449aaacd9aa09e968b52f5a12e7a0723a1f126
+    name: massbank-data
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-data-2025.10.0/massbank-data-2025.10.0.tgz
+    version: 2025.10.0
   massbank-dbtool:
   - apiVersion: v2
     appVersion: v2025.8.6
@@ -79,4 +90,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-29T10:01:32.118276897Z"
+generated: "2025-12-08T13:09:55.889428808Z"
