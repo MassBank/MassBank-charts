@@ -13,3 +13,7 @@ dependencies:
   - name: massbank-export-api
     repository: file://../massbank-export-api
     version: 0.1.0
+  - name: massbank-data
+    repository: file://../massbank-data
+    version: 2025.10.0
+    condition: massbank-data.enabled

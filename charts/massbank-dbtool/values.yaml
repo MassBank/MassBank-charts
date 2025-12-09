@@ -8,6 +8,12 @@ database: "massbank"
 
 massbankReleaseName: massbank
 
+# Configuration for using shared massbank-data PVC
+# When useSharedData is true, the job will mount an existing PVC
+# instead of cloning data from git repository
+useSharedData: false
+sharedDataPvcName: ""  # Name of the massbank-data PVC to mount
+
 image:
   repository: quay.io/massbank/massbank-dbtool
 

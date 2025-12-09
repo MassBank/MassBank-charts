@@ -1,0 +1,59 @@
+# Example configuration for using shared massbank-data across all services
+# This configuration enables the massbank-data chart and configures all services
+# to use the shared PVC instead of individual downloads
+
+# hostname of the host serving massbank
+host: &commonHost massbank.example.com
+# base path of the public url serving massbank
+pathPrefix: &commonPathPrefix MassBank
+# release name of the helm install, required for dbtool and shared data PVC reference
+massbankReleaseName: &releaseName massbank
+
+# postgres settings
+postgresPassword: &commonPostgresPassword "massbankAdminPassword"
+username: &commonUsername "massbank"
+password: &commonPassword "massbankPassword"
+database: &commonDatabase "massbank"
+
+# Enable massbank-data chart to provide shared data volume
+massbank-data:
+  enabled: true
+  storageSize: 5Gi  # Adjust based on your data size requirements
+
+# Configure massbank-export-api to use shared data
+massbank-export-api:
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
+  useSharedData: true
+  sharedDataPvcName: massbank-massbank-data-pvc
+
+# Configure massbank-api and its sub-charts
+massbank-api:
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
+  postgresql:
+    auth:
+      postgresPassword: *commonPostgresPassword
+      username: *commonUsername
+      password: *commonPassword
+      database: *commonDatabase
+    primary:
+      initdb:
+        password: *commonPostgresPassword
+  
+  # Configure massbank-similarity-api to use shared data
+  massbank-similarity-api:
+    host: *commonHost
+    pathPrefix: *commonPathPrefix
+    useSharedData: true
+    sharedDataPvcName: massbank-massbank-data-pvc
+
+# Configure massbank-dbtool to use shared data (deployed separately)
+# massbank-dbtool:
+#   massbankReleaseName: *releaseName
+#   useSharedData: true
+#   sharedDataPvcName: massbank-massbank-data-pvc
+#   postgresPassword: *commonPostgresPassword
+#   username: *commonUsername
+#   password: *commonPassword
+#   database: *commonDatabase

@@ -114,8 +114,29 @@ volumeMounts: []
 #   mountPath: "/etc/foo"
 #   readOnly: true
 
+# This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
 nodeSelector: {}
 
 tolerations: []
 
 affinity: {}
+
+# Configuration for massbank-data subchart (optional)
+# When enabled, a shared PVC is created for MassBank-data
+# All services will use this shared data instead of individual downloads
+massbank-data:
+  enabled: false
+  storageSize: 1Gi
+
+# Configuration for massbank-export-api subchart
+massbank-export-api: {}
+
+# Configuration for massbank-api subchart  
+massbank-api: {}
