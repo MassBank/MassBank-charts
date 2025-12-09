@@ -63,6 +63,7 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      {{- if not .Values.useSharedData }}
       initContainers:
         - name: {{ .Chart.Name }}-init
           image: busybox:latest
@@ -78,10 +79,19 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- with .Values.volumes }}
-      volumes:
-        {{- toYaml . | nindent 8 }}
       {{- end }}
+
+      volumes:
+      {{- if .Values.useSharedData }}
+      - name: massbank-data-volume
+        persistentVolumeClaim:
+          claimName: {{ .Values.sharedDataPvcName }}
+      {{- else }}
+        {{- with .Values.volumes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      {{- end }}
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

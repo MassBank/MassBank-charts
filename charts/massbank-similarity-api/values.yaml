@@ -8,6 +8,9 @@ replicaCount: 1
 host: "msbi.ipb-halle.de"
 pathPrefix: "MassBank"
 
+useSharedData: true
+sharedDataPvcName: "massbank-data-pvc"
+
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
   repository: quay.io/massbank/massbank-similarity-api
@@ -89,6 +92,9 @@ readinessProbe:
   periodSeconds: 10
   timeoutSeconds: 6
   failureThreshold: 3
+
+autoscaling:
+  enabled: false
 
 # Additional volumes on the output Deployment definition.
 volumes:
