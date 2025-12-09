@@ -1,0 +1,12 @@
+dependencies:
+- name: massbank-api
+  repository: file://../massbank-api
+  version: 0.1.0
+- name: massbank-export-api
+  repository: file://../massbank-export-api
+  version: 0.1.0
+- name: massbank-data
+  repository: file://../massbank-data
+  version: 2025.10.0
+digest: sha256:9a95102322df67b47e6c29372b863aa269f2a44f9f12cf4b64d6b0e4e0f1a19d
+generated: "2025-12-09T12:40:15.909766046Z"

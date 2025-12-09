@@ -90,6 +90,12 @@ readinessProbe:
   timeoutSeconds: 6
   failureThreshold: 3
 
+# Configuration for using shared massbank-data PVC
+# When useSharedData is true, the service will mount an existing PVC
+# instead of downloading data in an initContainer
+useSharedData: false
+sharedDataPvcName: ""  # Name of the massbank-data PVC to mount
+
 # Additional volumes on the output Deployment definition.
 volumes:
   - name: massbank-data-volume
@@ -99,6 +105,14 @@ volumes:
 volumeMounts:
   - name: massbank-data-volume
     mountPath: "/MassBank-data"
+
+# This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
 

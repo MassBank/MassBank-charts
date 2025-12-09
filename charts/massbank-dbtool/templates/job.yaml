@@ -38,11 +38,28 @@ spec:
               value: {{ .Values.username }}
             - name: MB_DB_INIT
               value: "true"
+            {{- if not .Values.useSharedData }}
             - name: MB_GIT_REPO
               value: "https://github.com/MassBank/MassBank-data"
             - name: MB_GIT_BRANCH
               value: "main"
             - name: MB_DATA_DIRECTORY
               value: ""
+            {{- else }}
+            - name: MB_DATA_DIRECTORY
+              value: "/MassBank-data"
+            {{- end }}
             - name: MB_DROP_ALL
               value: "true"
+          {{- if .Values.useSharedData }}
+          volumeMounts:
+            - name: massbank-data-volume
+              mountPath: /MassBank-data
+              readOnly: true
+          {{- end }}
+      {{- if .Values.useSharedData }}
+      volumes:
+        - name: massbank-data-volume
+          persistentVolumeClaim:
+            claimName: {{ .Values.sharedDataPvcName }}
+      {{- end }}

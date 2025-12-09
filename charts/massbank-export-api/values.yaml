@@ -97,6 +97,12 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# Configuration for using shared massbank-data PVC
+# When useSharedData is true, the service will mount an existing PVC
+# instead of downloading data in an initContainer
+useSharedData: false
+sharedDataPvcName: ""  # Name of the massbank-data PVC to mount
+
 # Additional volumes on the output Deployment definition.
 volumes:
   - name: massbank-data-volume

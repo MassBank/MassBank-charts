@@ -1,1 +1,10 @@
 storageSize: 1Gi
+
+# Configuration for enabling shared data volume
+# When enabled, other services can mount this PVC
+enabled: true
+
+# Override the full name for the PVC
+# This allows other charts to reference a consistent PVC name
+nameOverride: ""
+fullnameOverride: ""
