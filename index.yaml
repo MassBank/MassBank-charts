@@ -72,6 +72,16 @@ entries:
   massbank-similarity-api:
   - apiVersion: v2
     appVersion: v1.8-matchms-0.31.0
+    created: "2025-12-09T16:57:16.977220743Z"
+    description: A Helm chart for massbank-similarity-api
+    digest: fa6f212a0446e3e3db85a6dcd1488f1322533ba89f014cf984a5e0c892717538
+    name: massbank-similarity-api
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-1.8.0/massbank-similarity-api-1.8.0.tgz
+    version: 1.8.0
+  - apiVersion: v2
+    appVersion: v1.8-matchms-0.31.0
     created: "2025-10-29T10:01:32.118266447Z"
     description: A Helm chart for massbank-similarity-api
     digest: 1ccbc5f5e7739cab2205804322757afddc8a994c0309c53c7ab079aaaa5a5d09
@@ -90,4 +100,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-08T13:09:55.889428808Z"
+generated: "2025-12-09T16:57:16.977232956Z"
