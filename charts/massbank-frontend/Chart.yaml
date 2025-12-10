@@ -3,13 +3,5 @@ name: massbank-frontend
 description: A Helm chart for massbank-frontend
 
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: "v2025.10.6"
-
-dependencies:
-  - name: massbank-api
-    repository: file://../massbank-api
-    version: 0.1.0
-  - name: massbank-export-api
-    repository: file://../massbank-export-api
-    version: 0.1.0
