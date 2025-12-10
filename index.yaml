@@ -63,6 +63,16 @@ entries:
     version: 0.1.0
   massbank-frontend:
   - apiVersion: v2
+    appVersion: v2025.10.6
+    created: "2025-12-10T15:12:41.497330717Z"
+    description: A Helm chart for massbank-frontend
+    digest: 9fa1a9eb83f847470ab75897c2531454d6a1d816b69380a2f17918a7d3af62e7
+    name: massbank-frontend
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-frontend-0.1.1/massbank-frontend-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     appVersion: v2025.8.6
     created: "2025-08-25T13:37:17.035253322Z"
     dependencies:
@@ -120,4 +130,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-10T15:09:57.740245801Z"
+generated: "2025-12-10T15:12:41.49735127Z"
