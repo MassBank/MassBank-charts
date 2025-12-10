@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   massbank-api:
   - apiVersion: v2
+    appVersion: v2025.10.6
+    created: "2025-12-10T15:09:57.740225573Z"
+    description: A Helm chart for massbank-api
+    digest: 77078286d882de496ecbfcc4b77dcbe06458d5fc2c2e0b6c2c0c006ed0d105b1
+    name: massbank-api
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-api-0.1.2/massbank-api-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: v2025.8.6
     created: "2025-08-25T13:37:16.40396872Z"
     dependencies:
@@ -110,4 +120,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-10T12:02:00.678498889Z"
+generated: "2025-12-10T15:09:57.740245801Z"
