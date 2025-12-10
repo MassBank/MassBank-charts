@@ -1,0 +1,57 @@
+# hostname of the host serving massbank
+host: &commonHost msbi.ipb-halle.de
+# base path of the public url serving massbank
+pathPrefix: &commonPathPrefix MassBank
+# release name of the helm install of massbank3-frontend, required for dbtool
+# to identify the hostname of the postgres database
+massbankReleaseName: &massbankReleaseName massbank
+
+# postgres settings
+# the password for the postgres admin user
+postgresPassword: &postgresPassword "msbi-raab"
+# the username for the postgres user
+username: &username "massbank"
+# the password for the postgres user
+password: &password "msbi-raab"
+# the name of the postgres database used by massbank-api
+massbankApiDatabase: &massbankApiDatabase "massbank"
+# the name of the postgres database used by massbank-export-api
+massbankExportApiDatabase: &massbankExportApiDatabase "records"
+
+massbank-data:
+  storageSize: 2Gi
+
+postgres:
+  image:
+    tag: "17.7"
+  auth:
+    postgresPassword: *postgresPassword
+    username: *username
+    password: *password
+    database: *massbankApiDatabase
+  initContainers:
+    - name: bingo-init
+      image: quay.io/massbank/postgres-bingo-init:v17-bingo-1.36.0
+      command:
+        - "sh"
+        - "-c"
+        - |
+          cp -rp /bingo-postgres/* /opt/bingo-postgres/
+      volumeMounts:
+        - name: bingo-volume
+          mountPath: /opt/bingo-postgres
+  extraVolumes:
+    - name: bingo-volume
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: bingo-volume
+      mountPath: /opt/bingo-postgres
+  initdb:
+    scriptsConfigMap: "postgres-config"
+  persistence:
+    enabled: false
+
+massbank-similarity-api:
+  useSharedData: true
+  massbankReleaseName: *massbankReleaseName
+  sharedDataPvcName: "{{ .Values.massbankReleaseName }}-massbank-data-pvc"

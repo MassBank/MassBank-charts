@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    {{- include "massbank.labels" . | nindent 4 }}
+data:
+  000_bingo_install.sh: |
+    #!/bin/bash
+    set -euo pipefail
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" -f /opt/bingo-postgres/init-scripts/000_bingo_install.sql
+  00_init_bingo.sh: |
+    #!/bin/bash
+    set -euo pipefail
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+    -- update ALLOW_NON_UNIQUE_DEAROMATIZATION to 1 --
+    UPDATE bingo.bingo_config SET cvalue = 1 WHERE cname = 'ALLOW_NON_UNIQUE_DEAROMATIZATION';
+    GRANT ALL PRIVILEGES ON SCHEMA bingo TO "{{ .Values.username }}";
+    GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA bingo TO "{{ .Values.username }}";
+    EOSQL
+  00_init_export_api.sh: |
+    #!/bin/bash
+    set -euo pipefail
+    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -c "CREATE DATABASE {{ .Values.massbankExportApiDatabase }} OWNER {{ .Values.username }};"
