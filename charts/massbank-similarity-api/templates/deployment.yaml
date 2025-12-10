@@ -85,7 +85,7 @@ spec:
       {{- if .Values.useSharedData }}
       - name: massbank-data-volume
         persistentVolumeClaim:
-          claimName: {{ .Values.sharedDataPvcName }}
+          claimName: {{ tpl .Values.sharedDataPvcName . }}
       {{- else }}
         {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
