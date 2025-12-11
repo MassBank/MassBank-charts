@@ -51,7 +51,81 @@ postgres:
   persistence:
     enabled: false
 
-massbank-similarity-api:
+massbank-api:
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
+  withPostgres: false
+  username: *username
+  password: *password
+  massbankApiDatabase: *massbankApiDatabase
+#  resources:
+#    requests:
+#      cpu: 100m
+#      memory: 200Mi
+#    limits:
+#      cpu: 1000m
+#      memory: 400Mi
+
+massbank-export-api:
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
+  withPostgres: false
+  username: *username
+  password: *password
+  massbankApiDatabase: *massbankExportApiDatabase
   useSharedData: true
-  massbankReleaseName: *massbankReleaseName
-  sharedDataPvcName: "{{ .Values.massbankReleaseName }}-massbank-data-pvc"
+  sharedDataPvcName: "{{ .Release.Name }}-massbank-data-pvc"
+#  resources:
+#    requests:
+#      cpu: 100m
+#      memory: 3000Mi
+#    limits:
+#      cpu: 3000m
+#      memory: 6000Mi
+
+massbank-frontend:
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
+  HTML_HEAD_FILE: "/html-insert/html-head.html"
+  HTML_HEAD_FILE_CONTENT: |
+    <meta name="google-site-verification" content="o3yPKbs7xQhjmcT8HdNIDFFlIXdkBm2Y8GYJrr3UH6o">
+  HTML_BODY_FILE: ""
+  HTML_BODY_FILE_CONTENT: |
+  DISTRIBUTOR_TEXT: "This website is hosted and distributed by the Leibniz Institute of Plant Biochemistry, Halle (Saale), Germany."
+  DISTRIBUTOR_URL: "https://www.ipb-halle.de/kontakt/impressum"
+  MB3_FRONTEND_BROWSER_TAB_TITLE: "MassBank"
+  MB3_FRONTEND_HOMEPAGE_INTRO_TEXT: "Welcome to MassBank, an open-source mass spectral library for the identification of small chemical molecules of metabolomics, exposomics and environmental relevance."
+  MB3_FRONTEND_HOMEPAGE_NEWS_SECTION_TEXT: ""
+  MB3_FRONTEND_HOMEPAGE_FUNDING_SECTION_TEXT: ""
+  MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_NAME: ""
+  MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_TEXT: ""
+
+  volumes:
+    - name: html-head
+      configMap:
+        name: html-head
+
+  volumeMounts:
+    - name: html-head
+      mountPath: /html-insert/html-head.html
+      subPath: html-head.html
+      readOnly: true
+
+#  resources:
+#    requests:
+#      cpu: 1100m
+#      memory: 400Mi
+#    limits:
+#      cpu: 3000m
+#      memory: 800Mi
+#  autoscaling:
+#    enabled: true
+#    minReplicas: 1
+#    maxReplicas: 4
+#    targetCPUUtilizationPercentage: 80
+
+massbank-similarity-api:
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
+  useSharedData: true
+  sharedDataPvcName: "{{ .Release.Name }}-massbank-data-pvc"
