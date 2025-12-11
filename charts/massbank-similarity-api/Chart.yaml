@@ -3,5 +3,5 @@ name: massbank-similarity-api
 description: A Helm chart for massbank-similarity-api
 
 type: application
-version: 1.8.1
+version: 1.8.2
 appVersion: "v1.8-matchms-0.31.0"
