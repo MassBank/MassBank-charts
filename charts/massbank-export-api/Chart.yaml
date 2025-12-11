@@ -3,5 +3,11 @@ name: massbank-export-api
 description: A Helm chart for massbank-export-api
 
 type: application
-version: 0.1.0
-appVersion: "v1.18"
+version: 0.1.1
+appVersion: "v2.2"
+
+dependencies:
+  - name: postgres
+    version: 0.13.2
+    repository: oci://registry-1.docker.io/cloudpirates
+    condition: withPostgres

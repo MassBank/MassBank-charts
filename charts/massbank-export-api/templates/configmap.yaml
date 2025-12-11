@@ -8,3 +8,8 @@ data:
   MB_DATA_DIRECTORY: "/MassBank-data"
   CORS_ALLOWED_ORIGINS: "https://{{ .Values.host }}/{{ .Values.pathPrefix }}/"
   CONTEXT_PATH: "/{{ .Values.pathPrefix }}-export"
+  DB_PORT: "5432"
+  DB_HOST: "{{ .Release.Name }}-postgres"
+  DB_NAME: "{{ .Values.massbankExportApiDatabase }}"
+  DB_USER: "{{ .Values.username }}"
+  DB_PASSWORD: "{{ .Values.password }}"
