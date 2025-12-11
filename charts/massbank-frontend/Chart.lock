@@ -1,9 +1,0 @@
-dependencies:
-- name: massbank-api
-  repository: file://../massbank-api
-  version: 0.1.0
-- name: massbank-export-api
-  repository: file://../massbank-export-api
-  version: 0.1.0
-digest: sha256:cde38de901d144f36e65b2e469482d9bc942641b5b53c750b15c192ee52576e3
-generated: "2025-05-07T14:06:43.493906022+02:00"
