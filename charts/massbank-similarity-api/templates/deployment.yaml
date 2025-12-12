@@ -87,7 +87,7 @@ spec:
             - sh
             - -c
             - |
-              kubectl wait --for=condition=complete job/"{{ .Release.Name }}-massbank-data-download --timeout=1800s
+              kubectl wait --for=condition=complete job/{{ .Release.Name }}-massbank-data-download --timeout=1800s
       {{- end }}
 
       volumes:
