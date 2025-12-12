@@ -79,6 +79,15 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      {{- else }}
+      initContainers:
+        - name: {{ .Chart.Name }}-wait-for-data
+          image: bitnami/kubectl:latest
+          command:
+            - sh
+            - -c
+            - |
+              kubectl wait --for=condition=complete job/"{{ .Release.Name }}-massbank-data-download --timeout=1800s
       {{- end }}
 
       volumes:
