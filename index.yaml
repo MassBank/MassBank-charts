@@ -75,6 +75,16 @@ entries:
   massbank-data:
   - apiVersion: v2
     appVersion: "2025.10"
+    created: "2025-12-12T15:04:21.715574722Z"
+    description: Chart to provide MassBank-data in a volume
+    digest: 4153df02629428edcd99b5ad90886a0e610b249abd3474bf3103853c0ff8c211
+    name: massbank-data
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-data-2025.10.2/massbank-data-2025.10.2.tgz
+    version: 2025.10.2
+  - apiVersion: v2
+    appVersion: "2025.10"
     created: "2025-12-12T14:10:30.375658297Z"
     description: Chart to provide MassBank-data in a volume
     digest: 0c4e1e8c149082b5ae6733273c61a288ced0bc308c355b082acabc931e361852
@@ -196,6 +206,16 @@ entries:
   massbank-similarity-api:
   - apiVersion: v2
     appVersion: v1.8-matchms-0.31.0
+    created: "2025-12-12T15:04:22.21967043Z"
+    description: A Helm chart for massbank-similarity-api
+    digest: 1e75f99e395db87a76b6319b3574b30b9b2defe8cd70b984a6cdbb3712b469e6
+    name: massbank-similarity-api
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-1.8.3/massbank-similarity-api-1.8.3.tgz
+    version: 1.8.3
+  - apiVersion: v2
+    appVersion: v1.8-matchms-0.31.0
     created: "2025-12-11T12:13:53.981944881Z"
     description: A Helm chart for massbank-similarity-api
     digest: c7526eb26b424780346d99ea4c31116592e8f739bb53f2d12515f43c93c8d8e1
@@ -244,4 +264,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-12T14:10:30.375729881Z"
+generated: "2025-12-12T15:04:22.219741442Z"
