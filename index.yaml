@@ -2,6 +2,34 @@ apiVersion: v1
 entries:
   massbank:
   - apiVersion: v2
+    created: "2025-12-12T18:56:16.756027389Z"
+    dependencies:
+    - name: massbank-data
+      repository: https://massbank.github.io/MassBank-charts
+      version: 2025.10.2
+    - name: postgres
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.13.2
+    - name: massbank-api
+      repository: https://massbank.github.io/MassBank-charts
+      version: 0.1.4
+    - name: massbank-export-api
+      repository: https://massbank.github.io/MassBank-charts
+      version: 0.1.2
+    - name: massbank-frontend
+      repository: https://massbank.github.io/MassBank-charts
+      version: 0.1.3
+    - name: massbank-similarity-api
+      repository: https://massbank.github.io/MassBank-charts
+      version: 1.8.5
+    description: A umbrella chart for MassBank
+    digest: c8befc918cfbc74754c3c63baab057382d72585827462a2707e9a258b3796597
+    name: massbank
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-0.1.1/massbank-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     created: "2025-12-10T15:28:40.787236932Z"
     dependencies:
     - name: massbank-data
@@ -172,6 +200,16 @@ entries:
     version: 0.1.0
   massbank-frontend:
   - apiVersion: v2
+    appVersion: v2025.12.1
+    created: "2025-12-12T18:56:17.082082915Z"
+    description: A Helm chart for massbank-frontend
+    digest: eb94f0349c81417400d31b407b007bdb0e65d98439ebe53f5cb652f2bf180e7d
+    name: massbank-frontend
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-frontend-0.1.4/massbank-frontend-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
     appVersion: v2025.10.6
     created: "2025-12-11T12:39:32.507133976Z"
     description: A Helm chart for massbank-frontend
@@ -299,4 +337,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-12T18:47:20.569016802Z"
+generated: "2025-12-12T18:56:17.082155Z"
