@@ -18,7 +18,7 @@ dependencies:
     version: 0.1.2
     repository: "https://massbank.github.io/MassBank-charts"
   - name: massbank-frontend
-    version: 0.1.3
+    version: 0.1.4
     repository: "https://massbank.github.io/MassBank-charts"
   - name: massbank-similarity-api
     version: 1.8.5
