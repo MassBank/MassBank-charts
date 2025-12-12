@@ -2,10 +2,6 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ include "massbank-data.fullname" . }}-download
-  annotations:
-    "helm.sh/hook": post-install,post-upgrade
-    "helm.sh/hook-weight": "-5"
-    "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   backoffLimit: 2
   ttlSecondsAfterFinished: 300
