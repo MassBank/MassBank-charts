@@ -4,7 +4,7 @@ metadata:
   name: {{ include "massbank-data.fullname" . }}-download
 spec:
   backoffLimit: 2
-  ttlSecondsAfterFinished: 300
+  ttlSecondsAfterFinished: 3600
   template:
     spec:
       restartPolicy: OnFailure
@@ -40,7 +40,7 @@ spec:
               mkdir -p /tmp/MassBank-data
               tar -xzf $version.tar.gz -C /tmp/MassBank-data --strip-components=1
               echo "Sync temporary content to /MassBank-data"
-              rsync -av --delete /tmp/MassBank-data/ /MassBank-data
+              rsync -a --delete /tmp/MassBank-data/ /MassBank-data
               echo "Download and extraction completed"
           volumeMounts:
             - name: data
