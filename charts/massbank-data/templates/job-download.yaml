@@ -36,10 +36,11 @@ spec:
               echo "Downloading MassBank-data version: $version from https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz"
               mkdir -p /MassBank-data
               wget -q --show-progress --progress=dot:giga -O $version.tar.gz https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz
-              echo "Removing existing content in /MassBank-data"
-              rm -rf /MassBank-data/*
-              echo "Extract content of $version.tar.gz to /MassBank-data"
-              tar -xzf $version.tar.gz -C /MassBank-data --strip-components=1
+              echo "Extract content of $version.tar.gz to temporary location"
+              mkdir -p /tmp/MassBank-data
+              tar -xzf $version.tar.gz -C /tmp/MassBank-data --strip-components=1
+              echo "Sync temporary content to /MassBank-data"
+              rsync -av --delete /tmp/MassBank-data/ /MassBank-data
               echo "Download and extraction completed"
           volumeMounts:
             - name: data
