@@ -71,7 +71,7 @@ spec:
             - sh
             - -c
             - |
-              until pg_isready -U {{ .Values.username }} -d {{ .Values.massbankExportApiDatabase }} -h {{ .Release.Name }}-postgres -p 5432
+              until pg_isready -U {{ .Values.username }} -d {{ .Values.massbankExportApiDatabase }} -h {{ .Release.Name }}-postgres -p 5432; do
                 echo "waiting for postgres at {{ .Release.Name }}-postgres:5432..."
                 sleep 2
               done
@@ -93,7 +93,7 @@ spec:
       {{- else }}
         - name: {{ .Chart.Name }}-wait-for-data
           image: bitnami/kubectl:latest
-          command:s
+          command:
             - sh
             - -c
             - |
