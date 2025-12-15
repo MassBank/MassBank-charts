@@ -20,7 +20,7 @@ spec:
             - -c
             - |
               set -euo pipefail
-              apk add --no-cache wget tar gzip >/dev/null 2>&1 || true
+              apk add --no-cache wget tar gzip rsync >/dev/null 2>&1 || true
 
               version="{{ .Chart.AppVersion }}"
               if [ "$version" = "latest" ]; then
