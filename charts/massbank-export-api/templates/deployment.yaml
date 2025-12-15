@@ -63,8 +63,19 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- if not .Values.useSharedData }}
       initContainers:
+        - name: {{ .Chart.Name }}-wait-for-postgres
+          image: postgres:17-alpine
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - |
+              until pg_isready -U {{ .Values.username }} -d {{ .Values.massbankExportApiDatabase }} -h {{ .Release.Name }}-postgres -p 5432
+                echo "waiting for postgres at {{ .Release.Name }}-postgres:5432..."
+                sleep 2
+              done
+      {{- if not .Values.useSharedData }}
         - name: {{ .Chart.Name }}-init
           image: busybox:latest
           command:
@@ -79,6 +90,14 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      {{- else }}
+        - name: {{ .Chart.Name }}-wait-for-data
+          image: bitnami/kubectl:latest
+          command:s
+            - sh
+            - -c
+            - |
+              kubectl wait --for=condition=complete job/{{ .Release.Name }}-massbank-data-download --timeout=1800s
       {{- end }}
 
       volumes:
