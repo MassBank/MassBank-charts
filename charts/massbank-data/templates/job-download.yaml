@@ -4,7 +4,7 @@ metadata:
   name: {{ include "massbank-data.fullname" . }}-download
 spec:
   backoffLimit: 2
-  ttlSecondsAfterFinished: 3600
+{{/*  ttlSecondsAfterFinished: 3600*/}}
   template:
     spec:
       restartPolicy: OnFailure
