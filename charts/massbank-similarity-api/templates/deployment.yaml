@@ -63,8 +63,8 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- if not .Values.useSharedData }}
       initContainers:
+        {{- if not .Values.useSharedData }}
         - name: {{ .Chart.Name }}-init
           image: busybox:latest
           command:
@@ -79,16 +79,15 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- else }}
-      initContainers:
+        {{- else }}
         - name: {{ .Chart.Name }}-wait-for-data
           image: bitnami/kubectl:latest
           command:
             - sh
             - -c
             - |
-              kubectl wait --for=condition=complete job/{{ .Release.Name }}-massbank-data-download --timeout=1800s
-      {{- end }}
+              kubectl wait --for=condition=complete job/{{ .Release.Name }}-massbank-data-download --timeout=3600s
+        {{- end }}
 
       volumes:
       {{- if .Values.useSharedData }}
