@@ -6,7 +6,7 @@ version: 0.1.1
 
 dependencies:
   - name: massbank-data
-    version: 2025.10.5
+    version: 2025.10.12
     repository: "https://massbank.github.io/MassBank-charts"
   - name: postgres
     version: 0.13.2
@@ -15,11 +15,11 @@ dependencies:
     version: 0.1.4
     repository: "https://massbank.github.io/MassBank-charts"
   - name: massbank-export-api
-    version: 0.1.4
+    version: 0.1.5
     repository: "https://massbank.github.io/MassBank-charts"
   - name: massbank-frontend
     version: 0.1.4
     repository: "https://massbank.github.io/MassBank-charts"
   - name: massbank-similarity-api
-    version: 1.8.5
+    version: 1.8.7
     repository: "https://massbank.github.io/MassBank-charts"
