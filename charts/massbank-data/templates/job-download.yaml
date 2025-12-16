@@ -1,10 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "massbank-data.fullname" . }}-download
+  name: {{ include "massbank-data.fullname" . }}-download-{{ replace .Chart.Version "." "-" | lower }}
+  labels:
+    app.kubernetes.io/name: {{ include "massbank-data.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    massbank-data.role: download
+    massbank-data.chartVersion: {{ replace .Chart.Version "." "-" | lower }}
 spec:
   backoffLimit: 2
-{{/*  ttlSecondsAfterFinished: 3600*/}}
   template:
     spec:
       restartPolicy: OnFailure

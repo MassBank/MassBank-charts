@@ -3,5 +3,5 @@ name: massbank-data
 description: Chart to provide MassBank-data in a volume
 type: application
 
-version: 2025.10.8
+version: 2025.10.9
 appVersion: "2025.10"
