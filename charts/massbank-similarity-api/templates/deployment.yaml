@@ -86,7 +86,16 @@ spec:
             - sh
             - -c
             - |
-              kubectl wait --for=condition=complete job/{{ .Release.Name }}-massbank-data-download --timeout=3600s
+              set -euo pipefail
+              selector="app.kubernetes.io/instance={{ .Release.Name }},massbank-data.role=download"
+              entries=$(kubectl get jobs -l "$selector" -o jsonpath='{range .items[*]}{.metadata.labels.massbank-data.chartVersion}{"|"}{.metadata.name}{"\n"}{end}')
+              if [ -z "$entries" ]; then
+                echo "no matching job found" >&2
+                exit 1
+              fi
+              job=$(printf "%s" "$entries" | sort -t'|' -k1,1 -V | tail -n1 | cut -d'|' -f2)
+              echo "waiting for job $job"
+              kubectl wait --for=condition=complete job/"$job" --timeout=3600s
         {{- end }}
 
       volumes:
