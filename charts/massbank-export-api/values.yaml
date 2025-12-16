@@ -6,7 +6,7 @@ pathPrefix: "MassBank"
 
 withPostgres: true
 useSharedData: false
-sharedDataPvcName: "massbank-data-pvc"
+sharedDataPvcName: ""
 
 # postgres settings
 # the password for the postgres admin user

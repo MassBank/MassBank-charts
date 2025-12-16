@@ -3,7 +3,7 @@ name: massbank-export-api
 description: A Helm chart for massbank-export-api
 
 type: application
-version: 0.1.4
+version: 0.1.5
 appVersion: "v2.3"
 
 dependencies:
