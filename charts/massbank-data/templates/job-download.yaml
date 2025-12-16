@@ -1,12 +1,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ include "massbank-data.fullname" . }}-download-{{ .Chart.Version | lower }}"
+  name: "{{ include "massbank-data.fullname" . }}-download-{{ .Chart.Version | replace "." "-" | lower }}"
   labels:
     app.kubernetes.io/name: "{{ include "massbank-data.name" . }}"
     app.kubernetes.io/instance: "{{ .Release.Name }}"
     massbank-data.role: "download"
-    massbank-data.chartVersion: "{{ .Chart.Version | lower }}"
+    massbank-data.chartVersion: "{{ .Chart.Version | replace "." "-" | lower }}"
 spec:
   backoffLimit: 2
   template:
