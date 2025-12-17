@@ -1,17 +1,89 @@
 # This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 replicaCount: 1
 
-postgresPassword: "massbankAdminPassword"
-username: "massbank"
-password: "massbankPassword"
-database: "massbank"
+withPostgres: true
+useSharedData: false
+sharedDataPvcName: ""
 
-massbankReleaseName: massbank
+# postgres settings
+# the username for the postgres user
+username: &username "massbank"
+# the password for the postgres user
+password: &password "massbankPassword"
+# the name of the postgres database used by massbank-export-api
+massbankApiDatabase: &massbankApiDatabase "massbank"
 
 image:
   repository: quay.io/massbank/massbank-dbtool
 
+# postgres config
+postgres:
+  image:
+    tag: "17.7"
+  auth:
+    username: *username
+    password: *password
+    database: *massbankApiDatabase
+  initContainers:
+    - name: bingo-init
+      image: quay.io/massbank/postgres-bingo-init:v17-bingo-1.36.0
+      command:
+        - "sh"
+        - "-c"
+        - |
+          cp -rp /bingo-postgres/* /opt/bingo-postgres/
+      volumeMounts:
+        - name: bingo-volume
+          mountPath: /opt/bingo-postgres
+  extraVolumes:
+    - name: bingo-volume
+      emptyDir: { }
+  extraVolumeMounts:
+    - name: bingo-volume
+      mountPath: /opt/bingo-postgres
+  initdb:
+    scriptsConfigMap: "massbank-dbtool-postgres-config"
+  persistence:
+    enabled: false
+
+# This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+imagePullSecrets: []
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: ""
+
+# This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# This is for setting Kubernetes Annotations to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+podAnnotations: {}
 # This is for setting Kubernetes Labels to a Pod.
 # For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
 podLabels:
   app: massbank-dbtool
+
+# Additional volumes on the output Deployment definition.
+volumes:
+  - name: massbank-data-volume
+    emptyDir: { }
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts:
+  - name: massbank-data-volume
+    mountPath: "/MassBank-data"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

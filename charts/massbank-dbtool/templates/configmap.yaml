@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "massbank-dbtool.fullname" . }}-env-configmap
+  labels:
+    {{- include "massbank-dbtool.labels" . | nindent 4 }}
+data:
+  DB_PORT: "5432"
+  DB_PASSWORD: "{{ .Values.password }}"
+  DB_HOST: "{{ .Release.Name }}-postgres"
+  DB_NAME: "{{ .Values.massbankApiDatabase }}"
+  DB_USER: "{{ .Values.username }}"
+  MB_DB_INIT: "true"
+  MB_GIT_REPO: ""
+  MB_GIT_BRANCH: ""
+  MB_DATA_DIRECTORY: "/MassBank-data"
+  MB_DROP_ALL: "true"

@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "massbank-dbtool.fullname" . }}
+  name: "{{ include "massbank-dbtool.fullname" . }}-download-{{ .Chart.Version | replace "." "-" | lower }}"
   labels:
     {{- include "massbank-dbtool.labels" . | nindent 4 }}
 spec:
@@ -14,35 +14,74 @@ spec:
         {{- end }}
     spec:
       restartPolicy: Never
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  app.kubernetes.io/instance: {{ .Values.massbankReleaseName }}
-              topologyKey: kubernetes.io/hostname
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            - name: DB_PORT
-              value: "5432"
-            - name: DB_PASSWORD
-              value: {{ .Values.password }}
-            - name: DB_HOST
-              value: {{ .Values.massbankReleaseName }}-postgres
-            - name: DB_NAME
-              value: {{ .Values.database }}
-            - name: DB_USER
-              value: {{ .Values.username }}
-            - name: MB_DB_INIT
-              value: "true"
-            - name: MB_GIT_REPO
-              value: "https://github.com/MassBank/MassBank-data"
-            - name: MB_GIT_BRANCH
-              value: "main"
-            - name: MB_DATA_DIRECTORY
-              value: ""
-            - name: MB_DROP_ALL
-              value: "true"
+          envFrom:
+            - configMapRef:
+                name: {{ include "massbank-dbtool.fullname" . }}-env-configmap
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      initContainers:
+        - name: {{ .Chart.Name }}-wait-for-postgres
+          image: postgres:17-alpine
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - |
+              until pg_isready -U {{ .Values.username }} -d {{ .Values.massbankApiDatabase }} -h {{ .Release.Name }}-postgres -p 5432; do
+                echo "waiting for postgres at {{ .Release.Name }}-postgres:5432..."
+                sleep 2
+              done
+        {{- if not .Values.useSharedData }}
+        - name: {{ .Chart.Name }}-init
+          image: busybox:latest
+          command:
+            - sh
+            - -c
+            - |
+              version=$(wget -q https://api.github.com/repos/MassBank/MassBank-data/releases/latest --output-document - | grep "tag_name" | sed "s/\"tag_name\": //g" | sed "s/\"//g" | sed "s/,//g" | sed "s/ //g")
+              echo "Downloading MassBank-data version: $version from https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz"
+              mkdir -p /MassBank-data
+              wget -qO- https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz | tar -xzf - -C /MassBank-data --strip-components=1
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+        {{- else }}
+        - name: {{ .Chart.Name }}-wait-for-data
+          image: bitnami/kubectl:latest
+          command:
+            - sh
+            - -c
+            - |
+              set -euo pipefail
+              selector="app.kubernetes.io/instance={{ .Release.Name }},massbank-data.role=download"
+              entries=$(kubectl get jobs -l "$selector" -o jsonpath='{range .items[*]}{.metadata.labels.massbank-data.chartVersion}{"|"}{.metadata.name}{"\n"}{end}')
+              if [ -z "$entries" ]; then
+                echo "no matching job found" >&2
+                exit 1
+              fi
+              job=$(printf "%s" "$entries" | sort -t'|' -k1,1 -V | tail -n1 | cut -d'|' -f2)
+              echo "waiting for job $job"
+              kubectl wait --for=condition=complete job/"$job" --timeout=3600s
+        {{- end }}
+
+      volumes:
+      {{- if .Values.useSharedData }}
+        - name: massbank-data-volume
+          persistentVolumeClaim:
+            claimName: {{ tpl .Values.sharedDataPvcName . }}
+      {{- else }}
+        {{- with .Values.volumes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

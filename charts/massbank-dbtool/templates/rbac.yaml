@@ -1,0 +1,27 @@
+{{- if .Values.useSharedData }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "massbank-dbtool.fullname" . }}-job-reader
+  labels:
+    {{- include "massbank-dbtool.labels" . | nindent 4 }}
+rules:
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "massbank-dbtool.fullname" . }}-job-reader
+  labels:
+    {{- include "massbank-dbtool.labels" . | nindent 4 }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "massbank-dbtool.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: Role
+  name: {{ include "massbank-dbtool.fullname" . }}-job-reader
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}
