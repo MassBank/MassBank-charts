@@ -9,7 +9,6 @@ data:
   MB3_API_URL_INTERNAL: "http://{{ .Release.Name }}-massbank-api:8080/{{ .Values.pathPrefix }}-api"
   MB3_FRONTEND_URL: "https://{{ .Values.host }}"
   MB3_FRONTEND_BASE_URL: "/{{ .Values.pathPrefix }}"
-  MB3_FRONTEND_VERSION: "3.0.0 (beta)"
   EXPORT_SERVICE_URL: "https://{{ .Values.host }}/{{ .Values.pathPrefix }}-export"
   EXPORT_SERVICE_URL_INTERNAL: "http://{{ .Release.Name }}-massbank-export-api:8080/{{ .Values.pathPrefix }}-export"
   HTML_HEAD_FILE: "{{ .Values.HTML_HEAD_FILE }}"
