@@ -7,12 +7,10 @@ pathPrefix: &commonPathPrefix MassBank
 massbankReleaseName: &massbankReleaseName massbank
 
 # postgres settings
-# the password for the postgres admin user
-postgresPassword: &postgresPassword "msbi-raab"
 # the username for the postgres user
 username: &username "massbank"
 # the password for the postgres user
-password: &password "msbi-raab"
+password: &password "postgresPassword"
 # the name of the postgres database used by massbank-api
 massbankApiDatabase: &massbankApiDatabase "massbank"
 # the name of the postgres database used by massbank-export-api
@@ -25,7 +23,6 @@ postgres:
   image:
     tag: "17.7"
   auth:
-    postgresPassword: *postgresPassword
     username: *username
     password: *password
     database: *massbankApiDatabase
@@ -48,8 +45,6 @@ postgres:
       mountPath: /opt/bingo-postgres
   initdb:
     scriptsConfigMap: "postgres-config"
-  persistence:
-    enabled: false
 
 massbank-api:
   host: *commonHost
@@ -65,6 +60,15 @@ massbank-api:
 #    limits:
 #      cpu: 1000m
 #      memory: 400Mi
+#  affinity:
+#    podAffinity:
+#      requiredDuringSchedulingIgnoredDuringExecution:
+#        - labelSelector:
+#            matchLabels:
+#              app.kubernetes.io/instance: "{{ .Release.Name }}"
+#              app.kubernetes.io/name: postgres
+#          topologyKey: kubernetes.io/hostname
+
 
 massbank-export-api:
   host: *commonHost
@@ -77,11 +81,11 @@ massbank-export-api:
   sharedDataPvcName: "{{ .Release.Name }}-massbank-data-pvc"
 #  resources:
 #    requests:
-#      cpu: 100m
-#      memory: 3000Mi
+#      cpu: 300m
+#      memory: 1400Mi
 #    limits:
-#      cpu: 3000m
-#      memory: 6000Mi
+#      cpu: 1200m
+#      memory: 1600Mi
 
 massbank-frontend:
   host: *commonHost
@@ -99,18 +103,15 @@ massbank-frontend:
   MB3_FRONTEND_HOMEPAGE_FUNDING_SECTION_TEXT: ""
   MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_NAME: ""
   MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_TEXT: ""
-
   volumes:
     - name: html-head
       configMap:
         name: html-head
-
   volumeMounts:
     - name: html-head
       mountPath: /html-insert/html-head.html
       subPath: html-head.html
       readOnly: true
-
 #  resources:
 #    requests:
 #      cpu: 1100m
@@ -129,15 +130,31 @@ massbank-similarity-api:
   pathPrefix: *commonPathPrefix
   useSharedData: true
   sharedDataPvcName: "{{ .Release.Name }}-massbank-data-pvc"
-  resources:
-    requests:
-      cpu: 1000m
-      memory: 800Mi
-    limits:
-      cpu: 1500m
-      memory: 1600Mi
-  autoscaling:
-    enabled: true
-    minReplicas: 2
-    maxReplicas: 8
-    targetCPUUtilizationPercentage: 50
+#  resources:
+#    requests:
+#      cpu: 1000m
+#      memory: 800Mi
+#    limits:
+#      cpu: 1500m
+#      memory: 1600Mi
+#  autoscaling:
+#    enabled: true
+#    minReplicas: 2
+#    maxReplicas: 8
+#    targetCPUUtilizationPercentage: 50
+
+massbank-dbtool:
+  withPostgres: false
+  username: *username
+  password: *password
+  massbankApiDatabase: *massbankApiDatabase
+  useSharedData: true
+  sharedDataPvcName: "{{ .Release.Name }}-massbank-data-pvc"
+#  affinity:
+#    podAffinity:
+#      requiredDuringSchedulingIgnoredDuringExecution:
+#        - labelSelector:
+#            matchLabels:
+#              app.kubernetes.io/instance: "{{ .Release.Name }}"
+#              app.kubernetes.io/name: postgres
+#          topologyKey: kubernetes.io/hostname

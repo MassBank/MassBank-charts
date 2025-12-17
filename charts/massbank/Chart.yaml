@@ -2,24 +2,27 @@ apiVersion: v2
 name: massbank
 description: A umbrella chart for MassBank
 type: application
-version: 0.1.1
+version: 0.1.2
 
 dependencies:
   - name: massbank-data
-    version: 2025.10.12
+    version: 2025.10.13
     repository: "https://massbank.github.io/MassBank-charts"
   - name: postgres
     version: 0.13.2
     repository: oci://registry-1.docker.io/cloudpirates
   - name: massbank-api
-    version: 0.1.4
+    version: 2025.12.2
     repository: "https://massbank.github.io/MassBank-charts"
   - name: massbank-export-api
-    version: 0.1.5
+    version: 2.3.1
     repository: "https://massbank.github.io/MassBank-charts"
   - name: massbank-frontend
-    version: 0.1.4
+    version: 2025.12.0
     repository: "https://massbank.github.io/MassBank-charts"
   - name: massbank-similarity-api
     version: 1.8.7
+    repository: "https://massbank.github.io/MassBank-charts"
+  - name: massbank-dbtool
+    version: 2025.12.2
     repository: "https://massbank.github.io/MassBank-charts"
