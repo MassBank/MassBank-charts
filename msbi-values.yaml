@@ -4,80 +4,58 @@ host: &commonHost msbi.ipb-halle.de
 pathPrefix: &commonPathPrefix MassBank
 # release name of the helm install of massbank3-frontend, required for dbtool
 # to identify the hostname of the postgres database
-massbankReleaseName: massbank
+massbankReleaseName: &massbankReleaseName massbank
 
 # postgres settings
-# the password for the postgres admin user
-postgresPassword: &commonPostgresPassword "massbankAdminPassword"
 # the username for the postgres user
-username: &commonUsername "massbank"
+username: &username "massbank"
 # the password for the postgres user
-password: &commonPassword "massbankPassword"
-# the name of the postgres database
-database: &commonDatabase "massbank"
+password: &password "postgresPassword"
+# the name of the postgres database used by massbank-api
+massbankApiDatabase: &massbankApiDatabase "massbank"
+# the name of the postgres database used by massbank-export-api
+massbankExportApiDatabase: &massbankExportApiDatabase "records"
 
-HTML_HEAD_FILE: "/html-insert/html-head.html"
-HTML_HEAD_FILE_CONTENT: |
-  <meta name="google-site-verification" content="o3yPKbs7xQhjmcT8HdNIDFFlIXdkBm2Y8GYJrr3UH6o">
-HTML_BODY_FILE: ""
-HTML_BODY_FILE_CONTENT: |
-DISTRIBUTOR_TEXT: "This website is hosted and distributed by the Leibniz Institute of Plant Biochemistry, Halle (Saale), Germany."
-DISTRIBUTOR_URL: "https://www.ipb-halle.de/kontakt/impressum"
-MB3_FRONTEND_BROWSER_TAB_TITLE: "MassBank"
-MB3_FRONTEND_HOMEPAGE_INTRO_TEXT: "Welcome to MassBank, an open-source mass spectral library for the identification of small chemical molecules of metabolomics, exposomics and environmental relevance."
-MB3_FRONTEND_HOMEPAGE_NEWS_SECTION_TEXT: ""
-MB3_FRONTEND_HOMEPAGE_FUNDING_SECTION_TEXT: ""
-MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_NAME: ""
-MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_TEXT: ""
 
-volumes:
-  - name: html-head
-    configMap:
-      name : html-head
+massbank-data:
+  storageSize: 2Gi
 
-volumeMounts:
-  - name: html-head
-    mountPath: /html-insert/html-head.html
-    subPath: html-head.html
-    readOnly: true
 
-resources:
-  requests:
-    cpu: 1100m
-    memory: 400Mi
-  limits:
-    cpu: 3000m
-    memory: 800Mi
-autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 4
-  targetCPUUtilizationPercentage: 80
+postgres:
+  image:
+    tag: "17.7"
+  auth:
+    username: *username
+    password: *password
+    database: *massbankApiDatabase
+  initContainers:
+    - name: bingo-init
+      image: quay.io/massbank/postgres-bingo-init:v17-bingo-1.36.0
+      command:
+        - "sh"
+        - "-c"
+        - |
+          cp -rp /bingo-postgres/* /opt/bingo-postgres/
+      volumeMounts:
+        - name: bingo-volume
+          mountPath: /opt/bingo-postgres
+  extraVolumes:
+    - name: bingo-volume
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: bingo-volume
+      mountPath: /opt/bingo-postgres
+  initdb:
+    scriptsConfigMap: "postgres-config"
 
-# set the values in the dependencies, do not change
-massbank-export-api:
-  host: *commonHost
-  pathPrefix: *commonPathPrefix
-  resources:
-    requests:
-      cpu: 100m
-      memory: 3000Mi
-    limits:
-      cpu: 3000m
-      memory: 6000Mi
 
 massbank-api:
   host: *commonHost
   pathPrefix: *commonPathPrefix
-  postgresql:
-    auth:
-      postgresPassword: *commonPostgresPassword
-      username: *commonUsername
-      password: *commonPassword
-      database: *commonDatabase
-    primary:
-      initdb:
-        password: *commonPostgresPassword
+  withPostgres: false
+  username: *username
+  password: *password
+  massbankApiDatabase: *massbankApiDatabase
   resources:
     requests:
       cpu: 100m
@@ -85,20 +63,104 @@ massbank-api:
     limits:
       cpu: 1000m
       memory: 400Mi
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchLabels:
+              app.kubernetes.io/instance: *massbankReleaseName
+              app.kubernetes.io/name: postgres
+          topologyKey: kubernetes.io/hostname
 
-  massbank-similarity-api:
-    host: *commonHost
-    pathPrefix: *commonPathPrefix
-    resources:
-      requests:
-        cpu: 1000m
-        memory: 800Mi
-      limits:
-        cpu: 1500m
-        memory: 1600Mi
-    autoscaling:
-      enabled: true
-      minReplicas: 2
-      maxReplicas: 8
-      targetCPUUtilizationPercentage: 50
 
+massbank-export-api:
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
+  withPostgres: false
+  username: *username
+  password: *password
+  massbankExportApiDatabase: *massbankExportApiDatabase
+  useSharedData: true
+  sharedDataPvcName: "{{ .Release.Name }}-massbank-data-pvc"
+  resources:
+    requests:
+      cpu: 300m
+      memory: 1400Mi
+    limits:
+      cpu: 1200m
+      memory: 1600Mi
+
+
+massbank-frontend:
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
+  HTML_HEAD_FILE: "/html-insert/html-head.html"
+  HTML_HEAD_FILE_CONTENT: |
+    <meta name="google-site-verification" content="o3yPKbs7xQhjmcT8HdNIDFFlIXdkBm2Y8GYJrr3UH6o">
+  HTML_BODY_FILE: ""
+  HTML_BODY_FILE_CONTENT: |
+  DISTRIBUTOR_TEXT: "This website is hosted and distributed by the Leibniz Institute of Plant Biochemistry, Halle (Saale), Germany."
+  DISTRIBUTOR_URL: "https://www.ipb-halle.de/kontakt/impressum"
+  MB3_FRONTEND_BROWSER_TAB_TITLE: "MassBank"
+  MB3_FRONTEND_HOMEPAGE_INTRO_TEXT: "Welcome to MassBank, an open-source mass spectral library for the identification of small chemical molecules of metabolomics, exposomics and environmental relevance."
+  MB3_FRONTEND_HOMEPAGE_NEWS_SECTION_TEXT: ""
+  MB3_FRONTEND_HOMEPAGE_FUNDING_SECTION_TEXT: ""
+  MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_NAME: ""
+  MB3_FRONTEND_HOMEPAGE_ADDITIONAL_SECTION_TEXT: ""
+  volumes:
+    - name: html-head
+      configMap:
+        name: html-head
+  volumeMounts:
+    - name: html-head
+      mountPath: /html-insert/html-head.html
+      subPath: html-head.html
+      readOnly: true
+  resources:
+    requests:
+      cpu: 1100m
+      memory: 400Mi
+    limits:
+      cpu: 3000m
+      memory: 800Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 80
+
+
+massbank-similarity-api:
+  host: *commonHost
+  pathPrefix: *commonPathPrefix
+  useSharedData: true
+  sharedDataPvcName: "{{ .Release.Name }}-massbank-data-pvc"
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 800Mi
+    limits:
+      cpu: 1500m
+      memory: 1600Mi
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 8
+    targetCPUUtilizationPercentage: 50
+
+
+massbank-dbtool:
+  withPostgres: false
+  username: *username
+  password: *password
+  massbankApiDatabase: *massbankApiDatabase
+  useSharedData: true
+  sharedDataPvcName: "{{ .Release.Name }}-massbank-data-pvc"
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchLabels:
+              app.kubernetes.io/instance: *massbankReleaseName
+              app.kubernetes.io/name: postgres
+          topologyKey: kubernetes.io/hostname

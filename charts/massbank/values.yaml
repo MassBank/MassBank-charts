@@ -16,6 +16,7 @@ massbankApiDatabase: &massbankApiDatabase "massbank"
 # the name of the postgres database used by massbank-export-api
 massbankExportApiDatabase: &massbankExportApiDatabase "records"
 
+
 massbank-data:
   storageSize: 2Gi
 
@@ -46,6 +47,7 @@ postgres:
   initdb:
     scriptsConfigMap: "postgres-config"
 
+
 massbank-api:
   host: *commonHost
   pathPrefix: *commonPathPrefix
@@ -65,7 +67,7 @@ massbank-api:
 #      requiredDuringSchedulingIgnoredDuringExecution:
 #        - labelSelector:
 #            matchLabels:
-#              app.kubernetes.io/instance: "{{ .Release.Name }}"
+#              app.kubernetes.io/instance: *massbankReleaseName
 #              app.kubernetes.io/name: postgres
 #          topologyKey: kubernetes.io/hostname
 
@@ -86,6 +88,7 @@ massbank-export-api:
 #    limits:
 #      cpu: 1200m
 #      memory: 1600Mi
+
 
 massbank-frontend:
   host: *commonHost
@@ -125,6 +128,7 @@ massbank-frontend:
 #    maxReplicas: 4
 #    targetCPUUtilizationPercentage: 80
 
+
 massbank-similarity-api:
   host: *commonHost
   pathPrefix: *commonPathPrefix
@@ -143,6 +147,7 @@ massbank-similarity-api:
 #    maxReplicas: 8
 #    targetCPUUtilizationPercentage: 50
 
+
 massbank-dbtool:
   withPostgres: false
   username: *username
@@ -155,6 +160,6 @@ massbank-dbtool:
 #      requiredDuringSchedulingIgnoredDuringExecution:
 #        - labelSelector:
 #            matchLabels:
-#              app.kubernetes.io/instance: "{{ .Release.Name }}"
+#              app.kubernetes.io/instance: *massbankReleaseName
 #              app.kubernetes.io/name: postgres
 #          topologyKey: kubernetes.io/hostname
