@@ -263,6 +263,21 @@ entries:
     version: 2025.10.0
   massbank-dbtool:
   - apiVersion: v2
+    appVersion: v2025.12.1
+    created: "2025-12-17T10:30:28.177466818Z"
+    dependencies:
+    - condition: withPostgres
+      name: postgres
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.13.2
+    description: A Helm chart for Kubernetes
+    digest: 9d34a1b15dbc07e5e98f179543482539d5577664b4d43e21d8fa567f95f62a66
+    name: massbank-dbtool
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-dbtool-2025.12.0/massbank-dbtool-2025.12.0.tgz
+    version: 2025.12.0
+  - apiVersion: v2
     appVersion: v2025.8.6
     created: "2025-08-25T13:37:16.627161697Z"
     description: A Helm chart for Kubernetes
@@ -542,4 +557,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-17T08:53:55.882949717Z"
+generated: "2025-12-17T10:30:28.177602261Z"
