@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: postgres-config
+  name: massbank-api-postgres-config
   labels:
     {{- include "massbank-api.labels" . | nindent 4 }}
 data:

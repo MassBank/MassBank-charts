@@ -44,7 +44,9 @@ postgres:
     - name: bingo-volume
       mountPath: /opt/bingo-postgres
   initdb:
-    scriptsConfigMap: "postgres-config"
+    scriptsConfigMap: "massbank-api-postgres-config"
+  persistence:
+    enabled: false
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
