@@ -24,7 +24,7 @@ spec:
             - -c
             - |
               set -euo pipefail
-              apk add --no-cache wget tar gzip rsync >/dev/null 2>&1 || true
+              apk add --no-cache wget tar gzip rclone >/dev/null 2>&1 || true
 
               version="{{ .Chart.AppVersion }}"
               if [ "$version" = "latest" ]; then
@@ -44,7 +44,8 @@ spec:
               mkdir -p /tmp/MassBank-data
               tar -xzf $version.tar.gz -C /tmp/MassBank-data --strip-components=1
               echo "Sync temporary content to /MassBank-data"
-              rsync -a --delete /tmp/MassBank-data/ /MassBank-data
+              rclone sync /tmp/MassBank-data /MassBank-data --transfers 16 --stats-one-line -P
+              #rsync -a --delete /tmp/MassBank-data/ /MassBank-data
               echo "Download and extraction completed"
           volumeMounts:
             - name: data
