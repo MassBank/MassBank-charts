@@ -7,8 +7,6 @@ pathPrefix: "MassBank"
 withPostgres: true
 
 # postgres settings
-# the password for the postgres admin user
-postgresPassword: &postgresPassword "massbankAdminPassword"
 # the username for the postgres user
 username: &username "massbank"
 # the password for the postgres user
@@ -25,7 +23,6 @@ postgres:
   image:
     tag: "17.7"
   auth:
-    postgresPassword: *postgresPassword
     username: *username
     password: *password
     database: *massbankApiDatabase

@@ -3,7 +3,7 @@ name: massbank-api
 description: A Helm chart for massbank-api
 
 type: application
-version: 0.1.4
+version: 2025.12.0
 appVersion: "v2025.12.1"
 
 dependencies:
