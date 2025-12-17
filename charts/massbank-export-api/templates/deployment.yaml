@@ -75,7 +75,7 @@ spec:
                 echo "waiting for postgres at {{ .Release.Name }}-postgres:5432..."
                 sleep 2
               done
-      {{- if not .Values.useSharedData }}
+        {{- if not .Values.useSharedData }}
         - name: {{ .Chart.Name }}-init
           image: busybox:latest
           command:
@@ -90,7 +90,7 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- else }}
+        {{- else }}
         - name: {{ .Chart.Name }}-wait-for-data
           image: bitnami/kubectl:latest
           command:
@@ -107,7 +107,7 @@ spec:
               job=$(printf "%s" "$entries" | sort -t'|' -k1,1 -V | tail -n1 | cut -d'|' -f2)
               echo "waiting for job $job"
               kubectl wait --for=condition=complete job/"$job" --timeout=3600s
-      {{- end }}
+        {{- end }}
 
       volumes:
       {{- if .Values.useSharedData }}

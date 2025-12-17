@@ -22,6 +22,6 @@ subjects:
     namespace: {{ .Release.Namespace }}
 roleRef:
   kind: Role
-  name: {{ include "massbank-similarity-api.fullname" . }}-job-reader
+  name: {{ include "massbank-export-api.fullname" . }}-job-reader
   apiGroup: rbac.authorization.k8s.io
 {{- end }}
