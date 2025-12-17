@@ -260,6 +260,21 @@ entries:
   massbank-export-api:
   - apiVersion: v2
     appVersion: v2.3
+    created: "2025-12-17T08:49:11.989387731Z"
+    dependencies:
+    - condition: withPostgres
+      name: postgres
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.13.2
+    description: A Helm chart for massbank-export-api
+    digest: f736639082d51487233e646b42c56ad5b6b02cc96e085fd0c0d8c3ab1f197d2c
+    name: massbank-export-api
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-export-api-2.3.0/massbank-export-api-2.3.0.tgz
+    version: 2.3.0
+  - apiVersion: v2
+    appVersion: v2.3
     created: "2025-12-16T16:09:27.979555284Z"
     dependencies:
     - condition: withPostgres
@@ -512,4 +527,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-17T08:28:42.128493819Z"
+generated: "2025-12-17T08:49:11.989507104Z"
