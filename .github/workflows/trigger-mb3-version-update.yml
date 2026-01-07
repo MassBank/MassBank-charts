@@ -24,7 +24,7 @@ jobs:
           version=${{ github.event.client_payload.version }}
           echo "Version: $version"
           # Run the update script with the extracted version
-          bash ./update.sh "$version"
+          bash ./.github/workflows/update.sh "$version"
 
       - name: Check for Changes
         id: check_changes
