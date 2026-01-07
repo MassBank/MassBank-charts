@@ -23,16 +23,8 @@ jobs:
           # Parse the version name from the payload
           version=${{ github.event.client_payload.version }}
           echo "Version: $version"
-          sed "s/^appVersion: .*/appVersion: \"$version\"/g" charts/massbank-api/Chart.yaml > charts/massbank-api/Chart2.yaml
-          mv charts/massbank-api/Chart2.yaml charts/massbank-api/Chart.yaml
-          echo "MassBank-api version update complete"
-          sed "s/^appVersion: .*/appVersion: \"$version\"/g" charts/massbank-frontend/Chart.yaml > charts/massbank-frontend/Chart2.yaml
-          mv charts/massbank-frontend/Chart2.yaml charts/massbank-frontend/Chart.yaml
-          echo "MassBank-frontend version update complete"
-          sed "s/^appVersion: .*/appVersion: \"$version\"/g" charts/massbank-dbtool/Chart.yaml > charts/massbank-dbtool/Chart2.yaml
-          mv charts/massbank-dbtool/Chart2.yaml charts/massbank-dbtool/Chart.yaml
-          echo "MassBank-dbtool version update complete"
-          echo " -> Version updates complete"
+          # Run the update script with the extracted version
+          bash ./update.sh "$version"
 
       - name: Check for Changes
         id: check_changes
