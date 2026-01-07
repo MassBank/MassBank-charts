@@ -3,5 +3,5 @@ name: massbank-frontend
 description: A Helm chart for massbank-frontend
 
 type: application
-version: 2025.12.1
-appVersion: "v2025.10.4"
+version: 2025.12.2
+appVersion: "v2025.12.1"
