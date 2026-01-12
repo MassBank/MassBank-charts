@@ -20,7 +20,6 @@ massbankExportApiDatabase: &massbankExportApiDatabase "records"
 massbank-data:
   storageSize: 2Gi
 
-
 postgres:
   image:
     tag: "17.7"
@@ -48,7 +47,6 @@ postgres:
   initdb:
     scriptsConfigMap: "postgres-config"
 
-
 massbank-api:
   host: *commonHost
   pathPrefix: *commonPathPrefix
@@ -71,7 +69,6 @@ massbank-api:
               app.kubernetes.io/instance: *massbankReleaseName
               app.kubernetes.io/name: postgres
           topologyKey: kubernetes.io/hostname
-
 
 massbank-export-api:
   host: *commonHost
@@ -129,7 +126,6 @@ massbank-frontend:
     maxReplicas: 4
     targetCPUUtilizationPercentage: 80
 
-
 massbank-similarity-api:
   host: *commonHost
   pathPrefix: *commonPathPrefix
@@ -147,7 +143,6 @@ massbank-similarity-api:
     minReplicas: 2
     maxReplicas: 8
     targetCPUUtilizationPercentage: 50
-
 
 massbank-dbtool:
   withPostgres: false
