@@ -6,7 +6,7 @@ version: 0.1.4
 
 dependencies:
   - name: massbank-data
-    version: 2025.10.14
+    version: 2025.10.15
     repository: "https://massbank.github.io/MassBank-charts"
   - name: postgres
     version: 0.13.2
