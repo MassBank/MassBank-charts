@@ -1,2 +1,5 @@
-storageSize: 1Gi
-storageClassName: ""
+persistence:
+  ## Persistent Volume storage class
+  storageClass: ""
+  ## @param Persistent Volume size
+  size: 2Gi
