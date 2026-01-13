@@ -17,7 +17,8 @@ massbankApiDatabase: &massbankApiDatabase "massbank"
 massbankExportApiDatabase: &massbankExportApiDatabase "records"
 
 massbank-data:
-  storageSize: 2Gi
+  persistence:
+    size: 2Gi
 
 postgres:
   image:
