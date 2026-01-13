@@ -26,7 +26,7 @@ spec:
               set -euo pipefail
               apk add --no-cache wget tar gzip rclone >/dev/null 2>&1 || true
 
-              version="{{ .Chart.AppVersion }}"
+              version="{{ if .Values.version }}{{ .Values.version }}{{ else }}{{ .Chart.AppVersion }}{{ end }}"
               if [ "$version" = "dev" ]; then
                 echo "Downloading MassBank-data dev branch from https://github.com/MassBank/MassBank-data/archive/refs/heads/dev.tar.gz"
                 wget -q --show-progress --progress=dot:giga -O dev.tar.gz https://github.com/MassBank/MassBank-data/archive/refs/heads/dev.tar.gz

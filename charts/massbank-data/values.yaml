@@ -1,3 +1,4 @@
+version: ""
 persistence:
   ## Persistent Volume storage class
   storageClass: ""
