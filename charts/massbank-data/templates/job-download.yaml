@@ -27,22 +27,30 @@ spec:
               apk add --no-cache wget tar gzip rclone >/dev/null 2>&1 || true
 
               version="{{ .Chart.AppVersion }}"
-              if [ "$version" = "latest" ]; then
-                echo "Resolving latest MassBank-data tag from GitHub API..."
-                version=$(wget -q https://api.github.com/repos/MassBank/MassBank-data/releases/latest --output-document - | grep "tag_name" | sed "s/\"tag_name\": //g" | sed "s/\"//g" | sed "s/,//g" | sed "s/ //g")
-                if [ -z "$version" ]; then
-                  echo "Failed to resolve latest version from GitHub API" >&2
-                  exit 1
+              if [ "$version" = "dev" ]; then
+                echo "Downloading MassBank-data dev branch from https://github.com/MassBank/MassBank-data/archive/refs/heads/dev.tar.gz"
+                wget -q --show-progress --progress=dot:giga -O dev.tar.gz https://github.com/MassBank/MassBank-data/archive/refs/heads/dev.tar.gz
+                tar_file="dev.tar.gz"
+              else
+                if [ "$version" = "latest" ]; then
+                  echo "Resolving latest MassBank-data tag from GitHub API..."
+                  version=$(wget -q https://api.github.com/repos/MassBank/MassBank-data/releases/latest --output-document - | grep "tag_name" | sed "s/\"tag_name\": //g" | sed "s/\"//g" | sed "s/,//g" | sed "s/ //g")
+                  if [ -z "$version" ]; then
+                    echo "Failed to resolve latest version from GitHub API" >&2
+                    exit 1
+                  fi
+                  echo "Resolved latest tag: $version"
                 fi
-                echo "Resolved latest tag: $version"
+
+                echo "Downloading MassBank-data version: $version from https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz"
+                wget -q --show-progress --progress=dot:giga -O $version.tar.gz https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz
+                tar_file="$version.tar.gz"
               fi
 
-              echo "Downloading MassBank-data version: $version from https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz"
               mkdir -p /MassBank-data
-              wget -q --show-progress --progress=dot:giga -O $version.tar.gz https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz
-              echo "Extract content of $version.tar.gz to temporary location"
+              echo "Extract content of $tar_file to temporary location"
               mkdir -p /tmp/MassBank-data
-              tar -xzf $version.tar.gz -C /tmp/MassBank-data --strip-components=1
+              tar -xzf $tar_file -C /tmp/MassBank-data --strip-components=1
               echo "Sync temporary content to /MassBank-data"
               rclone sync /tmp/MassBank-data /MassBank-data --transfers 16 --stats-one-line -P
               #rsync -a --delete /tmp/MassBank-data/ /MassBank-data
