@@ -1,5 +1,8 @@
 # MassBank-charts
-This repo contains the different helm charts to deploy a full MassBank software system into a Kubernetes instance.
+This repo contains the helm charts to deploy a full MassBank software system into a Kubernetes instance. The charts are available from a helm repo. You can add them to your helm with:
+```
+helm repo add massbank https://massbank.github.io/MassBank-charts
+```
 
 ## Development
 
