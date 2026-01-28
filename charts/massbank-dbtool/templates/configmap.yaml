@@ -6,7 +6,6 @@ metadata:
     {{- include "massbank-dbtool.labels" . | nindent 4 }}
 data:
   DB_PORT: "5432"
-  DB_PASSWORD: "{{ .Values.password }}"
   DB_HOST: "{{ .Release.Name }}-postgres"
   DB_NAME: "{{ .Values.massbankApiDatabase }}"
   DB_USER: "{{ .Values.username }}"

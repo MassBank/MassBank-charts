@@ -8,8 +8,6 @@ sharedDataPvcName: ""
 # postgres settings
 # the username for the postgres user
 username: &username "massbank"
-# the password for the postgres user
-password: &password "massbankPassword"
 # the name of the postgres database used by massbank-export-api
 massbankApiDatabase: &massbankApiDatabase "massbank"
 
@@ -22,8 +20,10 @@ postgres:
     tag: "17.7"
   auth:
     username: *username
-    password: *password
     database: *massbankApiDatabase
+    existingSecret: postgres-pw
+    secretKeys:
+      adminPasswordKey: "password"
   initContainers:
     - name: bingo-init
       image: quay.io/massbank/postgres-bingo-init:v17-bingo-1.36.0
