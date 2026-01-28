@@ -43,6 +43,12 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "massbank-api.fullname" . }}-env-configmap
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-pw
+                  key: password
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
