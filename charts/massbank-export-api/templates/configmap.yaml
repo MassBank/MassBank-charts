@@ -12,4 +12,3 @@ data:
   DB_HOST: "{{ .Release.Name }}-postgres"
   DB_NAME: "{{ .Values.massbankExportApiDatabase }}"
   DB_USER: "{{ .Values.username }}"
-  DB_PASSWORD: "{{ .Values.password }}"
