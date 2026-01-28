@@ -4,27 +4,26 @@ This repo contains the helm charts to deploy a full MassBank software system int
 helm repo add massbank https://massbank.github.io/MassBank-charts
 ```
 
-## Development
-
-After clonging this repo, the chart dependencies need to be updated:
-
+## Update charts
+Update to the latest charts with:
 ```
-helm repo add bitnami https://charts.bitnami.com/bitnami # Only needed once
-helm dependency build massbank-api
-helm dependency build massbank-frontend
+helm repo update
 ```
 
-When changing something, you can check nothing broke via `helm lint massbank-frontend`,
-and you could dry-run a helm action to see the resulting k8s yaml files via `helm upgrade massbank ./massbank-frontend ... --dry-run`.
-(Note: the sub-charts like massbank-api or massbank-similarity-api are
-usually NOT deployed separately, but come in as dependencies of
-massbank-frontend.)
+## Install
+Take a look into the example value files in the root of this repo. This
+app is deployed via an umbrella chart `massbank`. 
 
-To install, we recommend keeping (local) values files with the variables and real passwords:
+First create a secret with the database password:
 ```
-helm install massbank ./massbank-frontend/ -f msbi-values.yaml -n massbank
+kubectl create secret generic postgres-pw -n massbank \
+  --from-literal=password=postgresPassword
+```
+Then you can install the app with your custom values file:
+```
+helm install massbank -n massbank massbank/massbank -f msbi-values-dev.yaml
 ```
 and later updates can be performed via 
 ```
-helm upgrade massbank ./massbank-frontend/ --version v2025.06.2 -f msbi-values.yaml -n massbank
+helm upgrade massbank -n massbank massbank/massbank -f msbi-values-dev.yaml
 ```
