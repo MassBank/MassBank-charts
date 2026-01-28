@@ -564,6 +564,21 @@ entries:
   massbank-dbtool:
   - apiVersion: v2
     appVersion: v2025.12.1
+    created: "2026-01-28T14:31:02.837202493Z"
+    dependencies:
+    - condition: withPostgres
+      name: postgres
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.13.2
+    description: A Helm chart for Kubernetes
+    digest: f42be953d92317dc992b896600769ba4be0a7724d8d77250df09f1815c158e82
+    name: massbank-dbtool
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-dbtool-2025.12.5/massbank-dbtool-2025.12.5.tgz
+    version: 2025.12.5
+  - apiVersion: v2
+    appVersion: v2025.12.1
     created: "2026-01-07T18:13:01.37748069Z"
     dependencies:
     - condition: withPostgres
@@ -648,6 +663,21 @@ entries:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-dbtool-0.1.0/massbank-dbtool-0.1.0.tgz
     version: 0.1.0
   massbank-export-api:
+  - apiVersion: v2
+    appVersion: v2.3
+    created: "2026-01-28T14:31:03.135855212Z"
+    dependencies:
+    - condition: withPostgres
+      name: postgres
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.13.2
+    description: A Helm chart for massbank-export-api
+    digest: 2f1316ce8be2bcdcb50296c4fe529bde2d6df0def601811a36317127acd2afbe
+    name: massbank-export-api
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-export-api-2.3.2/massbank-export-api-2.3.2.tgz
+    version: 2.3.2
   - apiVersion: v2
     appVersion: v2.3
     created: "2025-12-17T12:58:21.142476812Z"
@@ -952,4 +982,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-28T12:46:45.017259459Z"
+generated: "2026-01-28T14:31:03.136030233Z"
