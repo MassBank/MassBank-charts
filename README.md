@@ -1,29 +1,32 @@
 # MassBank-charts
-This repo contains the helm charts to deploy a full MassBank software system into a Kubernetes instance. The charts are available from a helm repo. You can add them to your helm with:
+This repo contains the helm charts to deploy a full MassBank software system into a Kubernetes instance. 
+
+## Installing MassBank from helm repo
+
+The charts are available from our helm repo. You can add them to your helm with:
 ```
 helm repo add massbank https://massbank.github.io/MassBank-charts
 ```
-
-## Update charts
-Update to the latest charts with:
+and update them later with:
 ```
 helm repo update
 ```
 
-## Install
-Take a look into the example value files in the root of this repo. This
-app is deployed via an umbrella chart `massbank`. 
-
-First create a secret with the database password:
+The whole installation is triggered by installing the umbrella chart `massbank`.
+To install, we recommend keeping (local) values files with the helm variables and real passwords:
 ```
-kubectl create secret generic postgres-pw -n massbank \
-  --from-literal=password=postgresPassword
-```
-Then you can install the app with your custom values file:
-```
-helm install massbank -n massbank massbank/massbank -f msbi-values-dev.yaml
+helm install massbank massbank/massbank -f msbi-values.yaml -n massbank
 ```
 and later updates can be performed via 
 ```
-helm upgrade massbank -n massbank massbank/massbank -f msbi-values-dev.yaml
+helm upgrade massbank massbank/massbank --version v2025.06.2 -f msbi-values.yaml -n massbank
 ```
+Some example values files can be found in the root of this repo.
+
+## Development
+
+When changing something, you can check nothing broke via `helm lint massbank-frontend`,
+and you could dry-run a helm action to see the resulting k8s yaml files via `helm upgrade massbank ./massbank-frontend ... --dry-run`.
+(Note: the sub-charts like massbank-api or massbank-similarity-api are
+usually NOT deployed separately, but come in as dependencies of
+massbank-frontend.)
