@@ -651,6 +651,21 @@ entries:
   massbank-dbtool:
   - apiVersion: v2
     appVersion: v2025.12.1
+    created: "2026-03-18T12:43:13.497226999Z"
+    dependencies:
+    - condition: withPostgres
+      name: postgres
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.13.2
+    description: A Helm chart for Kubernetes
+    digest: df69dddcdfc3ad7491700e1779dc48aa4a315aa4ba74497425f98dc88be37f20
+    name: massbank-dbtool
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-dbtool-2025.12.6/massbank-dbtool-2025.12.6.tgz
+    version: 2025.12.6
+  - apiVersion: v2
+    appVersion: v2025.12.1
     created: "2026-01-28T14:31:02.837202493Z"
     dependencies:
     - condition: withPostgres
@@ -750,6 +765,21 @@ entries:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-dbtool-0.1.0/massbank-dbtool-0.1.0.tgz
     version: 0.1.0
   massbank-export-api:
+  - apiVersion: v2
+    appVersion: v2.3
+    created: "2026-03-18T12:43:13.674505427Z"
+    dependencies:
+    - condition: withPostgres
+      name: postgres
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.13.2
+    description: A Helm chart for massbank-export-api
+    digest: c25af20bba6132cc182c1644299dc620f34a8fb5e4a3dc058647f04de92ee2e1
+    name: massbank-export-api
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-export-api-2.3.3/massbank-export-api-2.3.3.tgz
+    version: 2.3.3
   - apiVersion: v2
     appVersion: v2.3
     created: "2026-01-28T14:31:03.135855212Z"
@@ -971,6 +1001,16 @@ entries:
   massbank-similarity-api:
   - apiVersion: v2
     appVersion: v1.8.1-matchms-0.31.0
+    created: "2026-03-18T12:43:13.840778184Z"
+    description: A Helm chart for massbank-similarity-api
+    digest: 00025111ef4da1b58c4daa7cd4e281e25d41218ab033e0d82e388ef965d5ad30
+    name: massbank-similarity-api
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-1.8.8/massbank-similarity-api-1.8.8.tgz
+    version: 1.8.8
+  - apiVersion: v2
+    appVersion: v1.8.1-matchms-0.31.0
     created: "2025-12-16T15:49:33.855359692Z"
     description: A Helm chart for massbank-similarity-api
     digest: 75f6e571f789926b6f337511aabeb095669cf3639a12fc30e46dbeda558d92f4
@@ -1069,4 +1109,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-18T12:16:07.021174388Z"
+generated: "2026-03-18T12:43:13.841023774Z"
