@@ -11,8 +11,6 @@ sharedDataPvcName: ""
 # postgres settings
 # the username for the postgres user
 username: &username "massbank"
-# the password for the postgres user
-password: &password "massbankPassword"
 # the name of the postgres database used by massbank-export-api
 massbankExportApiDatabase: &massbankExportApiDatabase "records"
 
@@ -25,8 +23,10 @@ postgres:
     tag: "17.7"
   auth:
     username: *username
-    password: *password
     database: *massbankExportApiDatabase
+    existingSecret: postgres-pw
+    secretKeys:
+      adminPasswordKey: "password"
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
