@@ -20,7 +20,7 @@ image:
 # postgres config
 postgres:
   image:
-    tag: "17.7"
+    tag: "17.9"
   auth:
     username: *username
     database: *massbankExportApiDatabase

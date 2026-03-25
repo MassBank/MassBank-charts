@@ -22,7 +22,7 @@ massbank-data:
 
 postgres:
   image:
-    tag: "17.7"
+    tag: "17.9"
   auth:
     username: *username
     database: *massbankApiDatabase
@@ -31,7 +31,7 @@ postgres:
       adminPasswordKey: "password"
   initContainers:
     - name: bingo-init
-      image: quay.io/massbank/postgres-bingo-init:v17-bingo-1.36.0
+      image: quay.io/massbank/postgres-bingo-init:v17-bingo-1.40.0
       command:
         - "sh"
         - "-c"

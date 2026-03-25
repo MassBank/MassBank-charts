@@ -19,7 +19,7 @@ image:
 # for massbank we need a special version of postgres with bingo cartridge
 postgres:
   image:
-    tag: "17.7"
+    tag: "17.9"
   auth:
     username: *username
     database: *massbankApiDatabase
