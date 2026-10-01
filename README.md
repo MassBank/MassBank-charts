@@ -22,11 +22,3 @@ and later updates can be performed via
 helm upgrade massbank massbank/massbank --version v2025.06.2 -f msbi-values.yaml -n massbank
 ```
 Some example values files can be found in the root of this repo.
-
-## Development
-
-When changing something, you can check nothing broke via `helm lint massbank-frontend`,
-and you could dry-run a helm action to see the resulting k8s yaml files via `helm upgrade massbank ./massbank-frontend ... --dry-run`.
-(Note: the sub-charts like massbank-api or massbank-similarity-api are
-usually NOT deployed separately, but come in as dependencies of
-massbank-frontend.)
