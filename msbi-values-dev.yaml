@@ -4,7 +4,7 @@ host: &commonHost msbi.ipb-halle.de
 pathPrefix: &commonPathPrefix MassBank3
 # release name of the helm install of massbank3-frontend, required for dbtool
 # to identify the hostname of the postgres database
-massbankReleaseName: &massbankReleaseName massbank
+massbankReleaseName: &massbankReleaseName massbank-dev
 
 # postgres settings
 # the username for the postgres user
@@ -23,7 +23,7 @@ massbank-data:
 
 postgres:
   image:
-    tag: "17.9"
+    tag: "17.11"
   auth:
     username: *username
     database: *massbankApiDatabase
@@ -32,7 +32,7 @@ postgres:
       adminPasswordKey: "password"
   initContainers:
     - name: bingo-init
-      image: quay.io/massbank/postgres-bingo-init:v17-bingo-1.40.0
+      image: quay.io/massbank/postgres-bingo-init:v17-bingo-1.45.0
       command:
         - "sh"
         - "-c"

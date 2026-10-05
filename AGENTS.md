@@ -66,3 +66,13 @@ include secret values in command output or commits. A cluster-backed install/upg
 or `helm test` requires a suitable Kubernetes environment and should not be assumed
 to be available for local validation.
 
+## Development Environment & Container Execution
+
+All Helm chart development and AI Agent tasks must run inside the devcontainer environment configured under `.devcontainer/`.
+
+- When executing commands or automated validation as an AI Agent, run inside the Podman devcontainer using:
+  ```sh
+  ./.devcontainer/run.sh <command>
+  ```
+- Alternatively, run commands directly inside an active container shell where all tools (`helm`, plugins `diff` and `unittest`, `kubectl`, `yq`, `kubeconform`, `ct`, `helm-docs`, `yamllint`) are preinstalled and configured.
+

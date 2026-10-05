@@ -22,3 +22,15 @@ and later updates can be performed via
 helm upgrade massbank massbank/massbank --version v2025.06.2 -f msbi-values.yaml -n massbank
 ```
 Some example values files can be found in the root of this repo.
+
+## Development Environment
+
+A development container with Podman is configured under `.devcontainer/` providing all necessary tools for Helm chart development (`helm`, plugins `diff` and `unittest`, `kubectl`, `yq`, `kubeconform`, `helm-docs`, and `chart-testing`).
+
+To open a shell or run commands inside the container using Podman:
+```bash
+./.devcontainer/run.sh
+./.devcontainer/run.sh helm lint ./charts/massbank-frontend
+```
+
+See `.devcontainer/README.md` for complete documentation.

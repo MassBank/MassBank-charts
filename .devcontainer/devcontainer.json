@@ -1,0 +1,44 @@
+{
+  "name": "MassBank Charts Development",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "workspaceFolder": "/workspaces/MassBank-charts",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/MassBank-charts,type=bind,Z",
+  "mounts": [
+    "source=jetbrains-plugins,target=/home/vscode/.local/share/JetBrains,type=volume",
+    "source=jetbrains-config,target=/home/vscode/.config/JetBrains,type=volume",
+    "source=jetbrains-cache,target=/home/vscode/.cache/JetBrains,type=volume"
+  ],
+  "runArgs": [
+    "--userns=keep-id"
+  ],
+  "remoteUser": "vscode",
+  "containerUser": "vscode",
+  "containerEnv": {
+    "HELM_PLUGINS": "/usr/local/share/helm/plugins"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.vscode-yaml",
+        "ms-azuretools.vscode-docker",
+        "ms-kubernetes-tools.vscode-kubernetes-tools"
+      ],
+      "settings": {
+        "yaml.schemas": {
+          "kubernetes": "*.yaml"
+        }
+      }
+    },
+    "jetbrains": {
+      "plugins": [
+        "com.intellij.kubernetes",
+        "org.jetbrains.plugins.yaml",
+        "com.intellij.ml.llm",
+        "com.github.copilot"
+      ]
+    }
+  }
+}
