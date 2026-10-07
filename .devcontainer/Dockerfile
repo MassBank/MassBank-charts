@@ -3,6 +3,8 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu26.04
 # Prevent interactive prompts during apt installations
 ENV DEBIAN_FRONTEND=noninteractive \
     HELM_PLUGINS=/usr/local/share/helm/plugins \
+    HELM_CACHE_HOME=/usr/local/share/helm/cache \
+    HELM_CONFIG_HOME=/usr/local/share/helm/config \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
 
@@ -73,9 +75,8 @@ RUN CT_VER=$(curl -fsSL https://api.github.com/repos/helm/chart-testing/releases
 
 # Setup system-wide Helm plugins (helm-diff and helm-unittest)
 RUN mkdir -p /usr/local/share/helm/plugins \
-    && su - vscode -c "helm plugin install https://github.com/databus23/helm-diff" \
-    && su - vscode -c "helm plugin install https://github.com/helm-unittest/helm-unittest" \
-    && cp -r /home/vscode/.local/share/helm/plugins/* /usr/local/share/helm/plugins/ \
+    && helm plugin install https://github.com/databus23/helm-diff \
+    && helm plugin install https://github.com/helm-unittest/helm-unittest \
     && chmod -R 755 /usr/local/share/helm/plugins \
     && helm plugin list
 
@@ -86,8 +87,10 @@ RUN mkdir -p /etc/bash_completion.d \
     && git config --system --add safe.directory '*'
 
 # Pre-configure MassBank helm repo for user vscode
-RUN su - vscode -c "helm repo add massbank https://massbank.github.io/MassBank-charts 2>/dev/null || true" \
-    && su - vscode -c "helm repo update 2>/dev/null || true"
+RUN mkdir -p "${HELM_CACHE_HOME}" "${HELM_CONFIG_HOME}" \
+    && chown -R vscode:vscode "${HELM_CACHE_HOME}" "${HELM_CONFIG_HOME}" \
+    && su - vscode -c "HELM_CACHE_HOME=${HELM_CACHE_HOME} HELM_CONFIG_HOME=${HELM_CONFIG_HOME} helm repo add massbank https://massbank.github.io/MassBank-charts 2>/dev/null || true" \
+    && su - vscode -c "HELM_CACHE_HOME=${HELM_CACHE_HOME} HELM_CONFIG_HOME=${HELM_CONFIG_HOME} helm repo update 2>/dev/null || true"
 
 WORKDIR /workspaces/MassBank-charts
 USER vscode

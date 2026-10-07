@@ -34,3 +34,5 @@ To open a shell or run commands inside the container using Podman:
 ```
 
 See `.devcontainer/README.md` for complete documentation.
+
+Opening the project in PyCharm does not start the devcontainer automatically. Open `.devcontainer/devcontainer.json` to create or connect to the devcontainer. The helper script above starts separate, disposable containers for commands and shells.

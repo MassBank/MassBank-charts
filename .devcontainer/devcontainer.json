@@ -6,16 +6,12 @@
   },
   "workspaceFolder": "/workspaces/MassBank-charts",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/MassBank-charts,type=bind,Z",
-  "mounts": [
-    "source=jetbrains-plugins,target=/home/vscode/.local/share/JetBrains,type=volume",
-    "source=jetbrains-config,target=/home/vscode/.config/JetBrains,type=volume",
-    "source=jetbrains-cache,target=/home/vscode/.cache/JetBrains,type=volume"
-  ],
   "runArgs": [
     "--userns=keep-id"
   ],
   "remoteUser": "vscode",
   "containerUser": "vscode",
+  "updateRemoteUserUID": false,
   "containerEnv": {
     "HELM_PLUGINS": "/usr/local/share/helm/plugins"
   },
@@ -33,6 +29,9 @@
       }
     },
     "jetbrains": {
+      "settings": {
+        "com.intellij:app:HttpConfigurable.use_proxy_pac": true
+      },
       "plugins": [
         "com.intellij.kubernetes",
         "org.jetbrains.plugins.yaml",

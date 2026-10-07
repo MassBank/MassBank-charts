@@ -65,8 +65,16 @@ podman run -it --rm \
 
 ### Option 3: In PyCharm or VS Code
 
-- **PyCharm**: Open the project. PyCharm will detect `.devcontainer/devcontainer.json`. Ensure Podman is selected under **Settings -> Build, Execution, Deployment -> Docker** (or `/run/user/1000/podman/podman.sock`). Select **Create Dev Container**.
+- **PyCharm**: Select Podman under **Settings -> Build, Execution, Deployment -> Docker** (or configure `/run/user/1000/podman/podman.sock`). Open `.devcontainer/devcontainer.json`, use the gutter action **Create Dev Container -> Create Dev Container and Mount Sources**, select the IDE backend, and connect when it is ready. Merely opening the project does not start or switch to the devcontainer automatically; start/connect to it from the IDE.
 - **VS Code**: Ensure the *Dev Containers* extension is installed. Configure Podman in VS Code settings (`"dev.containers.dockerPath": "podman"`). Run **Dev Containers: Reopen in Container**.
+
+The configuration disables Dev Containers' automatic remote-user UID/GID rewrite (`updateRemoteUserUID: false`). With rootless Podman, the build-time recursive `chown` can fail for files in the base image; Podman's `--userns=keep-id` remains configured for container runtime access.
+
+### IDE state, sign-in, and chat history
+
+When using native Dev Container support in PyCharm (**Settings -> Advanced Settings -> Open devcontainer projects natively**), the IDE runs on the host and uses the container directly for tooling and runtime operations. Settings, sign-ins (e.g. GitHub Copilot, JetBrains AI), and chat histories remain with your host IDE without requiring container-side volume persistence.
+
+For disposable shells or commands, `.devcontainer/run.sh` starts a container with `--rm`.
 
 ## AI Agent Guidance
 
