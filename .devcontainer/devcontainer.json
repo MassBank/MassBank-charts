@@ -27,17 +27,6 @@
           "kubernetes": "*.yaml"
         }
       }
-    },
-    "jetbrains": {
-      "settings": {
-        "com.intellij:app:HttpConfigurable.use_proxy_pac": true
-      },
-      "plugins": [
-        "com.intellij.kubernetes",
-        "org.jetbrains.plugins.yaml",
-        "com.intellij.ml.llm",
-        "com.github.copilot"
-      ]
     }
   }
 }
