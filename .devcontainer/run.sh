@@ -60,7 +60,7 @@ fi
 EXTRA_ARGS=()
 if [[ "${CONTAINER_TOOL}" == "podman" ]]; then
   EXTRA_ARGS+=(
-    "--userns=keep-id"
+    "--userns=keep-id:uid=1000,gid=1000"
     "--security-opt" "label=disable"
   )
 fi

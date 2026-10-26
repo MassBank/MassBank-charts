@@ -56,7 +56,7 @@ podman build -t massbank-charts-dev -f .devcontainer/Dockerfile .devcontainer
 
 # 2. Run container with rootless user namespace mapping and workspace volume mount
 podman run -it --rm \
-  --userns=keep-id \
+  --userns=keep-id:uid=1000,gid=1000 \
   --security-opt label=disable \
   -v "$PWD":/workspaces/MassBank-charts:Z \
   -w /workspaces/MassBank-charts \
@@ -68,7 +68,9 @@ podman run -it --rm \
 - **PyCharm**: Select Podman under **Settings -> Build, Execution, Deployment -> Docker** (or configure `/run/user/1000/podman/podman.sock`). Open `.devcontainer/devcontainer.json`, use the gutter action **Create Dev Container -> Create Dev Container and Mount Sources**, select the IDE backend, and connect when it is ready. Merely opening the project does not start or switch to the devcontainer automatically; start/connect to it from the IDE.
 - **VS Code**: Ensure the *Dev Containers* extension is installed. Configure Podman in VS Code settings (`"dev.containers.dockerPath": "podman"`). Run **Dev Containers: Reopen in Container**.
 
-The configuration disables Dev Containers' automatic remote-user UID/GID rewrite (`updateRemoteUserUID: false`). With rootless Podman, the build-time recursive `chown` can fail for files in the base image; Podman's `--userns=keep-id` remains configured for container runtime access.
+The configuration disables Dev Containers' automatic remote-user UID/GID rewrite (`updateRemoteUserUID: false`). With rootless Podman, the build-time recursive `chown` can fail for files in the base image.
+
+Use `--userns=keep-id:uid=1000,gid=1000` so the host user is mapped to the image user `vscode` (1000/1000). Bare `--userns=keep-id` keeps the host numeric IDs, which breaks writes for UIDs that are not 1000. `--security-opt=label=disable` is set for JetBrains + SELinux, matching `run.sh` and the `:Z` workspace mount.
 
 ### IDE state, sign-in, and chat history
 

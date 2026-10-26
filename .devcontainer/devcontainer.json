@@ -7,7 +7,8 @@
   "workspaceFolder": "/workspaces/MassBank-charts",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/MassBank-charts,type=bind,Z",
   "runArgs": [
-    "--userns=keep-id"
+    "--userns=keep-id:uid=1000,gid=1000",
+    "--security-opt=label=disable"
   ],
   "remoteUser": "vscode",
   "containerUser": "vscode",
