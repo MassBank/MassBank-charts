@@ -6,6 +6,9 @@
   },
   "workspaceFolder": "/workspaces/MassBank-charts",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/MassBank-charts,type=bind,Z",
+  "mounts": [
+    "source=${localEnv:HOME}/.kube,target=/home/vscode/.kube,type=bind,consistency=cached"
+  ],
   "runArgs": [
     "--userns=keep-id:uid=1000,gid=1000",
     "--security-opt=label=disable"

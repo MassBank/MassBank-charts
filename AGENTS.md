@@ -68,11 +68,13 @@ to be available for local validation.
 
 ## Development Environment & Container Execution
 
-All Helm chart development and AI Agent tasks must run inside the devcontainer environment configured under `.devcontainer/`.
+All Helm chart development and AI Agent tasks run inside the devcontainer environment.
+All required CLI tools (`helm`, plugins `diff` and `unittest`, `kubectl`, `yq`, `kubeconform`, `ct`, `helm-docs`, `yamllint`) are preinstalled and available in `PATH`.
 
-- When executing commands or automated validation as an AI Agent, run inside the Podman devcontainer using:
-  ```sh
-  ./.devcontainer/run.sh <command>
-  ```
-- Alternatively, run commands directly inside an active container shell where all tools (`helm`, plugins `diff` and `unittest`, `kubectl`, `yq`, `kubeconform`, `ct`, `helm-docs`, `yamllint`) are preinstalled and configured.
+- **Inside Devcontainer (Default execution environment):**
+  Execute all commands directly in the shell (e.g. `helm lint ./charts/massbank`, `kubectl get pods`).
+  Do NOT execute `./.devcontainer/run.sh` from within the container, as this causes redundant nesting and runtime failures.
+
+- **Host Environment Only:**
+  Use `./.devcontainer/run.sh <command>` only when executing commands from the host system outside of the container.
 
