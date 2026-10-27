@@ -1,0 +1,119 @@
+{{- if .Values.dataImport.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ include "massbank-export-api.fullname" . }}-import-{{ .Chart.Version | replace "." "-" | lower }}"
+  labels:
+    {{- include "massbank-export-api.labels" . | nindent 4 }}
+    app.kubernetes.io/component: data-import
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ .Values.dataImport.syncWave | default "2" | quote }}
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    helm.sh/hook: post-install,post-upgrade
+    helm.sh/hook-weight: {{ .Values.dataImport.syncWave | default "2" | quote }}
+    helm.sh/hook-delete-policy: before-hook-creation
+spec:
+  backoffLimit: {{ .Values.dataImport.backoffLimit | default 3 }}
+  {{- if .Values.dataImport.ttlSecondsAfterFinished }}
+  ttlSecondsAfterFinished: {{ .Values.dataImport.ttlSecondsAfterFinished }}
+  {{- end }}
+  template:
+    metadata:
+      labels:
+        {{- include "massbank-export-api.labels" . | nindent 8 }}
+        app.kubernetes.io/component: data-import
+    spec:
+      serviceAccountName: {{ include "massbank-export-api.serviceAccountName" . }}
+      restartPolicy: OnFailure
+      containers:
+        - name: import-data
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
+          command:
+            - java
+            - -Xmx1200m
+            - -jar
+            - /app-import.jar
+          envFrom:
+            - configMapRef:
+                name: {{ include "massbank-export-api.fullname" . }}-env-configmap
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-pw
+                  key: password
+          volumeMounts:
+            - name: massbank-data-volume
+              mountPath: /MassBank-data
+          {{- with .Values.dataImport.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      initContainers:
+        - name: wait-for-postgres
+          image: postgres:17.11
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - |
+              until pg_isready -U {{ .Values.username }} -d {{ .Values.massbankExportApiDatabase }} -h {{ .Release.Name }}-postgres -p 5432; do
+                echo "waiting for postgres at {{ .Release.Name }}-postgres:5432..."
+                sleep 2
+              done
+        {{- if not .Values.useSharedData }}
+        - name: download-data
+          image: busybox:latest
+          command:
+            - sh
+            - -c
+            - |
+              version=$(wget -q https://api.github.com/repos/MassBank/MassBank-data/releases/latest --output-document - | grep "tag_name" | sed "s/\"tag_name\": //g" | sed "s/\"//g" | sed "s/,//g" | sed "s/ //g")
+              echo "Downloading MassBank-data version: $version from https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz"
+              mkdir -p /MassBank-data
+              wget -qO- https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz | tar -xzf - -C /MassBank-data --strip-components=1
+          volumeMounts:
+            - name: massbank-data-volume
+              mountPath: /MassBank-data
+        {{- else }}
+        - name: wait-for-data
+          image: bitnami/kubectl:latest
+          command:
+            - sh
+            - -c
+            - |
+              set -euo pipefail
+              selector="app.kubernetes.io/instance={{ .Release.Name }},massbank-data.role=download"
+              entries=$(kubectl get jobs -l "$selector" -o jsonpath='{range .items[*]}{.metadata.labels.massbank-data.chartVersion}{"|"}{.metadata.name}{"\n"}{end}')
+              if [ -z "$entries" ]; then
+                echo "no matching job found" >&2
+                exit 1
+              fi
+              job=$(printf "%s" "$entries" | sort -t'|' -k1,1 -V | tail -n1 | cut -d'|' -f2)
+              echo "waiting for job $job"
+              kubectl wait --for=condition=complete job/"$job" --timeout=3600s
+        {{- end }}
+      volumes:
+      {{- if .Values.useSharedData }}
+      - name: massbank-data-volume
+        persistentVolumeClaim:
+          claimName: {{ tpl .Values.sharedDataPvcName . }}
+      {{- else }}
+      - name: massbank-data-volume
+        emptyDir: {}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}

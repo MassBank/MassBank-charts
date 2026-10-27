@@ -4,6 +4,8 @@ metadata:
   name: {{ include "massbank-export-api.fullname" . }}
   labels:
     {{- include "massbank-export-api.labels" . | nindent 4 }}
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ .Values.syncWave | default "3" | quote }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -71,7 +73,7 @@ spec:
           {{- end }}
       initContainers:
         - name: {{ .Chart.Name }}-wait-for-postgres
-          image: postgres:17-alpine
+          image: postgres:17.11
           imagePullPolicy: IfNotPresent
           command:
             - sh
@@ -81,49 +83,10 @@ spec:
                 echo "waiting for postgres at {{ .Release.Name }}-postgres:5432..."
                 sleep 2
               done
-        {{- if not .Values.useSharedData }}
-        - name: {{ .Chart.Name }}-init
-          image: busybox:latest
-          command:
-            - sh
-            - -c
-            - |
-              version=$(wget -q https://api.github.com/repos/MassBank/MassBank-data/releases/latest --output-document - | grep "tag_name" | sed "s/\"tag_name\": //g" | sed "s/\"//g" | sed "s/,//g" | sed "s/ //g")
-              echo "Downloading MassBank-data version: $version from https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz"
-              mkdir -p /MassBank-data
-              wget -qO- https://github.com/MassBank/MassBank-data/archive/refs/tags/$version.tar.gz | tar -xzf - -C /MassBank-data --strip-components=1
-          {{- with .Values.volumeMounts }}
-          volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-        {{- else }}
-        - name: {{ .Chart.Name }}-wait-for-data
-          image: bitnami/kubectl:latest
-          command:
-            - sh
-            - -c
-            - |
-              set -euo pipefail
-              selector="app.kubernetes.io/instance={{ .Release.Name }},massbank-data.role=download"
-              entries=$(kubectl get jobs -l "$selector" -o jsonpath='{range .items[*]}{.metadata.labels.massbank-data.chartVersion}{"|"}{.metadata.name}{"\n"}{end}')
-              if [ -z "$entries" ]; then
-                echo "no matching job found" >&2
-                exit 1
-              fi
-              job=$(printf "%s" "$entries" | sort -t'|' -k1,1 -V | tail -n1 | cut -d'|' -f2)
-              echo "waiting for job $job"
-              kubectl wait --for=condition=complete job/"$job" --timeout=3600s
-        {{- end }}
 
+      {{- with .Values.volumes }}
       volumes:
-      {{- if .Values.useSharedData }}
-      - name: massbank-data-volume
-        persistentVolumeClaim:
-          claimName: {{ tpl .Values.sharedDataPvcName . }}
-      {{- else }}
-        {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
-        {{- end }}
       {{- end }}
 
       {{- with .Values.nodeSelector }}

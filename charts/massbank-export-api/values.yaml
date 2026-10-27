@@ -1,6 +1,15 @@
 # This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
 replicaCount: 1
 
+syncWave: "3"
+
+dataImport:
+  enabled: true
+  syncWave: "2"
+  backoffLimit: 3
+  ttlSecondsAfterFinished: 600
+  resources: {}
+
 host: "msbi.ipb-halle.de"
 pathPrefix: "MassBank"
 
@@ -16,11 +25,12 @@ massbankExportApiDatabase: &massbankExportApiDatabase "records"
 
 image:
   repository: quay.io/massbank/massbank-export-api
+  pullPolicy: IfNotPresent
 
 # postgres config
 postgres:
   image:
-    tag: "17.9"
+    tag: "17.11"
   auth:
     username: *username
     database: *massbankExportApiDatabase
@@ -93,15 +103,15 @@ livenessProbe:
   httpGet:
     path: "/{{ .Values.pathPrefix }}-export/version"
     port: http
-  initialDelaySeconds: 150
-  periodSeconds: 60
-  timeoutSeconds: 10
-  failureThreshold: 6
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  timeoutSeconds: 5
+  failureThreshold: 3
 readinessProbe:
   httpGet:
-    path: "/{{ .Values.pathPrefix }}-export/version"
+    path: "/{{ .Values.pathPrefix }}-export/database/ready"
     port: http
-  initialDelaySeconds: 120
+  initialDelaySeconds: 30
   periodSeconds: 10
   timeoutSeconds: 4
   failureThreshold: 3
@@ -111,14 +121,10 @@ autoscaling:
   enabled: false
 
 # Additional volumes on the output Deployment definition.
-volumes:
-  - name: massbank-data-volume
-    emptyDir: { }
+volumes: []
 
 # Additional volumeMounts on the output Deployment definition.
-volumeMounts:
-  - name: massbank-data-volume
-    mountPath: "/MassBank-data"
+volumeMounts: []
 
 nodeSelector: {}
 
