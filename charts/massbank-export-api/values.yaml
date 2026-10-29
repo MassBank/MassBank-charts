@@ -23,6 +23,16 @@ username: &username "massbank"
 # the name of the postgres database used by massbank-export-api
 massbankExportApiDatabase: &massbankExportApiDatabase "records"
 
+# Forwarded request information is handled by Tomcat's RemoteIpValve.
+# Use the regular Host header as the public host so X-Forwarded-Host cannot
+# control absolute redirects.
+forwardedHeaders:
+  strategy: native
+  hostHeader: Host
+  protocolHeader: X-Forwarded-Proto
+  portHeader: X-Forwarded-Port
+  internalProxies: ""
+
 image:
   repository: quay.io/massbank/massbank-export-api
   pullPolicy: IfNotPresent
@@ -86,6 +96,7 @@ service:
 ingress:
   enabled: true
   className: "nginx"
+  upstreamVhost: "{{ .Values.host }}"
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "10m"
   hosts:

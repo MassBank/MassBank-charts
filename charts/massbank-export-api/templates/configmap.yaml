@@ -8,6 +8,13 @@ data:
   MB_DATA_DIRECTORY: "/MassBank-data"
   CORS_ALLOWED_ORIGINS: "https://{{ .Values.host }}/{{ .Values.pathPrefix }}/"
   CONTEXT_PATH: "/{{ .Values.pathPrefix }}-export"
+  SERVER_FORWARD_HEADERS_STRATEGY: {{ .Values.forwardedHeaders.strategy | quote }}
+  SERVER_TOMCAT_REMOTEIP_HOST_HEADER: {{ .Values.forwardedHeaders.hostHeader | quote }}
+  SERVER_TOMCAT_REMOTEIP_PROTOCOL_HEADER: {{ .Values.forwardedHeaders.protocolHeader | quote }}
+  SERVER_TOMCAT_REMOTEIP_PORT_HEADER: {{ .Values.forwardedHeaders.portHeader | quote }}
+  {{- with .Values.forwardedHeaders.internalProxies }}
+  SERVER_TOMCAT_REMOTEIP_INTERNAL_PROXIES: {{ . | quote }}
+  {{- end }}
   DB_PORT: "5432"
   DB_HOST: "{{ .Release.Name }}-postgres"
   DB_NAME: "{{ .Values.massbankExportApiDatabase }}"
