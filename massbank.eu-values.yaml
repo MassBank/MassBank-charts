@@ -20,7 +20,7 @@ massbank-data:
 
 postgres:
   image:
-    tag: "17.9"
+    tag: "17.11"
   auth:
     username: *username
     database: *massbankApiDatabase
@@ -77,6 +77,8 @@ massbank-export-api:
   massbankExportApiDatabase: *massbankExportApiDatabase
   useSharedData: true
   sharedDataPvcName: "{{ .Release.Name }}-massbank-data-pvc"
+  dataImport:
+    enabled: true
 #  resources:
 #    requests:
 #      cpu: 300m
@@ -244,4 +246,3 @@ massbank-dbtool:
               app.kubernetes.io/instance: *massbankReleaseName
               app.kubernetes.io/name: postgres
           topologyKey: kubernetes.io/hostname
-

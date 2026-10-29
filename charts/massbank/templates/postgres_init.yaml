@@ -4,6 +4,8 @@ metadata:
   name: postgres-config
   labels:
     {{- include "massbank.labels" . | nindent 4 }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 data:
   000_bingo_install.sh: |
     #!/bin/bash
