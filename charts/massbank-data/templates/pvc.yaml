@@ -6,6 +6,7 @@ metadata:
     {{- include "massbank-data.labels" . | nindent 4 }}
   annotations:
     "helm.sh/resource-policy": keep
+    "argocd.argoproj.io/sync-wave": "0"
 spec:
   accessModes:
     - ReadWriteMany

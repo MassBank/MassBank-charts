@@ -3,11 +3,11 @@ name: massbank-api
 description: A Helm chart for massbank-api
 
 type: application
-version: 2025.12.6
+version: 2025.12.7
 appVersion: "v2025.12.1"
 
 dependencies:
   - name: postgres
-    version: 0.13.2
+    version: 0.21.2
     repository: oci://registry-1.docker.io/cloudpirates
     condition: withPostgres

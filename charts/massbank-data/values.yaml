@@ -1,4 +1,5 @@
 version: ""
+syncWave: "1"
 persistence:
   ## Persistent Volume storage class
   storageClass: ""

@@ -4,6 +4,8 @@ metadata:
   name: "{{ include "massbank-dbtool.fullname" . }}-download-{{ .Chart.Version | replace "." "-" | lower }}"
   labels:
     {{- include "massbank-dbtool.labels" . | nindent 4 }}
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ .Values.syncWave | default "2" | quote }}
 spec:
   template:
     metadata:
@@ -34,7 +36,7 @@ spec:
           {{- end }}
       initContainers:
         - name: {{ .Chart.Name }}-wait-for-postgres
-          image: postgres:17-alpine
+          image: postgres:17.11
           imagePullPolicy: IfNotPresent
           command:
             - sh

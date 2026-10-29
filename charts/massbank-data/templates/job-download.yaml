@@ -7,6 +7,8 @@ metadata:
     app.kubernetes.io/instance: "{{ .Release.Name }}"
     massbank-data.role: "download"
     massbank-data.chartVersion: "{{ .Chart.Version | replace "." "-" | lower }}"
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ .Values.syncWave | default "1" | quote }}
 spec:
   backoffLimit: 2
   template:
