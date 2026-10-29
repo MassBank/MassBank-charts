@@ -4,6 +4,8 @@ metadata:
   name: {{ include "massbank-similarity-api.fullname" . }}
   labels:
     {{- include "massbank-similarity-api.labels" . | nindent 4 }}
+  annotations:
+    argocd.argoproj.io/sync-wave: {{ .Values.syncWave | default "3" | quote }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}

@@ -8,11 +8,6 @@ metadata:
     app.kubernetes.io/component: data-import
   annotations:
     argocd.argoproj.io/sync-wave: {{ .Values.dataImport.syncWave | default "2" | quote }}
-    argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-    helm.sh/hook: post-install,post-upgrade
-    helm.sh/hook-weight: {{ .Values.dataImport.syncWave | default "2" | quote }}
-    helm.sh/hook-delete-policy: before-hook-creation
 spec:
   backoffLimit: {{ .Values.dataImport.backoffLimit | default 3 }}
   {{- if .Values.dataImport.ttlSecondsAfterFinished }}
