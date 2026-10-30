@@ -14,7 +14,6 @@ massbankApiDatabase: &massbankApiDatabase "massbank"
 # the name of the postgres database used by massbank-export-api
 massbankExportApiDatabase: &massbankExportApiDatabase "records"
 
-
 massbank-data:
   version: "dev"
   persistence:
