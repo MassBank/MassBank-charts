@@ -35,6 +35,7 @@ jobs:
             massbank-frontend \
             massbank-similarity-api
           do
+            helm dependency build "charts/$chart"
             helm package "charts/$chart" --destination charts/massbank/charts
           done
 
