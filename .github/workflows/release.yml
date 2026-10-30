@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: release-charts
+  cancel-in-progress: false
+
 jobs:
   release:
     permissions:
@@ -12,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
 
@@ -21,26 +25,36 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      # chart-releaser packages all changed charts in one run. The umbrella
-      # chart must therefore use the freshly changed dependency packages from
-      # this checkout, rather than looking for them in the not-yet-updated
-      # GitHub Pages index.
-      - name: Vendor current subcharts into umbrella chart
+      - name: Hide umbrella chart
+        run: mv charts/massbank "$RUNNER_TEMP/massbank"
+
+      - name: Release subcharts
+        uses: helm/chart-releaser-action@v1.8.0
+        with:
+          skip_existing: true
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Restore umbrella chart
+        run: mv "$RUNNER_TEMP/massbank" charts/massbank
+
+      - name: Wait for dependencies in Helm repository
         run: |
-          for chart in \
-            massbank-api \
-            massbank-data \
-            massbank-dbtool \
-            massbank-export-api \
-            massbank-frontend \
-            massbank-similarity-api
-          do
-            helm dependency build "charts/$chart"
-            helm package "charts/$chart" --destination charts/massbank/charts
+          helm repo add massbank https://massbank.github.io/MassBank-charts
+          for attempt in {1..18}; do
+            helm repo update massbank
+            if helm dependency update charts/massbank; then
+              exit 0
+            fi
+            if [[ "$attempt" == 18 ]]; then
+              echo "Umbrella dependencies did not become available after 18 attempts" >&2
+              exit 1
+            fi
+            sleep 10
           done
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
+      - name: Release all charts
+        uses: helm/chart-releaser-action@v1.8.0
         with:
           skip_existing: true
         env:
