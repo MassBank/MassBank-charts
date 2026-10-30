@@ -21,6 +21,23 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
+      # chart-releaser packages all changed charts in one run. The umbrella
+      # chart must therefore use the freshly changed dependency packages from
+      # this checkout, rather than looking for them in the not-yet-updated
+      # GitHub Pages index.
+      - name: Vendor current subcharts into umbrella chart
+        run: |
+          for chart in \
+            massbank-api \
+            massbank-data \
+            massbank-dbtool \
+            massbank-export-api \
+            massbank-frontend \
+            massbank-similarity-api
+          do
+            helm package "charts/$chart" --destination charts/massbank/charts
+          done
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.7.0
         with:
