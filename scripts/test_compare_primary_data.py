@@ -63,6 +63,8 @@ PUBLICATION: Reference
 PROJECT: Project
 COMMENT: CONFIDENCE Reference standard
 COMMENT: Free text
+COMMENT:   literal  "text", \\ slash
+COMMENT: Free text
 CH$NAME: Test
 CH$COMPOUND_CLASS: Natural Product; Lipid Standard
 CH$FORMULA: CH4
@@ -98,7 +100,7 @@ PK$PEAK: m/z int. rel.int.
             "date": {"updated": "2025-01-17"},
             "authors": [{"name": "One", "marc-relator": "dtc"}, {"name": " Two", "marc-relator": "com"}],
             "license": "CC0", "copyright": "Test", "publication": "Reference", "project": "Project",
-            "comments": [{"subtag": "CONFIDENCE", "value": "Reference standard"}, "Free text"],
+            "comments": ["CONFIDENCE Reference standard", "Free text", '  literal  "text", \\ slash', "Free text"],
             "compound": {"names": ["Test"], "classes": ["Natural Product", "Lipid Standard"],
                          "formula": "CH4", "mass": 16.0313, "smiles": "C", "inchi": "InChI=1S/CH4/h1H4",
                          "link": [{"database": "PUBCHEM", "identifier": "CID:297"}]},
@@ -122,6 +124,8 @@ PK$PEAK: m/z int. rel.int.
         expected = primary_fields(source, all_fields=True)
         actual = api_fields(record, all_fields=True)
         self.assertEqual(expected, actual)
+        record["comments"][0] = {"subtag": "CONFIDENCE", "value": "Reference standard"}
+        self.assertNotEqual(expected["comments"], api_fields(record, all_fields=True)["comments"])
         del record["comments"]
         record["authors"][0] = {"name": "One [dtc]"}
         actual = api_fields(record, all_fields=True)

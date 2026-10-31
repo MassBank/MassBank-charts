@@ -343,7 +343,8 @@ processing parameters, SPLASH and annotations. There are 39 comparison groups,
 including the original checks, an active-record deprecation check and detection
 of unmapped source tags. Source hashes are retained for every record.
 
-The checker reconstructs AUTHORS text and COMMENT lines, transposes the API's
+The checker reconstructs AUTHORS text, requires literal string arrays for COMMENT,
+transposes the API's
 column-major annotations to source rows, and compares annotation m/z numerically.
 Other annotation columns remain literal text. It preserves array order and
 duplicates; order-only differences are explicitly identified. Legacy subtag
@@ -354,6 +355,7 @@ are compared with empty API containers/text.
 The [extended report](comparison-results/2026-10-31-primary-all-fields.json)
 and [findings summary](comparison-results/primary-all-fields-summary.json) cover
 the same 103 original release-2026.03 records against the deployed APIs:
+These are the findings **before the COMMENT correction below**.
 
 | New API finding | Affected records | Interpretation |
 |---|---:|---|
@@ -384,6 +386,43 @@ that these features work. Deprecated records, aggregate/search endpoints,
 database-generated peak IDs and derived neutral losses are outside this audit.
 The author's full text is checked, not an assumed unambiguous semantic split of
 every name and affiliation.
+
+### COMMENT correction
+
+The API and frontend now use `comments` as an array of complete strings:
+
+```json
+{"comments":["CONFIDENCE Predicted","NATIVE_RUN_ID file.mzML"]}
+```
+
+`COMMENT` has no subtag/value structure. Prefixes, punctuation, whitespace,
+order and repeated values remain intact. The Go converter now assigns the
+response field rather than modifying its input. Internal/JPA decoding, OpenAPI
+schemas and the frontend's single-column comment table agree on this contract;
+absent comments still omit the optional field.
+
+The software-only rollout uses API/frontend commit
+`274cf472436e7a8214e71af46a4f23200a1838c5` (Helm revision 15).
+The [after report](comparison-results/2026-10-31-primary-after-comment-fix.json)
+and [summary](comparison-results/comment-fix-summary.json) confirm that all
+**207 COMMENT values in 81 comment-bearing records** now match their original
+2026.03 files. All 103 sampled database comment arrays also match the source;
+the values were already stored correctly, so no database repair or reimport ran.
+The release, 139,006 active records and original import timestamp are unchanged.
+
+The filtered `/records?formula=C28H24O5` response also preserves comments in all
+six records. Browser checks of PB011601 and IA000163 show the complete values
+in the Comments section with CSP retained and no page errors.
+[Open IA000163](https://msbi.ipb-halle.de/MassBank3/recordDisplay?id=MSBNK-ISAS_Dortmund-IA000163)
+and select **Comments**.
+
+There are no additional source-content differences in the 103-record rerun:
+98 match every comparison group; three MARC-role differences are explicitly
+out of scope, and two processing-subtag splits preserve the complete source
+text. MARC handling and the old production API were not changed. The checker
+still records these distinctions and legacy differences rather than hiding them.
+Regression coverage includes literal string-array output, whitespace, duplicate
+order, quoted text, legacy database encoding and frontend rendering.
 
 ## Development Environment
 

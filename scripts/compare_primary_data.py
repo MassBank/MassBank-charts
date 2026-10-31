@@ -184,13 +184,6 @@ def api_fields(record, all_fields=False):
         rows = {"malformed_api_columns": columns}
     else:
         rows = [[Decimal(row[0]), *row[1:]] for row in zip(*columns)]
-    comments = []
-    for comment in record.get("comments", []):
-        if isinstance(comment, str):
-            comments.append(comment)
-        else:
-            prefix = comment.get("subtag", "")
-            comments.append((prefix + " " if prefix else "") + comment.get("value", ""))
     result.update({
         "accession": record["accession"],
         "deprecated": record.get("deprecated", {}),
@@ -203,7 +196,7 @@ def api_fields(record, all_fields=False):
         "license": record["license"],
         "publication": record.get("publication", ""),
         "projects": [record["project"]] if record.get("project") else [],
-        "comments": comments,
+        "comments": record.get("comments", []),
         "compound.names": compound["names"],
         "compound.formula": compound["formula"],
         "compound.mass": Decimal(str(compound["mass"])),
@@ -296,7 +289,8 @@ def main():
         report["scope"] = "All source-backed full-record field groups; active-record samples only, not every record or aggregate/search endpoint"
         report["methodology"] += (
             " AUTHORS text is reconstructed by comma-joining name entries with any structured MARC roles;"
-            " roles are also checked separately. COMMENT objects are reconstructed into source lines."
+            " roles are also checked separately. COMMENT must be an array of complete strings;"
+            " subtag/value objects are not accepted as equivalent."
             " Optional absent fields are compared with empty containers/text. Arrays preserve order and duplicates;"
             " order-only differences are reported separately, not silently normalized."
             " A subtag/value boundary difference with identical reconstructed source lines is marked text-preserving,"

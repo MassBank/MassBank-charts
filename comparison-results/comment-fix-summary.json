@@ -1,0 +1,68 @@
+{
+  "report": "2026-10-31-primary-after-comment-fix.json",
+  "before_report": "2026-10-31-primary-all-fields.json",
+  "release": "2026.03",
+  "records": 103,
+  "field_groups": 39,
+  "api_and_frontend_commit": "274cf472436e7a8214e71af46a4f23200a1838c5",
+  "image_workflow": "https://github.com/MassBank/MassBank3/actions/runs/41237489220",
+  "helm_revision": 15,
+  "database": {
+    "name": "massbank_shared",
+    "active_records": 139006,
+    "imported_at": "2026-10-31T16:44:19.223093+00:00",
+    "reimported": false,
+    "source_comment_arrays_match": 103
+  },
+  "comments": {
+    "source_records_with_comments": 81,
+    "source_values": 207,
+    "new_api_mismatches": 0,
+    "old_api_missing_records": 81,
+    "contract": "array of complete strings, preserving order, duplicates and literal text"
+  },
+  "new_api_exact_group_matches": 98,
+  "http_errors": {
+    "old": 0,
+    "new": 0
+  },
+  "out_of_scope": {
+    "authors.roles": 3,
+    "reason": "MARC-relator functionality explicitly excluded by user; unchanged"
+  },
+  "text_preserving_subtag_boundary_records": 2,
+  "unexpected_content_differences": 0,
+  "bulk_endpoint": {
+    "path": "/records?formula=C28H24O5",
+    "records": 6,
+    "comment_arrays_match_database": true
+  },
+  "browser": {
+    "records": [
+      {
+        "accession": "MSBNK-IPB_Halle-PB011601",
+        "comments": [
+          "CONFIDENCE Predicted"
+        ],
+        "visible": true,
+        "csp_present": true
+      },
+      {
+        "accession": "MSBNK-ISAS_Dortmund-IA000163",
+        "comments": [
+          "CONFIDENCE standard compound",
+          "NATIVE_RUN_ID QExHF03_NM_0001283.mzML",
+          "PROCESSING averaging of repeated ion fragments at 20.0 NCE within 5 ppm window [MS, MS:1000575, mean of spectra, ]"
+        ],
+        "visible": true,
+        "csp_present": true
+      }
+    ],
+    "page_errors": []
+  },
+  "scope_limits": [
+    "103 sampled active records, not an exhaustive audit of all 139006 records",
+    "Legacy production API was not redeployed",
+    "No source examples for AC$GENERAL or AC$ION_MOBILITY"
+  ]
+}

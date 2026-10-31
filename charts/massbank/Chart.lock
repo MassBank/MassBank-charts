@@ -7,15 +7,15 @@ dependencies:
   version: 0.21.2
 - name: massbank-api
   repository: file://../massbank-api
-  version: 2026.10.31-2
+  version: 2026.10.31-3
 - name: massbank-export-api
   repository: file://../massbank-export-api
   version: 2.6.2
 - name: massbank-frontend
   repository: file://../massbank-frontend
-  version: 2026.10.31
+  version: 2026.10.31-1
 - name: massbank-similarity-api
   repository: https://massbank.github.io/MassBank-charts
   version: 1.8.9
-digest: sha256:9cf6c7c5e5ac2243c2be5f3cab3f7ff9019b4acb9f7485fce04b30cbe8af8dbc
-generated: "2026-10-31T19:34:32.852534056Z"
+digest: sha256:950f2afae589fedacec4aa0ced7ff1a2c0d9174343fe84451c6d403bf1104e35
+generated: "2026-10-31T20:08:48.835970228Z"
