@@ -12,7 +12,7 @@ username: &username "massbank"
 massbankDatabase: &massbankDatabase "massbank_shared"
 
 massbank-data:
-  version: "dev"
+  version: "2026.03"
   persistence:
     size: 2Gi
     storageClass: "nfs-unity"
@@ -78,7 +78,7 @@ massbank-export-api:
   sharedDataPvcName: "{{ .Release.Name }}-massbank-data-pvc"
   dataImport:
     enabled: true
-    dataVersion: "dev-2026-10-28"
+    dataVersion: "2026.03"
   resources:
     requests:
       cpu: 300m
@@ -130,6 +130,8 @@ massbank-frontend:
     targetCPUUtilizationPercentage: 80
 
 massbank-similarity-api:
+  podAnnotations:
+    massbank.org/data-version: "2026.03"
   host: *commonHost
   pathPrefix: *commonPathPrefix
   useSharedData: true

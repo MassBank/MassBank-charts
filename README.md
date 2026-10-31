@@ -53,7 +53,8 @@ helm template massbank-dev ./charts/massbank -n massbank-dev -f msbi-values-dev.
 
 `msbi-values-dev.yaml` configures the complete system at
 **https://msbi.ipb-halle.de/MassBank3/**, using `massbank_shared` and the full
-dataset on `massbank-dev-massbank-data-pvc`. It preserves the existing CSP-enabled
+official **2026.03** release on `massbank-dev-massbank-data-pvc`, also used by the
+old installation at `/MassBank/`. It preserves the existing CSP-enabled
 frontend image. The older `massbank` and `records` databases are not removed.
 
 PostgreSQL init scripts run only for an empty data volume. For an existing PVC,
@@ -86,6 +87,61 @@ import. A new export chart version creates a new import Job. Set
 `massbank-export-api.dataImport.enabled=false` for upgrades that must not import
 data, or deliberately delete only the named import Job to rerun it. Disabling
 the importer never re-enables dbtool.
+
+To change the dataset without changing chart versions, update both
+`massbank-data.version` and `massbank-export-api.dataImport.dataVersion`.
+Update `massbank-similarity-api.podAnnotations.massbank.org/data-version` too,
+so the in-memory similarity dataset reloads. During a maintenance window, delete
+only the completed download and import Jobs for this release before the Helm
+upgrade. The recreated importer and similarity pods wait for the new download.
+For the currently pinned chart versions:
+
+```sh
+kubectl -n massbank-dev delete \
+  job/massbank-dev-massbank-data-download-2026-10-28 \
+  job/massbank-dev-massbank-export-api-import-2-6-1
+helm upgrade massbank-dev ./charts/massbank -n massbank-dev \
+  -f msbi-values-dev.yaml --reset-values --wait --wait-for-jobs --timeout 2h
+```
+
+### Comparing the old and shared-database APIs
+
+The standard-library-only comparison script checks complete accession inventories
+and counts, then deterministically samples records across contributor prefixes.
+It compares full/simple records, metadata, browse filters, formula/name/mass
+searches, Bingo substructure, peak and neutral-loss searches, and a filtered record
+list. Defaults target `/MassBank-api` (old) and `/MassBank3-api` (new).
+
+```sh
+python3 -m unittest discover -s scripts -p 'test_*.py'
+python3 scripts/compare_apis.py --expected-release 2026.03 \
+  --samples 100 --warmup 2 --repeats 10 --delay 0.1 \
+  --output comparison-results/2026-10-31-release-2026.03.json
+```
+
+The JSON report retains response hashes, status codes, differences, raw timing
+samples, median and nearest-rank p95. JSON equality and semantic equality are
+reported separately. Semantic comparison sorts unordered search results,
+`peakPairs`, record lists and metadata/browse lists, and excludes only deployment
+versions, import timestamps and commit metadata (the report lists exact paths).
+Record arrays, missing fields, nulls and values are not normalized. Differences
+are bounded to 20 examples per case; complete normalized-response hashes are
+also recorded. `--all-records` checks every common full/simple record instead of
+sampling, generating many requests; only three sampled full/simple records and
+the non-record cases receive repeated performance measurements.
+
+Requests are sequential, with alternating old/new order, separate persistent TLS
+connections, no compression, warmups excluded, and a pause before every request.
+Timing includes the complete HTTP body but excludes JSON processing. Errors are
+retained, not retried or counted as fast successful responses. Inventories/counts
+are checked again after measurement to detect dataset changes. Exit status is
+`0` for matching stable results, `1` for differences/errors, and `2` for a failed
+preflight or incomplete run. The old API's metadata version may be stale even
+when its accession inventory matches; the script exposes both.
+
+This measures public end-to-end deployment latency, not isolated database speed
+or throughput. CPU limits, PostgreSQL versions, caches, ingress and concurrent
+traffic differ; small-sample p95 values are descriptive, not confidence bounds.
 
 ## Development Environment
 
