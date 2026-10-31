@@ -245,19 +245,30 @@ def subtag_text_equal(left, right):
     return valid(left) and valid(right) and [" ".join(pair) for pair in left] == [" ".join(pair) for pair in right]
 
 
+def load_accessions(sample_report=None, accessions_file=None, extra=()):
+    values = json.loads(sample_report.read_text())["sample_accessions"] if sample_report else []
+    if accessions_file:
+        values.extend(line.strip() for line in accessions_file.read_text().splitlines() if line.strip())
+    values.extend(extra)
+    for accession in values:
+        if not isinstance(accession, str) or not re.fullmatch(r"MSBNK-[A-Za-z0-9_]+-[A-Za-z0-9_]+", accession):
+            raise ValueError(f"Invalid accession: {accession!r}")
+    return list(dict.fromkeys(values))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-data", type=Path, required=True)
     parser.add_argument("--source-reference", required=True, help="Snapshot commit/release for the report")
-    parser.add_argument("--sample-report", type=Path, required=True, help="compare_apis.py report supplying accession samples")
+    parser.add_argument("--sample-report", type=Path, help="Historical report supplying sample_accessions")
+    parser.add_argument("--accessions-file", type=Path, help="One accession per line; compare every listed record")
     parser.add_argument("--accession", action="append", default=[], help="Additional accession; may be repeated")
-    parser.add_argument("--old", default="https://msbi.ipb-halle.de/MassBank-api")
-    parser.add_argument("--new", default="https://msbi.ipb-halle.de/MassBank3-api")
+    parser.add_argument("--api", "--new", dest="api", default="https://msbi.ipb-halle.de/MassBank3-api")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--all-fields", action="store_true", help="Compare all source-backed full-record field groups")
+    parser.add_argument("--include-marc-roles", action="store_true", help="Also compare unfinished structured MARC roles")
     args = parser.parse_args()
-    sample = json.loads(args.sample_report.read_text())
-    accessions = list(dict.fromkeys(sample["sample_accessions"] + args.accession))
+    accessions = load_accessions(args.sample_report, args.accessions_file, args.accession)
     if not accessions:
         parser.error("No accessions selected")
     selected = set(accessions)
@@ -276,13 +287,17 @@ def main():
             raise FileNotFoundError(f"Missing source accession: {accession}")
         content = paths[accession].read_bytes()
         sources[accession] = primary_fields(content.decode("utf-8"), args.all_fields)
+        if args.all_fields and not args.include_marc_roles:
+            del sources[accession]["authors.roles"]
         source_hashes[accession] = hashlib.sha256(content).hexdigest()
     report = {
         "started_at": datetime.now(timezone.utc).isoformat(),
         "source_reference": args.source_reference,
         "source_data": str(args.source_data),
-        "sample_report": str(args.sample_report),
-        "apis": {"old": args.old, "new": args.new},
+        "sample_report": str(args.sample_report) if args.sample_report else None,
+        "accessions_file": str(args.accessions_file) if args.accessions_file else None,
+        "apis": {"new": args.api},
+        "excluded_fields": [] if args.include_marc_roles else ["authors.roles"],
         "scope": "DATE, copyright, compound classes, peak header/count and all numeric peak values of each sampled full record",
         "methodology": "Missing historical dates are omitted; dates use ISO date-only format. Class lists follow '; ' source separators. Peak IDs are database identifiers, not source values. Peak order and decimal numeric equality are preserved, without rounding tolerance. Within differences, 'old' means source and 'new' means the API response. This is not a full-field or exhaustive-record audit.",
         "caveat": "The local snapshot may be newer than the deployed release; source mismatches require checking the deployed raw-text record before attributing them to conversion.",
@@ -292,7 +307,7 @@ def main():
         report["scope"] = "All source-backed full-record field groups; active-record samples only, not every record or aggregate/search endpoint"
         report["methodology"] += (
             " AUTHORS text is reconstructed by comma-joining name entries with any structured MARC roles;"
-            " roles are also checked separately. COMMENT must be an array of complete strings;"
+            " structured roles are only checked with --include-marc-roles. COMMENT must be an array of complete strings;"
             " subtag/value objects are not accepted as equivalent."
             " Optional absent fields are compared with empty containers/text. Arrays preserve order and duplicates;"
             " order-only differences are reported separately, not silently normalized."
@@ -303,7 +318,7 @@ def main():
             " direct source field and are excluded; absent AC$GENERAL/AC$ION_MOBILITY data is not positive coverage."
         )
     clients = {
-        side: Client(url, timeout=60, delay=0.1, max_bytes=16 * 1024 * 1024)
+        side: Client(url, timeout=60, delay=0.1, max_bytes=16 * 1024 * 1024, parse_float=Decimal)
         for side, url in report["apis"].items()
     }
     try:
@@ -320,6 +335,8 @@ def main():
                     result["error"] = response.error
                 else:
                     actual = api_fields(response.data, args.all_fields)
+                    if args.all_fields and not args.include_marc_roles:
+                        del actual["authors.roles"]
                     result["matching_fields"] = [key for key in expected if expected[key] == actual[key]]
                     result["differing_fields"] = [key for key in expected if expected[key] != actual[key]]
                     result["order_only_fields"] = [key for key in result["differing_fields"] if order_only(expected[key], actual[key])]

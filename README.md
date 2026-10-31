@@ -114,13 +114,17 @@ For the currently pinned chart versions:
 ```sh
 kubectl -n massbank-dev delete \
   job/massbank-dev-massbank-data-download-2026-10-28 \
-  job/massbank-dev-massbank-export-api-import-2-6-2 --ignore-not-found
+  job/massbank-dev-massbank-export-api-import-2-6-3 --ignore-not-found
 helm upgrade massbank-dev ./charts/massbank -n massbank-dev \
   -f msbi-values-dev.yaml --set massbank-export-api.dataImport.enabled=true \
   --reset-values --wait --wait-for-jobs --timeout 2h
 ```
 
 ### Comparing the old and shared-database APIs
+
+**Historical tooling only.** Future correctness checks compare the new API with
+original source files, not with the old API. Use the primary-data commands below;
+the old comparison script and its reports are retained only as historical evidence.
 
 The standard-library-only comparison script checks complete accession inventories
 and counts, then deterministically samples records across contributor prefixes.
@@ -310,10 +314,15 @@ python3 scripts/compare_primary_data.py \
   --output /tmp/primary-data-comparison.json
 ```
 
-Exit status 1 reports a mismatch or HTTP error on either API, including existing
-legacy differences. Invalid/missing source input fails explicitly before calls.
-Both APIs are read-only during this check. Use the actual imported release as
+This checker now calls only the new API (`--api` overrides its URL). Exit status 1
+reports a mismatch or HTTP error. Invalid/missing source input fails explicitly
+before calls. The API is read-only during this check. Use the actual imported release as
 the source reference; newer snapshots can contain genuine content changes.
+
+For a targeted recheck, replace `--sample-report` with `--accessions-file`, a
+text file containing one accession per line. Every listed accession is compared.
+Structured MARC roles are excluded by default; `--include-marc-roles` enables
+that unfinished functionality explicitly.
 
 After the software-only upgrade (Helm revision 14), **all 103 new-API records
 match the original release-2026.03 files in every checked field**, with no HTTP
@@ -391,7 +400,7 @@ every name and affiliation.
 
 `scripts/compare_all_primary_data.py` checks **every accession**, not a sample.
 It reuses the source-field mappings above and visits the union of all original
-files and both APIs' complete `/records/search` inventories. Missing active
+files and the configured API's complete `/records/search` inventory. Missing active
 records, API-only accessions, duplicate inventory entries and count discrepancies
 are reported explicitly. Use the actual installed release, not a newer snapshot:
 
@@ -402,8 +411,8 @@ python3 scripts/compare_all_primary_data.py \
   --output /path/to/full-primary-comparison
 ```
 
-By default this compares both public APIs. To select only the shared-database API,
-add `--api new=https://msbi.ipb-halle.de/MassBank3-api`; `--api NAME=URL` is repeatable.
+By default this compares only `https://msbi.ipb-halle.de/MassBank3-api` with the
+original files. `--api NAME=URL` can select another new-API deployment.
 All source-backed active-record field groups are checked. Structured MARC roles
 are excluded by default as unfinished functionality (`--include-marc-roles`
 enables them); AUTHORS text is still compared. Deprecated source records are
@@ -531,6 +540,45 @@ Six apparent parser errors thereby became ordinary field differences. The
 [reanalysis provenance](comparison-results/full-primary-annotation-reanalysis.json)
 records those accessions; original results remain preserved alongside the full
 evidence. The new API's findings were unaffected.
+
+### Zero-intensity peak correction and targeted recheck
+
+The full-record SQL view no longer applies search-only positivity filters.
+Every stored peak, including zero intensity or zero m/z, is returned. The frontend
+also formats zero explicitly instead of showing an empty cell (`0.00` intensity,
+`0.0000` m/z). Peak and neutral-loss search filters/indexes remain unchanged.
+
+The correction is deployed in `massbank-dev` at Helm revision 16, with exporter
+commit `e4c04ef9b490114b2780c1c75ef146b5c242ba54` and frontend commit
+`0a49a325b15b0d7fd801257115d83b20ceea45de`. The Go API image is unchanged.
+Only `massbank_api.record_data` was replaced transactionally; all canonical data,
+search projections, the 2026.03 release and its import timestamp were preserved.
+The importer remains disabled for this software-only upgrade.
+
+The [post-deployment recheck](comparison-results/2026-10-31-zero-intensity-606-recheck.json)
+and [summary](comparison-results/zero-intensity-fix-summary.json) cover exactly
+the 606 accessions from the earlier findings. **606/606 now match all 38 checked
+source-field groups**, with no HTTP errors or field differences. All **680**
+previously missing zero-intensity peaks are restored. Structured MARC roles remain
+excluded. Only the new API was contacted; both primary-data scripts now default
+to the new API alone for future comparisons.
+
+Browser checks also confirm `74.0185 / 0.00 / 1` for HB002705 (118 peaks again)
+and `182.0000 / 0.00 / 0` for MSJ01047 (93 peaks again), with CSP retained.
+[Open HB002705](https://msbi.ipb-halle.de/MassBank3/recordDisplay?id=MSBNK-HBM4EU-HB002705)
+and select **Spectrum**.
+
+To repeat this exact selection:
+
+```sh
+jq -r '.affected_accessions[].accession' \
+  comparison-results/full-primary-zero-intensity-findings.json > /tmp/zero-peak-accessions.txt
+python3 scripts/compare_primary_data.py --all-fields \
+  --source-data /path/to/original-release-2026.03 \
+  --source-reference 2026.03 \
+  --accessions-file /tmp/zero-peak-accessions.txt \
+  --output /tmp/zero-peak-recheck.json
+```
 
 ## Development Environment
 

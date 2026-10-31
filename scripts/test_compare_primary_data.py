@@ -1,10 +1,22 @@
 import unittest
 from decimal import Decimal
+from pathlib import Path
+import tempfile
 
-from compare_primary_data import api_fields, order_only, primary_fields, source_date, subtag_text_equal
+from compare_primary_data import api_fields, load_accessions, order_only, primary_fields, source_date, subtag_text_equal
 
 
 class PrimaryDataTests(unittest.TestCase):
+    def test_explicit_accession_file_preserves_all_selected_records(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "accessions.txt"
+            path.write_text("MSBNK-Test-A1\n\nMSBNK-Test-A2\nMSBNK-Test-A1\n")
+            self.assertEqual(load_accessions(accessions_file=path, extra=["MSBNK-Test-A3"]),
+                             ["MSBNK-Test-A1", "MSBNK-Test-A2", "MSBNK-Test-A3"])
+            path.write_text("../invalid\n")
+            with self.assertRaises(ValueError):
+                load_accessions(accessions_file=path)
+
     def test_allowed_dates_do_not_invent_history(self):
         self.assertEqual(source_date("2025.01.17"), {"updated": "2025-01-17"})
         self.assertEqual(source_date("2012.10.22 (Created 2008.05.12)"),

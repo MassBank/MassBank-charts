@@ -21,7 +21,6 @@ from compare_primary_data import api_fields, order_only, primary_fields, subtag_
 
 ACCESSION = re.compile(r"MSBNK-[A-Za-z0-9_]+-[A-Za-z0-9_]+")
 DEFAULT_APIS = {
-    "old": "https://msbi.ipb-halle.de/MassBank-api",
     "new": "https://msbi.ipb-halle.de/MassBank3-api",
 }
 PARSE_ERRORS = (ValueError, KeyError, TypeError, IndexError, AttributeError, InvalidOperation)
@@ -336,7 +335,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-data", type=Path, required=True)
     parser.add_argument("--source-reference", required=True)
-    parser.add_argument("--api", type=api_option, action="append", help="Repeatable; defaults to old and new public APIs")
+    parser.add_argument("--api", type=api_option, action="append", help="Repeatable; defaults to the new public API only")
     parser.add_argument("--output", type=Path, required=True, help="Directory for SQLite progress, summary and JSONL differences")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--include-marc-roles", action="store_true", help="Default excludes unfinished structured MARC roles")

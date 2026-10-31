@@ -3,5 +3,5 @@ name: massbank-frontend
 description: A Helm chart for massbank-frontend
 
 type: application
-version: 2026.10.31-1
-appVersion: "test-shared-jpa-274cf472436e7a8214e71af46a4f23200a1838c5"
+version: 2026.10.31-2
+appVersion: "test-shared-jpa-0a49a325b15b0d7fd801257115d83b20ceea45de"

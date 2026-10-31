@@ -91,7 +91,7 @@ massbank-export-api:
 
 massbank-frontend:
   image:
-    tag: test-shared-jpa-274cf472436e7a8214e71af46a4f23200a1838c5
+    tag: test-shared-jpa-0a49a325b15b0d7fd801257115d83b20ceea45de
     pullPolicy: Always
   host: *commonHost
   pathPrefix: *commonPathPrefix

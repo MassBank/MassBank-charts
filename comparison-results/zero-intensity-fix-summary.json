@@ -1,0 +1,53 @@
+{
+  "report": "2026-10-31-zero-intensity-606-recheck.json",
+  "before_findings": "full-primary-zero-intensity-findings.json",
+  "api": "https://msbi.ipb-halle.de/MassBank3-api",
+  "legacy_api_requested": false,
+  "source_reference": "2026.03@705afb7bccc3b2c42410a744eef73674716a60ef",
+  "checked_records": 606,
+  "matching_records": 606,
+  "checked_field_groups": 38,
+  "errors": 0,
+  "field_mismatches": 0,
+  "restored_zero_intensity_peaks": 680,
+  "excluded_fields": [
+    "authors.roles"
+  ],
+  "exporter_commit": "e4c04ef9b490114b2780c1c75ef146b5c242ba54",
+  "frontend_commit": "0a49a325b15b0d7fd801257115d83b20ceea45de",
+  "api_commit_unchanged": "274cf472436e7a8214e71af46a4f23200a1838c5",
+  "helm_revision": 16,
+  "database": {
+    "name": "massbank_shared",
+    "active_records": 139006,
+    "data_version": "2026.03",
+    "imported_at": "2026-10-31T16:44:19.223093+00:00",
+    "reimported": false,
+    "change": "Transactionally replaced only massbank_api.record_data; canonical records and search projections unchanged"
+  },
+  "search_semantics_unchanged": true,
+  "browser": {
+    "records": [
+      {
+        "accession": "MSBNK-HBM4EU-HB002705",
+        "visible_cells": [
+          "74.0185",
+          "0.00",
+          "1"
+        ],
+        "csp_present": true
+      },
+      {
+        "accession": "MSBNK-MSSJ-MSJ01047",
+        "visible_cells": [
+          "182.0000",
+          "0.00",
+          "0"
+        ],
+        "csp_present": true
+      }
+    ],
+    "page_errors": []
+  },
+  "scope": "All 606 previously affected active records, compared after deployment with original 2026.03 files; not a new whole-dataset audit."
+}

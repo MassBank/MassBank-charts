@@ -7,8 +7,9 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from compare_all_primary_data import compare_record, run, source_index, source_values, value_differences
+from compare_all_primary_data import DEFAULT_APIS, compare_record, run, source_index, source_values, value_differences
 from compare_apis import Response
+from compare_primary_data import main as selected_main
 
 
 SOURCE = """ACCESSION: MSBNK-Test-A1
@@ -57,6 +58,27 @@ def response(data, status=200):
 
 
 class ExhaustiveComparisonTests(unittest.TestCase):
+    def test_both_auditors_default_to_new_api_only(self):
+        url = "https://msbi.ipb-halle.de/MassBank3-api"
+        self.assertEqual(DEFAULT_APIS, {"new": url})
+        with tempfile.TemporaryDirectory() as tmp, patch("compare_primary_data.Client") as client:
+            root = Path(tmp)
+            (root / "MSBNK-Test-A1.txt").write_text(SOURCE)
+            selection = root / "accessions.txt"
+            selection.write_text("MSBNK-Test-A1\n")
+            client.return_value.get.return_value = response(record())
+            output = root / "report.json"
+            with patch("sys.argv", ["compare_primary_data.py", "--source-data", str(root),
+                                   "--source-reference", "fixture", "--accessions-file", str(selection),
+                                   "--all-fields", "--output", str(output)]):
+                self.assertEqual(selected_main(), 0)
+            self.assertEqual(client.call_count, 1)
+            self.assertEqual(client.call_args.args[0], url)
+            client.return_value.get.assert_called_once_with("/records/MSBNK-Test-A1")
+            report = json.loads(output.read_text())
+            self.assertEqual(report["apis"], {"new": url})
+            self.assertEqual(report["excluded_fields"], ["authors.roles"])
+
     def test_exact_numeric_values_missing_tails_and_untruncated_strings(self):
         long_text = "literal" * 1000
         source = {"numbers": [Decimal("1.000"), Decimal("0.1234567890123456789")],
