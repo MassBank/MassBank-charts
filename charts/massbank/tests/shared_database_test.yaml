@@ -1,0 +1,24 @@
+suite: Shared database consistency
+templates:
+  - templates/validate-values.yaml
+  - templates/postgres_init.yaml
+tests:
+  - it: rejects two different API databases
+    template: templates/validate-values.yaml
+    set:
+      massbank-export-api.massbankExportApiDatabase: records
+    asserts:
+      - failedTemplate:
+          errorMessage: massbank-api.massbankApiDatabase and massbank-export-api.massbankExportApiDatabase must name the same JPA database
+  - it: rejects a PostgreSQL database different from the shared API database
+    template: templates/validate-values.yaml
+    set:
+      postgres.auth.database: other
+    asserts:
+      - failedTemplate:
+          errorMessage: postgres.auth.database must name the shared JPA database
+  - it: does not create a separate export database
+    template: templates/postgres_init.yaml
+    asserts:
+      - notExists:
+          path: data["00_init_export_api.sh"]

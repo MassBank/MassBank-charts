@@ -9,7 +9,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: {{ .Values.dataImport.syncWave | default "2" | quote }}
 spec:
-  backoffLimit: {{ .Values.dataImport.backoffLimit | default 3 }}
+  backoffLimit: {{ .Values.dataImport.backoffLimit }}
   {{- if .Values.dataImport.ttlSecondsAfterFinished }}
   ttlSecondsAfterFinished: {{ .Values.dataImport.ttlSecondsAfterFinished }}
   {{- end }}
@@ -20,7 +20,11 @@ spec:
         app.kubernetes.io/component: data-import
     spec:
       serviceAccountName: {{ include "massbank-export-api.serviceAccountName" . }}
-      restartPolicy: OnFailure
+      restartPolicy: Never
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: import-data
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -42,6 +46,7 @@ spec:
           volumeMounts:
             - name: massbank-data-volume
               mountPath: /MassBank-data
+              readOnly: true
           {{- with .Values.dataImport.resources }}
           resources:
             {{- toYaml . | nindent 12 }}

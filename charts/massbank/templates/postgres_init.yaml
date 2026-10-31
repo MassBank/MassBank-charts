@@ -20,7 +20,3 @@ data:
     GRANT ALL PRIVILEGES ON SCHEMA bingo TO "{{ .Values.username }}";
     GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA bingo TO "{{ .Values.username }}";
     EOSQL
-  00_init_export_api.sh: |
-    #!/bin/bash
-    set -euo pipefail
-    psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -c "CREATE DATABASE {{ .Values.massbankExportApiDatabase }} OWNER {{ .Values.username }};"

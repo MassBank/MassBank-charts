@@ -6,6 +6,8 @@ metadata:
     {{- include "massbank-export-api.labels" . | nindent 4 }}
 data:
   MB_DATA_DIRECTORY: "/MassBank-data"
+  MB_SHARED_DATABASE: "true"
+  MB_DATA_VERSION: {{ .Values.dataImport.dataVersion | quote }}
   CORS_ALLOWED_ORIGINS: "https://{{ .Values.host }}/{{ .Values.pathPrefix }}/"
   CONTEXT_PATH: "/{{ .Values.pathPrefix }}-export"
   SERVER_FORWARD_HEADERS_STRATEGY: {{ .Values.forwardedHeaders.strategy | quote }}

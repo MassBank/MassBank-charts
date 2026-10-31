@@ -1,0 +1,8 @@
+{{- $api := index .Values "massbank-api" -}}
+{{- $export := index .Values "massbank-export-api" -}}
+{{- if ne $api.massbankApiDatabase $export.massbankExportApiDatabase -}}
+{{- fail "massbank-api.massbankApiDatabase and massbank-export-api.massbankExportApiDatabase must name the same JPA database" -}}
+{{- end -}}
+{{- if ne .Values.postgres.auth.database $api.massbankApiDatabase -}}
+{{- fail "postgres.auth.database must name the shared JPA database" -}}
+{{- end -}}

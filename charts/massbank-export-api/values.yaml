@@ -6,9 +6,17 @@ syncWave: "3"
 dataImport:
   enabled: true
   syncWave: "2"
-  backoffLimit: 3
-  ttlSecondsAfterFinished: 600
-  resources: {}
+  backoffLimit: 0
+  # Retain completed Jobs: TTL deletion would rerun a destructive import on upgrade.
+  ttlSecondsAfterFinished: null
+  dataVersion: "unknown"
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: "2"
+      memory: 2Gi
 
 host: "msbi.ipb-halle.de"
 pathPrefix: "MassBank"
@@ -21,7 +29,7 @@ sharedDataPvcName: ""
 # the username for the postgres user
 username: &username "massbank"
 # the name of the postgres database used by massbank-export-api
-massbankExportApiDatabase: &massbankExportApiDatabase "records"
+massbankExportApiDatabase: &massbankExportApiDatabase "massbank"
 
 # Forwarded request information is handled by Tomcat's RemoteIpValve.
 # Use the regular Host header as the public host so X-Forwarded-Host cannot
@@ -47,6 +55,21 @@ postgres:
     existingSecret: postgres-pw
     secretKeys:
       adminPasswordKey: "password"
+  initContainers:
+    - name: bingo-init
+      image: quay.io/massbank/postgres-bingo-init:v17-bingo-1.40.0
+      command: ["sh", "-c", "cp -rp /bingo-postgres/* /opt/bingo-postgres/"]
+      volumeMounts:
+        - name: bingo-volume
+          mountPath: /opt/bingo-postgres
+  extraVolumes:
+    - name: bingo-volume
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: bingo-volume
+      mountPath: /opt/bingo-postgres
+  initdb:
+    scriptsConfigMap: massbank-export-api-postgres-config
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []

@@ -1,0 +1,24 @@
+suite: Shared JPA API
+templates:
+  - templates/configmap.yaml
+  - templates/deployment.yaml
+tests:
+  - it: reads the JPA schema in the configured database
+    template: templates/configmap.yaml
+    set:
+      massbankApiDatabase: massbank_shared
+    asserts:
+      - equal:
+          path: data.DB_SCHEMA
+          value: jpa
+      - equal:
+          path: data.DB_NAME
+          value: massbank_shared
+  - it: checks database readiness and rolls pods when configuration changes
+    template: templates/deployment.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].readinessProbe.httpGet.path
+          value: /MassBank-api/records/count
+      - exists:
+          path: spec.template.metadata.annotations["checksum/config"]

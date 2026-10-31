@@ -1,0 +1,64 @@
+suite: Shared JPA importer
+templates:
+  - templates/configmap.yaml
+  - templates/job-import.yaml
+  - templates/deployment.yaml
+  - templates/postgres_init.yaml
+tests:
+  - it: configures a single shared database
+    template: templates/configmap.yaml
+    asserts:
+      - equal:
+          path: data.DB_NAME
+          value: massbank
+      - equal:
+          path: data.MB_SHARED_DATABASE
+          value: "true"
+  - it: runs only the import executable with read-only input and no automatic retry
+    template: templates/job-import.yaml
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].command[3]
+          value: /app-import.jar
+      - equal:
+          path: spec.template.spec.containers[0].volumeMounts[0].readOnly
+          value: true
+      - equal:
+          path: spec.backoffLimit
+          value: 0
+      - equal:
+          path: spec.template.spec.restartPolicy
+          value: Never
+      - notExists:
+          path: spec.ttlSecondsAfterFinished
+  - it: can leave an already imported database untouched
+    template: templates/job-import.yaml
+    set:
+      dataImport.enabled: false
+    asserts:
+      - hasDocuments:
+          count: 0
+  - it: waits for a successful import before starting the REST API
+    template: templates/deployment.yaml
+    asserts:
+      - matchRegex:
+          path: spec.template.spec.initContainers[0].command[2]
+          pattern: SELECT ready FROM public.shared_import_metadata
+      - equal:
+          path: spec.template.spec.initContainers[0].env[0].valueFrom.secretKeyRef.name
+          value: postgres-pw
+      - exists:
+          path: spec.template.metadata.annotations["checksum/config"]
+  - it: provisions Bingo for standalone installations
+    template: templates/postgres_init.yaml
+    asserts:
+      - matchRegex:
+          path: data["000_bingo_install.sh"]
+          pattern: /opt/bingo-postgres/init-scripts/000_bingo_install.sql
+  - it: leaves umbrella PostgreSQL provisioning to the parent
+    template: templates/postgres_init.yaml
+    set:
+      withPostgres: false
+    asserts:
+      - hasDocuments:
+          count: 0

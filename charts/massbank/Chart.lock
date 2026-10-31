@@ -1,0 +1,21 @@
+dependencies:
+- name: massbank-data
+  repository: https://massbank.github.io/MassBank-charts
+  version: 2026.10.28
+- name: postgres
+  repository: oci://registry-1.docker.io/cloudpirates
+  version: 0.21.2
+- name: massbank-api
+  repository: file://../massbank-api
+  version: 2026.10.31
+- name: massbank-export-api
+  repository: file://../massbank-export-api
+  version: 2.6.0
+- name: massbank-frontend
+  repository: https://massbank.github.io/MassBank-charts
+  version: 2025.12.4
+- name: massbank-similarity-api
+  repository: https://massbank.github.io/MassBank-charts
+  version: 1.8.9
+digest: sha256:f40e83865db8648bf064c3250ce8464687172b33740056f27c0208a7c7fdb2c0
+generated: "2026-10-31T15:39:13.879003669Z"

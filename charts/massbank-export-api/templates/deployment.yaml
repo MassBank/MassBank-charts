@@ -15,10 +15,11 @@ spec:
       {{- include "massbank-export-api.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- end }}
       labels:
         {{- include "massbank-export-api.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
@@ -79,10 +80,17 @@ spec:
             - sh
             - -c
             - |
-              until pg_isready -U {{ .Values.username }} -d {{ .Values.massbankExportApiDatabase }} -h {{ .Release.Name }}-postgres -p 5432; do
-                echo "waiting for postgres at {{ .Release.Name }}-postgres:5432..."
-                sleep 2
+              until psql -U {{ .Values.username | quote }} -d {{ .Values.massbankExportApiDatabase | quote }} -h {{ .Release.Name }}-postgres -p 5432 -Atc \
+                'SELECT ready FROM public.shared_import_metadata WHERE id = 1' | grep -qx t; do
+                echo "waiting for the export importer to finish..."
+                sleep 10
               done
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-pw
+                  key: password
 
       {{- with .Values.volumes }}
       volumes:

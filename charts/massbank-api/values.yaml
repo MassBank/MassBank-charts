@@ -16,6 +16,7 @@ massbankApiDatabase: &massbankApiDatabase "massbank"
 
 image:
   repository: quay.io/massbank/massbank-api
+  pullPolicy: IfNotPresent
 
 # postggresql config
 # for massbank we need a special version of postgres with bingo cartridge
@@ -122,7 +123,7 @@ livenessProbe:
   failureThreshold: 6
 readinessProbe:
   httpGet:
-    path: "/{{ .Values.pathPrefix }}-api/version"
+    path: "/{{ .Values.pathPrefix }}-api/records/count"
     port: http
   initialDelaySeconds: 30
   periodSeconds: 10
