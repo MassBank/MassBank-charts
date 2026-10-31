@@ -387,6 +387,64 @@ database-generated peak IDs and derived neutral losses are outside this audit.
 The author's full text is checked, not an assumed unambiguous semantic split of
 every name and affiliation.
 
+### Exhaustive primary-data comparison
+
+`scripts/compare_all_primary_data.py` checks **every accession**, not a sample.
+It reuses the source-field mappings above and visits the union of all original
+files and both APIs' complete `/records/search` inventories. Missing active
+records, API-only accessions, duplicate inventory entries and count discrepancies
+are reported explicitly. Use the actual installed release, not a newer snapshot:
+
+```sh
+python3 scripts/compare_all_primary_data.py \
+  --source-data /path/to/original-release-2026.03 \
+  --source-reference 2026.03 \
+  --output /path/to/full-primary-comparison
+```
+
+By default this compares both public APIs. To select only the shared-database API,
+add `--api new=https://msbi.ipb-halle.de/MassBank3-api`; `--api NAME=URL` is repeatable.
+All source-backed active-record field groups are checked. Structured MARC roles
+are excluded by default as unfinished functionality (`--include-marc-roles`
+enables them); AUTHORS text is still compared. Deprecated source records are
+also requested, with their accession, deprecation date and reason as reference.
+An HTTP 200 containing an SQL error string is an error, never a successful match.
+
+The output directory contains:
+
+| File | Contents |
+|---|---|
+| `results.sqlite` | Transactionally saved result for each accession/API, including matches, errors, source SHA-256 and HTTP response hash |
+| `differences.jsonl` | All differing/error cases, one JSON object per accession/API, with complete source/API values and exact paths |
+| `summary.json` | Coverage, per-API outcomes, mismatching records per field/classification, example accessions and inventory stability |
+
+JSONL and summary files are generated on completion or a controlled interruption.
+SQLite progress is durable after each accession. Restart the same command with
+`--resume` to process only unfinished accessions. Changed source hashes, API URLs,
+inventories or comparison settings reject resumption. Previously recorded errors
+are retained, not silently retried; use a fresh output directory for a new audit
+after a deployment or data correction. Do not run two writers against one report.
+
+Differences are **not truncated**: missing fields and array tails include their
+values, long strings remain complete, and order/duplicates/whitespace are
+preserved. Numeric values are parsed as exact decimals without a rounding
+tolerance; diagnostic decimal values are serialized as strings to preserve their
+precision. Order-only and text-preserving subtag-boundary differences are labeled
+separately, not hidden. Generated peak IDs and derived search results have no
+original-field equivalent and are outside this full-record audit.
+
+The default is four concurrent accessions with a 50 ms pause before each request;
+`--workers` and `--delay` control service load. Workers use separate persistent
+HTTP connections; this is a correctness audit, not a latency benchmark. Input
+processing and outstanding requests are bounded rather than retaining all
+record bodies in memory. Large reports belong outside Git.
+
+Exit codes: `0` complete and matching; `1` complete with differences/errors or an
+unstable inventory; `2` incomplete/preflight failure. Inventories/counts are checked
+again at the end. Stable inventories do not prove that values under existing
+accessions stayed unchanged during a long run; avoid imports/deployments while
+auditing, and retain the source release identifier.
+
 ### COMMENT correction
 
 The API and frontend now use `comments` as an array of complete strings:

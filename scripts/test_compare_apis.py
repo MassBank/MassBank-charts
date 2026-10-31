@@ -1,4 +1,5 @@
 import http.client
+from decimal import Decimal
 import unittest
 from unittest.mock import Mock, patch
 from types import SimpleNamespace
@@ -79,6 +80,15 @@ class ComparisonTests(unittest.TestCase):
 
 
 class ClientTests(unittest.TestCase):
+    def test_optional_decimal_parsing_and_connection_reuse(self):
+        client = self.client(b'{"number":0.1234567890123456789}')
+        client.parse_float = Decimal
+        client.keep_alive = True
+        result = client.get("/records/A")
+        self.assertEqual(result.data["number"], Decimal("0.1234567890123456789"))
+        client.connection.close.assert_not_called()
+        self.assertEqual(client.connection.request.call_args.kwargs["headers"]["Connection"], "keep-alive")
+
     def client(self, body=b'{"ok": true}', status=200, max_bytes=1024):
         client = Client("https://example.test/api", 1, 0, max_bytes)
         client.connection = Mock()

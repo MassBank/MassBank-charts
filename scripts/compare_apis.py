@@ -96,7 +96,7 @@ class Response:
 
 
 class Client:
-    def __init__(self, base, timeout, delay, max_bytes):
+    def __init__(self, base, timeout, delay, max_bytes, *, parse_float=float, keep_alive=False):
         self.url = urlsplit(base.rstrip("/"))
         if self.url.scheme not in {"http", "https"} or not self.url.hostname:
             raise ValueError(f"Invalid API URL: {base}")
@@ -106,18 +106,22 @@ class Client:
         self.connection = connection(self.url.hostname, self.url.port, timeout=timeout)
         self.delay = delay
         self.max_bytes = max_bytes
+        self.parse_float = parse_float
+        self.keep_alive = keep_alive
 
     def get(self, endpoint):
         time.sleep(self.delay)
-        # Fresh connections avoid asymmetric ingress idle timeouts between pairs.
-        self.connection.close()
+        # Latency comparisons use fresh connections to avoid asymmetric idle timeouts.
+        if not self.keep_alive:
+            self.connection.close()
         start = time.perf_counter_ns()
         status = None
         body = b""
         try:
             self.connection.request(
                 "GET", self.url.path + endpoint,
-                headers={"Accept": "application/json", "Accept-Encoding": "identity", "Connection": "close",
+                headers={"Accept": "application/json", "Accept-Encoding": "identity",
+                         "Connection": "keep-alive" if self.keep_alive else "close",
                          "User-Agent": "MassBank-API-comparison/1.0"},
             )
             response = self.connection.getresponse()
@@ -133,7 +137,7 @@ class Client:
                             len(body), None, error=f"{type(error).__name__}: {error}")
         sha = hashlib.sha256(body).hexdigest()
         try:
-            data = json.loads(body)
+            data = json.loads(body, parse_float=self.parse_float)
         except (ValueError, UnicodeDecodeError) as error:
             return Response(status, elapsed, len(body), sha, error=f"Invalid JSON: {error}")
         error = None if status == 200 else f"HTTP {status}"
