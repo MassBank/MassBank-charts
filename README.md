@@ -580,6 +580,55 @@ python3 scripts/compare_primary_data.py --all-fields \
   --output /tmp/zero-peak-recheck.json
 ```
 
+### Go toolchain and importer-backed primary regression
+
+Helm revision **17** updates only the Go API to commit
+`90311d717f554624038af519a1cbfaa1b7be6254`, built with **Go 1.27.3** and updated
+compatible Go dependencies. API/dbtool Dockerfiles and CI use the same toolchain
+and locked module checksums. The exporter/frontend images remain unchanged;
+the importer stays disabled and the 139,006-record database retains its original
+2026.03 import timestamp.
+
+The API repository now contains **600 unchanged active original records** from
+release 2026.03, with per-file hashes, source commit, license/attribution fields
+and a reproducible selection script. The sample covers all **59 contributors**,
+all three DATE forms, 502 comment-bearing records, 220 annotated records,
+37 high-precision m/z cases and 32 records containing zero-intensity peaks.
+
+These are importer-backed integration tests alongside fast unit tests. Each run
+creates a fresh PostgreSQL 17.11/Bingo 1.45.0 server; the pinned export API's
+`/app-import.jar` creates and populates the canonical database. The tests then
+exercise the actual Go HTTP router for all 600 individual, simple and bulk
+records, comparing original values with exact decimal arithmetic and requiring
+integer relative intensities. No synthetic SQL inserts or legacy API responses
+are used. Existing search, Bingo-index and read-only checks also run.
+
+From the **MassBank3** repository:
+
+```sh
+go test -mod=readonly -race ./pkg/...
+bash test/run-primary-regression-k8s.sh  # current context, massbank-dev by default
+# Docker alternative, also executed by GitHub Actions:
+bash test/run-primary-regression.sh
+```
+
+Both runners delete their uniquely named temporary database/resources afterward.
+They do not touch the running deployment's PostgreSQL server. The API image
+workflow now requires unit and importer-backed tests to pass before publication.
+Both Docker CI and the Kubernetes runner passed.
+
+The [post-deployment summary](comparison-results/go-toolchain-primary-regression-summary.json)
+also records a fresh **new API versus original files only** check of all 600
+accessions: **597 match every field group**, and three AAFC records have only the
+already known, text-preserving `INTENSITY CUTOFF` boundary difference. There are
+no HTTP errors, new differences, lost comments or missing/rounded peak values.
+All **1,165 COMMENT values** and **25,740 peak rows**, including **56 peaks with
+zero intensity**, match their original values and order.
+The regression suite explicitly tolerates only that documented boundary, while
+still checking its complete text. Structured MARC-relator extraction remains
+excluded; original AUTHORS text is checked. Source-absent `AC$GENERAL` and
+`AC$ION_MOBILITY` values do not count as positive populated-field coverage.
+
 ## Development Environment
 
 A development container with Podman is configured under `.devcontainer/` providing all necessary tools for Helm chart development (`helm`, plugins `diff` and `unittest`, `kubectl`, `yq`, `kubeconform`, `helm-docs`, and `chart-testing`).

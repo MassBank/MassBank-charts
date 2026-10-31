@@ -3,8 +3,8 @@ name: massbank-api
 description: A Helm chart for massbank-api
 
 type: application
-version: 2026.10.31-3
-appVersion: "test-shared-jpa-274cf472436e7a8214e71af46a4f23200a1838c5"
+version: 2026.10.31-4
+appVersion: "test-shared-jpa-90311d717f554624038af519a1cbfaa1b7be6254"
 
 dependencies:
   - name: postgres

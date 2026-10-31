@@ -2,7 +2,7 @@ apiVersion: v2
 name: massbank
 description: A umbrella chart for MassBank
 type: application
-version: 0.2.5
+version: 0.2.6
 
 dependencies:
   - name: massbank-data
@@ -12,7 +12,7 @@ dependencies:
     version: 0.21.2
     repository: oci://registry-1.docker.io/cloudpirates
   - name: massbank-api
-    version: 2026.10.31-3
+    version: 2026.10.31-4
     repository: "file://../massbank-api"
   - name: massbank-export-api
     version: 2.6.3
