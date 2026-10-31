@@ -180,6 +180,7 @@ def write_summary(db, directory, config, before, after=None, fatal_error=None):
         "complete": complete and fatal_error is None, "fatal_error": fatal_error,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "source_reference": config["source_reference"],
+        "comparison_format_version": config["format_version"],
         "source_fingerprint": config["source_fingerprint"],
         "source_records": len(active) + len(deprecated), "active_records": len(active),
         "deprecated_records": len(deprecated), "total_accessions": config["total_accessions"],
@@ -216,7 +217,7 @@ def run(args):
             connection.close()
     accessions = sorted(set(sources).union(*(set(s["accessions"]) for s in before.values())))
     config = {
-        "format_version": 1, "source_data": str(args.source_data.resolve()),
+        "format_version": 2, "source_data": str(args.source_data.resolve()),
         "source_reference": args.source_reference, "source_fingerprint": fingerprint(sources),
         "apis": api_urls, "include_marc_roles": args.include_marc_roles,
         "active_accessions": [key for key, value in sources.items() if not value["deprecated"]],

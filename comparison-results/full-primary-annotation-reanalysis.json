@@ -1,0 +1,19 @@
+{
+  "reason": "The original checker assumed the first annotation column was m/z. Nine legacy responses put another column first; now only the column named m/z is parsed numerically, without reordering columns.",
+  "rechecked_at": "2026-10-31T21:23:52.388036+00:00",
+  "original_audit_completed_at": "2026-10-31T21:20:46.720635+00:00",
+  "accessions": [
+    "MSBNK-Athens_Univ-AU212503",
+    "MSBNK-Athens_Univ-AU273403",
+    "MSBNK-Chubu_Univ-UT002555",
+    "MSBNK-MSSJ-MSJ02264",
+    "MSBNK-MSSJ-MSJ02405",
+    "MSBNK-MSSJ-MSJ02409",
+    "MSBNK-MSSJ-MSJ02933",
+    "MSBNK-SMB_Measured-HSA010R0256000",
+    "MSBNK-SMB_Measured-HSA033R0135002"
+  ],
+  "all_response_sha256_identical_to_original_audit": true,
+  "six_checker_errors_reclassified_as_value_differences": true,
+  "original_cases_preserved": "annotation-reanalysis-originals.json"
+}

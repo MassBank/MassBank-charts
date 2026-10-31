@@ -183,7 +183,10 @@ def api_fields(record, all_fields=False):
     if len(columns) != len(header) or len({len(column) for column in columns}) > 1:
         rows = {"malformed_api_columns": columns}
     else:
-        rows = [[Decimal(row[0]), *row[1:]] for row in zip(*columns)]
+        rows = [
+            [Decimal(value) if name == "m/z" else value for name, value in zip(header, row)]
+            for row in zip(*columns)
+        ]
     result.update({
         "accession": record["accession"],
         "deprecated": record.get("deprecated", {}),

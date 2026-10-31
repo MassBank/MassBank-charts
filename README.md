@@ -482,6 +482,56 @@ still records these distinctions and legacy differences rather than hiding them.
 Regression coverage includes literal string-array output, whitespace, duplicate
 order, quoted text, legacy database encoding and frontend rendering.
 
+### Full primary-data audit, 2026-10-31
+
+The [complete summary](comparison-results/2026-10-31-full-primary-summary.json)
+covers **139,240 accessions and 278,480 API responses**, using the original
+2026.03 release at `705afb7bccc3b2c42410a744eef73674716a60ef`.
+Both API inventories remained identical and stable: 139,006 active accessions,
+no missing/extra accessions or duplicates. MARC roles were excluded.
+
+| Shared API, active records | Records |
+|---|---:|
+| All compared fields match exactly | 137,450 |
+| Only text-preserving `INTENSITY CUTOFF` subtag splits | 950 |
+| Missing zero-intensity peak rows | 606 |
+
+The 606 affected records are missing **680 complete peaks**, not just JSON
+members. Their entire API peak arrays equal the original arrays after removing
+rows whose intensity is zero. All other peak values and their order are retained.
+The [detailed findings](comparison-results/full-primary-zero-intensity-findings.json)
+list every affected accession: 597 RIKEN_NPDepo, five MSSJ and four HBM4EU records.
+For example, HB002705 has 118 original peaks but only 105 in the API; the missing
+rows include `74.0185 0 1`.
+
+All 680 values **are present in the canonical JPA database**, in exactly the same
+606 records. The cause is the `intensity > 0` predicate in the full-record view
+`massbank_api.record_data`, defined in the export API's
+`src/main/resources/shared-api.sql:124`. This is separate from the previously
+fixed omission of zero-valued JSON members. This audit does not change the view,
+deploy applications or reimport data.
+
+COMMENT matches the original values throughout the new API's active records.
+The old API differs in every active record; prominent field counts are DATE and
+peak headers (139,006 each), peak values (131,073), missing COMMENT (114,190),
+copyright (83,039), classes (61,135) and projects (6,685). These counts overlap
+and describe differences, not uniformly data loss; the summary distinguishes
+order-only changes.
+
+Both APIs return HTTP 200 with the string `"sql: no rows in result set"` for all
+234 deprecated accessions. These are recorded as errors, not matching records.
+Exit status 1 therefore indicates a completed audit with findings, not an aborted
+run. The full SQLite/JSONL evidence is retained outside Git in the session's
+`files/full-primary-comparison-2026.03/` directory (approximately 2.3 GiB).
+
+During evaluation, the checker was corrected to identify the numeric annotation
+column by its `m/z` header rather than its position. Nine legacy responses were
+reevaluated; all response SHA-256 hashes were identical to the original run.
+Six apparent parser errors thereby became ordinary field differences. The
+[reanalysis provenance](comparison-results/full-primary-annotation-reanalysis.json)
+records those accessions; original results remain preserved alongside the full
+evidence. The new API's findings were unaffected.
+
 ## Development Environment
 
 A development container with Podman is configured under `.devcontainer/` providing all necessary tools for Helm chart development (`helm`, plugins `diff` and `unittest`, `kubectl`, `yq`, `kubeconform`, `helm-docs`, and `chart-testing`).

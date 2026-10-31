@@ -1,0 +1,325 @@
+{
+  "complete": true,
+  "fatal_error": null,
+  "generated_at": "2026-10-31T21:23:52.383054+00:00",
+  "source_reference": "2026.03@705afb7bccc3b2c42410a744eef73674716a60ef",
+  "comparison_format_version": 2,
+  "source_fingerprint": "63b6f4ebf69ca7a563d4478da5062dde35382c6a167b139a6ed2a097c1b35e05",
+  "source_records": 139240,
+  "active_records": 139006,
+  "deprecated_records": 234,
+  "total_accessions": 139240,
+  "completed_api_comparisons": 278480,
+  "apis": {
+    "new": "https://msbi.ipb-halle.de/MassBank3-api",
+    "old": "https://msbi.ipb-halle.de/MassBank-api"
+  },
+  "excluded_fields": [
+    "authors.roles"
+  ],
+  "results": {
+    "new": {
+      "outcomes": {
+        "different": 1556,
+        "matching": 137450,
+        "error": 234
+      },
+      "fields": {
+        "mass_spectrometry.data_processing": {
+          "text_preserving_split": 950
+        },
+        "peak_count": {
+          "value": 606
+        },
+        "peaks": {
+          "value": 606
+        }
+      },
+      "examples": {
+        "mass_spectrometry.data_processing": [
+          "MSBNK-AAFC-AC000001",
+          "MSBNK-AAFC-AC000002",
+          "MSBNK-AAFC-AC000003",
+          "MSBNK-AAFC-AC000004",
+          "MSBNK-AAFC-AC000005"
+        ],
+        "peak_count": [
+          "MSBNK-HBM4EU-HB002705",
+          "MSBNK-HBM4EU-HB002706",
+          "MSBNK-HBM4EU-HB002707",
+          "MSBNK-HBM4EU-HB002709",
+          "MSBNK-MSSJ-MSJ01047"
+        ],
+        "peaks": [
+          "MSBNK-HBM4EU-HB002705",
+          "MSBNK-HBM4EU-HB002706",
+          "MSBNK-HBM4EU-HB002707",
+          "MSBNK-HBM4EU-HB002709",
+          "MSBNK-MSSJ-MSJ01047"
+        ]
+      },
+      "value_differences": 108880
+    },
+    "old": {
+      "outcomes": {
+        "different": 139006,
+        "error": 234
+      },
+      "fields": {
+        "comments": {
+          "value": 114190
+        },
+        "compound_classes": {
+          "value": 61135
+        },
+        "copyright": {
+          "value": 83039
+        },
+        "date": {
+          "value": 139006
+        },
+        "peak_header": {
+          "value": 139006
+        },
+        "peaks": {
+          "value": 131073
+        },
+        "annotation.rows": {
+          "value": 1413
+        },
+        "acquisition.chromatography": {
+          "order_only": 806,
+          "value": 134
+        },
+        "compound.links": {
+          "order_only": 920,
+          "value": 1
+        },
+        "compound.names": {
+          "order_only": 158,
+          "value": 62
+        },
+        "mass_spectrometry.data_processing": {
+          "order_only": 53
+        },
+        "annotation.header": {
+          "order_only": 9
+        },
+        "species.lineage": {
+          "value": 2203
+        },
+        "species.links": {
+          "value": 3353
+        },
+        "species.name": {
+          "value": 3355
+        },
+        "species.samples": {
+          "value": 3511
+        },
+        "mass_spectrometry.focused_ion": {
+          "order_only": 3,
+          "value": 80
+        },
+        "compound.smiles": {
+          "value": 21
+        },
+        "projects": {
+          "value": 6685
+        },
+        "title": {
+          "value": 7
+        },
+        "authors.text": {
+          "value": 1
+        },
+        "acquisition.instrument": {
+          "value": 43
+        },
+        "acquisition.mass_spectrometry": {
+          "order_only": 1
+        }
+      },
+      "examples": {
+        "comments": [
+          "MSBNK-AAFC-AC000001",
+          "MSBNK-AAFC-AC000002",
+          "MSBNK-AAFC-AC000003",
+          "MSBNK-AAFC-AC000004",
+          "MSBNK-AAFC-AC000005"
+        ],
+        "compound_classes": [
+          "MSBNK-AAFC-AC000001",
+          "MSBNK-AAFC-AC000002",
+          "MSBNK-AAFC-AC000003",
+          "MSBNK-AAFC-AC000004",
+          "MSBNK-AAFC-AC000005"
+        ],
+        "copyright": [
+          "MSBNK-AAFC-AC000001",
+          "MSBNK-AAFC-AC000002",
+          "MSBNK-AAFC-AC000003",
+          "MSBNK-AAFC-AC000004",
+          "MSBNK-AAFC-AC000005"
+        ],
+        "date": [
+          "MSBNK-AAFC-AC000001",
+          "MSBNK-AAFC-AC000002",
+          "MSBNK-AAFC-AC000003",
+          "MSBNK-AAFC-AC000004",
+          "MSBNK-AAFC-AC000005"
+        ],
+        "peak_header": [
+          "MSBNK-AAFC-AC000001",
+          "MSBNK-AAFC-AC000002",
+          "MSBNK-AAFC-AC000003",
+          "MSBNK-AAFC-AC000004",
+          "MSBNK-AAFC-AC000005"
+        ],
+        "peaks": [
+          "MSBNK-AAFC-AC000001",
+          "MSBNK-AAFC-AC000002",
+          "MSBNK-AAFC-AC000003",
+          "MSBNK-AAFC-AC000004",
+          "MSBNK-AAFC-AC000005"
+        ],
+        "annotation.rows": [
+          "MSBNK-AAFC-AC000009",
+          "MSBNK-AAFC-AC000010",
+          "MSBNK-AAFC-AC000038",
+          "MSBNK-AAFC-AC000040",
+          "MSBNK-AAFC-AC000043"
+        ],
+        "acquisition.chromatography": [
+          "MSBNK-AAFC-AC000033",
+          "MSBNK-AAFC-AC000147",
+          "MSBNK-AAFC-AC000261",
+          "MSBNK-AAFC-AC000375",
+          "MSBNK-AAFC-AC000489"
+        ],
+        "compound.links": [
+          "MSBNK-AAFC-AC000098",
+          "MSBNK-AAFC-AC000134",
+          "MSBNK-AAFC-AC000235",
+          "MSBNK-AAFC-AC000365",
+          "MSBNK-AAFC-AC000511"
+        ],
+        "compound.names": [
+          "MSBNK-AAFC-AC000640",
+          "MSBNK-ACES_SU-AS000899",
+          "MSBNK-ACES_SU-AS001035",
+          "MSBNK-ACES_SU-AS001347",
+          "MSBNK-Antwerp_Univ-AN112601"
+        ],
+        "mass_spectrometry.data_processing": [
+          "MSBNK-Athens_Univ-AU106705",
+          "MSBNK-Athens_Univ-AU116707",
+          "MSBNK-Athens_Univ-AU154606",
+          "MSBNK-Athens_Univ-AU167802",
+          "MSBNK-Athens_Univ-AU203103"
+        ],
+        "annotation.header": [
+          "MSBNK-Athens_Univ-AU212503",
+          "MSBNK-Athens_Univ-AU273403",
+          "MSBNK-Chubu_Univ-UT002555",
+          "MSBNK-MSSJ-MSJ02264",
+          "MSBNK-MSSJ-MSJ02405"
+        ],
+        "species.lineage": [
+          "MSBNK-Chubu_Univ-UT000500",
+          "MSBNK-Chubu_Univ-UT000501",
+          "MSBNK-Chubu_Univ-UT000502",
+          "MSBNK-Chubu_Univ-UT000503",
+          "MSBNK-Chubu_Univ-UT000504"
+        ],
+        "species.links": [
+          "MSBNK-Chubu_Univ-UT000500",
+          "MSBNK-Chubu_Univ-UT000501",
+          "MSBNK-Chubu_Univ-UT000502",
+          "MSBNK-Chubu_Univ-UT000503",
+          "MSBNK-Chubu_Univ-UT000504"
+        ],
+        "species.name": [
+          "MSBNK-Chubu_Univ-UT000500",
+          "MSBNK-Chubu_Univ-UT000501",
+          "MSBNK-Chubu_Univ-UT000502",
+          "MSBNK-Chubu_Univ-UT000503",
+          "MSBNK-Chubu_Univ-UT000504"
+        ],
+        "species.samples": [
+          "MSBNK-Chubu_Univ-UT000500",
+          "MSBNK-Chubu_Univ-UT000501",
+          "MSBNK-Chubu_Univ-UT000502",
+          "MSBNK-Chubu_Univ-UT000503",
+          "MSBNK-Chubu_Univ-UT000504"
+        ],
+        "mass_spectrometry.focused_ion": [
+          "MSBNK-Fukuyama_Univ-FU000063",
+          "MSBNK-Fukuyama_Univ-FU000118",
+          "MSBNK-Fukuyama_Univ-FU000191",
+          "MSBNK-MSSJ-MSJ04051",
+          "MSBNK-MSSJ-MSJ04052"
+        ],
+        "compound.smiles": [
+          "MSBNK-HBM4EU-HB002873",
+          "MSBNK-HBM4EU-HB002874",
+          "MSBNK-HBM4EU-HB002875",
+          "MSBNK-HBM4EU-HB002876",
+          "MSBNK-HBM4EU-HB002877"
+        ],
+        "projects": [
+          "MSBNK-LCSB-LU003301",
+          "MSBNK-LCSB-LU003302",
+          "MSBNK-LCSB-LU003303",
+          "MSBNK-LCSB-LU003304",
+          "MSBNK-LCSB-LU003305"
+        ],
+        "title": [
+          "MSBNK-NILU-NL000577",
+          "MSBNK-NILU-NL000585",
+          "MSBNK-NILU-NL000586",
+          "MSBNK-NILU-NL000587",
+          "MSBNK-NILU-NL000603"
+        ],
+        "authors.text": [
+          "MSBNK-NILU-NL0144"
+        ],
+        "acquisition.instrument": [
+          "MSBNK-NILU-NL0173",
+          "MSBNK-NILU-NL0174",
+          "MSBNK-NILU-NL0175",
+          "MSBNK-NILU-NL0176",
+          "MSBNK-NILU-NL0177"
+        ],
+        "acquisition.mass_spectrometry": [
+          "MSBNK-SMB_Measured-HSA008R0452000"
+        ]
+      },
+      "value_differences": 7332739
+    }
+  },
+  "inventory": {
+    "old": {
+      "count": 139006,
+      "inventory_rows": 139006,
+      "duplicates": {},
+      "missing_active": [],
+      "not_in_source": [],
+      "deprecated_listed_as_active": [],
+      "count_matches_inventory": true,
+      "stable": true
+    },
+    "new": {
+      "count": 139006,
+      "inventory_rows": 139006,
+      "duplicates": {},
+      "missing_active": [],
+      "not_in_source": [],
+      "deprecated_listed_as_active": [],
+      "count_matches_inventory": true,
+      "stable": true
+    }
+  },
+  "scope": "Full records, union of every source and API accession; no sampling. Deprecated records: accession and deprecation notice.",
+  "methodology": "Numeric JSON values parsed as Decimal; diagnostic decimals serialized as strings. No rounding tolerance, text trimming, array sorting or difference truncation. Peak IDs and derived search values have no primary-data equivalent. Inventory stability does not guarantee unchanged content under the same accessions."
+}

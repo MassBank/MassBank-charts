@@ -124,6 +124,11 @@ PK$PEAK: m/z int. rel.int.
         expected = primary_fields(source, all_fields=True)
         actual = api_fields(record, all_fields=True)
         self.assertEqual(expected, actual)
+        record["peak"]["annotation"] = {"header": ["formula", "m/z"], "values": [["CH3+"], ["15"]]}
+        reordered = api_fields(record, all_fields=True)
+        self.assertEqual(reordered["annotation.rows"], [["CH3+", Decimal("15")]])
+        self.assertNotEqual(expected["annotation.header"], reordered["annotation.header"])
+        record["peak"]["annotation"] = {"header": ["m/z", "formula"], "values": [["15"], ["CH3+"]]}
         record["comments"][0] = {"subtag": "CONFIDENCE", "value": "Reference standard"}
         self.assertNotEqual(expected["comments"], api_fields(record, all_fields=True)["comments"])
         del record["comments"]

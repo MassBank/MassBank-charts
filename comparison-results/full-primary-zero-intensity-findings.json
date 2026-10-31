@@ -1,0 +1,3776 @@
+{
+  "affected_records": 606,
+  "missing_zero_intensity_peaks": 680,
+  "contributors": {
+    "HBM4EU": 4,
+    "MSSJ": 5,
+    "RIKEN_NPDepo": 597
+  },
+  "examples": [
+    {
+      "accession": "MSBNK-HBM4EU-HB002705",
+      "source_peak_count": 118,
+      "api_peak_count": 105,
+      "missing_zero_intensity_peaks": 13,
+      "missing_peak_examples": [
+        [
+          "74.0185",
+          "0",
+          "1"
+        ],
+        [
+          "82.9842",
+          "0",
+          "1"
+        ],
+        [
+          "91.0555",
+          "0",
+          "1"
+        ]
+      ]
+    },
+    {
+      "accession": "MSBNK-HBM4EU-HB002706",
+      "source_peak_count": 117,
+      "api_peak_count": 107,
+      "missing_zero_intensity_peaks": 10,
+      "missing_peak_examples": [
+        [
+          "80.9955",
+          "0",
+          "1"
+        ],
+        [
+          "88.9799",
+          "0",
+          "1"
+        ],
+        [
+          "100.9789",
+          "0",
+          "1"
+        ]
+      ]
+    },
+    {
+      "accession": "MSBNK-HBM4EU-HB002707",
+      "source_peak_count": 113,
+      "api_peak_count": 107,
+      "missing_zero_intensity_peaks": 6,
+      "missing_peak_examples": [
+        [
+          "100.9798",
+          "0",
+          "1"
+        ],
+        [
+          "102.012",
+          "0",
+          "1"
+        ],
+        [
+          "155.0075",
+          "0",
+          "1"
+        ]
+      ]
+    },
+    {
+      "accession": "MSBNK-HBM4EU-HB002709",
+      "source_peak_count": 110,
+      "api_peak_count": 104,
+      "missing_zero_intensity_peaks": 6,
+      "missing_peak_examples": [
+        [
+          "81.9964",
+          "0",
+          "1"
+        ],
+        [
+          "88.979",
+          "0",
+          "1"
+        ],
+        [
+          "130.0011",
+          "0",
+          "1"
+        ]
+      ]
+    },
+    {
+      "accession": "MSBNK-MSSJ-MSJ01047",
+      "source_peak_count": 93,
+      "api_peak_count": 91,
+      "missing_zero_intensity_peaks": 2,
+      "missing_peak_examples": [
+        [
+          "182",
+          "0",
+          "0"
+        ],
+        [
+          "189",
+          "0",
+          "0"
+        ]
+      ]
+    }
+  ],
+  "all_606_api_peak_lists_equal_source_with_zero_intensity_rows_removed": true,
+  "affected_accessions": [
+    {
+      "accession": "MSBNK-HBM4EU-HB002705",
+      "source_peak_count": 118,
+      "api_peak_count": 105,
+      "missing_zero_intensity_peaks": 13
+    },
+    {
+      "accession": "MSBNK-HBM4EU-HB002706",
+      "source_peak_count": 117,
+      "api_peak_count": 107,
+      "missing_zero_intensity_peaks": 10
+    },
+    {
+      "accession": "MSBNK-HBM4EU-HB002707",
+      "source_peak_count": 113,
+      "api_peak_count": 107,
+      "missing_zero_intensity_peaks": 6
+    },
+    {
+      "accession": "MSBNK-HBM4EU-HB002709",
+      "source_peak_count": 110,
+      "api_peak_count": 104,
+      "missing_zero_intensity_peaks": 6
+    },
+    {
+      "accession": "MSBNK-MSSJ-MSJ01047",
+      "source_peak_count": 93,
+      "api_peak_count": 91,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-MSSJ-MSJ01048",
+      "source_peak_count": 117,
+      "api_peak_count": 116,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-MSSJ-MSJ01098",
+      "source_peak_count": 146,
+      "api_peak_count": 145,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-MSSJ-MSJ02498",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-MSSJ-MSJ02582",
+      "source_peak_count": 5,
+      "api_peak_count": 4,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00001",
+      "source_peak_count": 62,
+      "api_peak_count": 61,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00022",
+      "source_peak_count": 72,
+      "api_peak_count": 71,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00038",
+      "source_peak_count": 40,
+      "api_peak_count": 39,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00039",
+      "source_peak_count": 48,
+      "api_peak_count": 47,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00040",
+      "source_peak_count": 121,
+      "api_peak_count": 120,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00053",
+      "source_peak_count": 127,
+      "api_peak_count": 125,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00054",
+      "source_peak_count": 150,
+      "api_peak_count": 149,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00055",
+      "source_peak_count": 155,
+      "api_peak_count": 154,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00056",
+      "source_peak_count": 113,
+      "api_peak_count": 112,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00082",
+      "source_peak_count": 38,
+      "api_peak_count": 37,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00098",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00100",
+      "source_peak_count": 26,
+      "api_peak_count": 25,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00106",
+      "source_peak_count": 96,
+      "api_peak_count": 95,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00113",
+      "source_peak_count": 41,
+      "api_peak_count": 40,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00121",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00122",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00123",
+      "source_peak_count": 28,
+      "api_peak_count": 27,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00131",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00166",
+      "source_peak_count": 125,
+      "api_peak_count": 124,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00173",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00174",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00175",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00181",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00183",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00189",
+      "source_peak_count": 55,
+      "api_peak_count": 54,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00190",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00191",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00192",
+      "source_peak_count": 26,
+      "api_peak_count": 25,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00206",
+      "source_peak_count": 42,
+      "api_peak_count": 41,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00208",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00214",
+      "source_peak_count": 124,
+      "api_peak_count": 123,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00215",
+      "source_peak_count": 82,
+      "api_peak_count": 81,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00243",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00258",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00272",
+      "source_peak_count": 94,
+      "api_peak_count": 93,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00279",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00285",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00288",
+      "source_peak_count": 176,
+      "api_peak_count": 175,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00326",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00327",
+      "source_peak_count": 24,
+      "api_peak_count": 23,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00328",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00341",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00342",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00343",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00344",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00351",
+      "source_peak_count": 104,
+      "api_peak_count": 103,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00362",
+      "source_peak_count": 80,
+      "api_peak_count": 79,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00369",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00372",
+      "source_peak_count": 26,
+      "api_peak_count": 25,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00379",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00380",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00386",
+      "source_peak_count": 40,
+      "api_peak_count": 38,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00387",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00441",
+      "source_peak_count": 24,
+      "api_peak_count": 23,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00442",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00443",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00444",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00467",
+      "source_peak_count": 54,
+      "api_peak_count": 53,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00468",
+      "source_peak_count": 52,
+      "api_peak_count": 51,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00474",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00475",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00476",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00481",
+      "source_peak_count": 153,
+      "api_peak_count": 152,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00497",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00499",
+      "source_peak_count": 26,
+      "api_peak_count": 25,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00509",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00510",
+      "source_peak_count": 28,
+      "api_peak_count": 27,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00511",
+      "source_peak_count": 41,
+      "api_peak_count": 40,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00553",
+      "source_peak_count": 104,
+      "api_peak_count": 103,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00554",
+      "source_peak_count": 74,
+      "api_peak_count": 73,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00561",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00562",
+      "source_peak_count": 32,
+      "api_peak_count": 31,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00563",
+      "source_peak_count": 111,
+      "api_peak_count": 110,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00569",
+      "source_peak_count": 86,
+      "api_peak_count": 85,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00571",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00572",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00586",
+      "source_peak_count": 24,
+      "api_peak_count": 23,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00611",
+      "source_peak_count": 62,
+      "api_peak_count": 60,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00628",
+      "source_peak_count": 35,
+      "api_peak_count": 34,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00633",
+      "source_peak_count": 38,
+      "api_peak_count": 37,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00649",
+      "source_peak_count": 55,
+      "api_peak_count": 54,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00650",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00666",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00667",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00668",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00673",
+      "source_peak_count": 10280,
+      "api_peak_count": 10279,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00674",
+      "source_peak_count": 9687,
+      "api_peak_count": 9686,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00691",
+      "source_peak_count": 100,
+      "api_peak_count": 99,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00697",
+      "source_peak_count": 102,
+      "api_peak_count": 100,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00698",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00699",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00700",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00739",
+      "source_peak_count": 614,
+      "api_peak_count": 613,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00740",
+      "source_peak_count": 21,
+      "api_peak_count": 20,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00746",
+      "source_peak_count": 14,
+      "api_peak_count": 13,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00761",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00763",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00785",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00793",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00794",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00803",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00820",
+      "source_peak_count": 99,
+      "api_peak_count": 98,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00826",
+      "source_peak_count": 354,
+      "api_peak_count": 353,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00828",
+      "source_peak_count": 83,
+      "api_peak_count": 82,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00833",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00834",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00835",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00836",
+      "source_peak_count": 59,
+      "api_peak_count": 58,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00850",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00852",
+      "source_peak_count": 194,
+      "api_peak_count": 193,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00859",
+      "source_peak_count": 143,
+      "api_peak_count": 142,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00860",
+      "source_peak_count": 90,
+      "api_peak_count": 89,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00866",
+      "source_peak_count": 149,
+      "api_peak_count": 148,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00867",
+      "source_peak_count": 141,
+      "api_peak_count": 139,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00896",
+      "source_peak_count": 90,
+      "api_peak_count": 89,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00909",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00917",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00918",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00926",
+      "source_peak_count": 12,
+      "api_peak_count": 11,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00928",
+      "source_peak_count": 3788,
+      "api_peak_count": 3787,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00945",
+      "source_peak_count": 970,
+      "api_peak_count": 969,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00946",
+      "source_peak_count": 359,
+      "api_peak_count": 357,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00947",
+      "source_peak_count": 39,
+      "api_peak_count": 38,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00962",
+      "source_peak_count": 377,
+      "api_peak_count": 376,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00972",
+      "source_peak_count": 186,
+      "api_peak_count": 185,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00980",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00997",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01009",
+      "source_peak_count": 23,
+      "api_peak_count": 22,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01010",
+      "source_peak_count": 28,
+      "api_peak_count": 27,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01011",
+      "source_peak_count": 39,
+      "api_peak_count": 38,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01012",
+      "source_peak_count": 62,
+      "api_peak_count": 61,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01031",
+      "source_peak_count": 58,
+      "api_peak_count": 57,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01032",
+      "source_peak_count": 48,
+      "api_peak_count": 47,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01037",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01038",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01039",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01045",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01068",
+      "source_peak_count": 41,
+      "api_peak_count": 40,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01073",
+      "source_peak_count": 176,
+      "api_peak_count": 175,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01075",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01097",
+      "source_peak_count": 35,
+      "api_peak_count": 34,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01098",
+      "source_peak_count": 81,
+      "api_peak_count": 80,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01109",
+      "source_peak_count": 160,
+      "api_peak_count": 159,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01117",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01120",
+      "source_peak_count": 1670,
+      "api_peak_count": 1669,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01125",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01127",
+      "source_peak_count": 39,
+      "api_peak_count": 38,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01128",
+      "source_peak_count": 37,
+      "api_peak_count": 36,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01142",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01144",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01152",
+      "source_peak_count": 28,
+      "api_peak_count": 27,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01157",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01159",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01167",
+      "source_peak_count": 47,
+      "api_peak_count": 46,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01168",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01173",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01174",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01176",
+      "source_peak_count": 543,
+      "api_peak_count": 542,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01189",
+      "source_peak_count": 31,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01191",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01202",
+      "source_peak_count": 823,
+      "api_peak_count": 822,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01210",
+      "source_peak_count": 40,
+      "api_peak_count": 39,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01217",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01218",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01219",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01220",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01225",
+      "source_peak_count": 98,
+      "api_peak_count": 97,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01237",
+      "source_peak_count": 165,
+      "api_peak_count": 163,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01239",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01245",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01246",
+      "source_peak_count": 36,
+      "api_peak_count": 35,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01247",
+      "source_peak_count": 53,
+      "api_peak_count": 52,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01253",
+      "source_peak_count": 33,
+      "api_peak_count": 32,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01261",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01263",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01264",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01272",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01282",
+      "source_peak_count": 35,
+      "api_peak_count": 34,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01296",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01310",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01312",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01319",
+      "source_peak_count": 250,
+      "api_peak_count": 249,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01320",
+      "source_peak_count": 155,
+      "api_peak_count": 154,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01327",
+      "source_peak_count": 19,
+      "api_peak_count": 18,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01341",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01342",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01349",
+      "source_peak_count": 32,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01350",
+      "source_peak_count": 26,
+      "api_peak_count": 25,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01351",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01358",
+      "source_peak_count": 47,
+      "api_peak_count": 46,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01360",
+      "source_peak_count": 110,
+      "api_peak_count": 109,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01370",
+      "source_peak_count": 69,
+      "api_peak_count": 68,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01371",
+      "source_peak_count": 125,
+      "api_peak_count": 124,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01372",
+      "source_peak_count": 125,
+      "api_peak_count": 124,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01380",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01395",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01396",
+      "source_peak_count": 28,
+      "api_peak_count": 27,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01402",
+      "source_peak_count": 484,
+      "api_peak_count": 482,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01403",
+      "source_peak_count": 409,
+      "api_peak_count": 408,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01404",
+      "source_peak_count": 330,
+      "api_peak_count": 329,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01409",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01411",
+      "source_peak_count": 41,
+      "api_peak_count": 40,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01412",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01435",
+      "source_peak_count": 63,
+      "api_peak_count": 62,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01457",
+      "source_peak_count": 84,
+      "api_peak_count": 83,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01459",
+      "source_peak_count": 127,
+      "api_peak_count": 126,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01460",
+      "source_peak_count": 113,
+      "api_peak_count": 112,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01489",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01491",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01497",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01498",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01500",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01506",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01508",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01513",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01514",
+      "source_peak_count": 24,
+      "api_peak_count": 23,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01515",
+      "source_peak_count": 42,
+      "api_peak_count": 41,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01527",
+      "source_peak_count": 270,
+      "api_peak_count": 269,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01533",
+      "source_peak_count": 114,
+      "api_peak_count": 113,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01534",
+      "source_peak_count": 38,
+      "api_peak_count": 37,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01535",
+      "source_peak_count": 41,
+      "api_peak_count": 39,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01536",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01549",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01550",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01551",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01552",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01558",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01559",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01560",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01568",
+      "source_peak_count": 113,
+      "api_peak_count": 111,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01581",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01582",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01583",
+      "source_peak_count": 24,
+      "api_peak_count": 23,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01584",
+      "source_peak_count": 65,
+      "api_peak_count": 64,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01589",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01601",
+      "source_peak_count": 31,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01603",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01604",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01623",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01637",
+      "source_peak_count": 49,
+      "api_peak_count": 48,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01638",
+      "source_peak_count": 40,
+      "api_peak_count": 39,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01639",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01640",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01647",
+      "source_peak_count": 93,
+      "api_peak_count": 92,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01658",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01691",
+      "source_peak_count": 281,
+      "api_peak_count": 280,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01705",
+      "source_peak_count": 912,
+      "api_peak_count": 911,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01707",
+      "source_peak_count": 141,
+      "api_peak_count": 139,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01708",
+      "source_peak_count": 101,
+      "api_peak_count": 99,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01721",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01722",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01723",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01724",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01730",
+      "source_peak_count": 644,
+      "api_peak_count": 643,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01731",
+      "source_peak_count": 582,
+      "api_peak_count": 581,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01746",
+      "source_peak_count": 63,
+      "api_peak_count": 62,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01747",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01748",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01762",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01764",
+      "source_peak_count": 151,
+      "api_peak_count": 150,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01769",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01770",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01772",
+      "source_peak_count": 31,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01806",
+      "source_peak_count": 56,
+      "api_peak_count": 55,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01808",
+      "source_peak_count": 150,
+      "api_peak_count": 149,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01815",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01816",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01837",
+      "source_peak_count": 185,
+      "api_peak_count": 184,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01838",
+      "source_peak_count": 187,
+      "api_peak_count": 186,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01854",
+      "source_peak_count": 84,
+      "api_peak_count": 83,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01856",
+      "source_peak_count": 38,
+      "api_peak_count": 37,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01871",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01898",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01899",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01900",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01930",
+      "source_peak_count": 88,
+      "api_peak_count": 87,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01932",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01938",
+      "source_peak_count": 59,
+      "api_peak_count": 58,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01939",
+      "source_peak_count": 131,
+      "api_peak_count": 129,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01945",
+      "source_peak_count": 189,
+      "api_peak_count": 188,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01946",
+      "source_peak_count": 165,
+      "api_peak_count": 163,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01947",
+      "source_peak_count": 176,
+      "api_peak_count": 174,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01948",
+      "source_peak_count": 117,
+      "api_peak_count": 115,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01953",
+      "source_peak_count": 34,
+      "api_peak_count": 33,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01955",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01956",
+      "source_peak_count": 65,
+      "api_peak_count": 64,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01961",
+      "source_peak_count": 232,
+      "api_peak_count": 231,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01963",
+      "source_peak_count": 87,
+      "api_peak_count": 86,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01964",
+      "source_peak_count": 37,
+      "api_peak_count": 36,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01972",
+      "source_peak_count": 138,
+      "api_peak_count": 137,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01978",
+      "source_peak_count": 127,
+      "api_peak_count": 126,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01979",
+      "source_peak_count": 149,
+      "api_peak_count": 148,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01980",
+      "source_peak_count": 91,
+      "api_peak_count": 90,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA01995",
+      "source_peak_count": 42,
+      "api_peak_count": 41,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02015",
+      "source_peak_count": 24,
+      "api_peak_count": 23,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02022",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02029",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02030",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02039",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02053",
+      "source_peak_count": 111,
+      "api_peak_count": 110,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02054",
+      "source_peak_count": 23,
+      "api_peak_count": 22,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02055",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02056",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02065",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02066",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02067",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02068",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02089",
+      "source_peak_count": 587,
+      "api_peak_count": 586,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02090",
+      "source_peak_count": 487,
+      "api_peak_count": 486,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02105",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02106",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02107",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02127",
+      "source_peak_count": 71,
+      "api_peak_count": 70,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02134",
+      "source_peak_count": 76,
+      "api_peak_count": 75,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02135",
+      "source_peak_count": 54,
+      "api_peak_count": 53,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02146",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02154",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02161",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02162",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02163",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02164",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02170",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02171",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02172",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02177",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02178",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02193",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02194",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02196",
+      "source_peak_count": 24,
+      "api_peak_count": 23,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02202",
+      "source_peak_count": 28,
+      "api_peak_count": 27,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02203",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02204",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02210",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02230",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02237",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02238",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02239",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02240",
+      "source_peak_count": 63,
+      "api_peak_count": 62,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02245",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02246",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02247",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02248",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02261",
+      "source_peak_count": 53,
+      "api_peak_count": 52,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02264",
+      "source_peak_count": 434,
+      "api_peak_count": 433,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02270",
+      "source_peak_count": 52,
+      "api_peak_count": 51,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02272",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02278",
+      "source_peak_count": 356,
+      "api_peak_count": 355,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02297",
+      "source_peak_count": 61,
+      "api_peak_count": 60,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02298",
+      "source_peak_count": 59,
+      "api_peak_count": 58,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02299",
+      "source_peak_count": 55,
+      "api_peak_count": 54,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02307",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02313",
+      "source_peak_count": 14,
+      "api_peak_count": 13,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02316",
+      "source_peak_count": 24,
+      "api_peak_count": 23,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02323",
+      "source_peak_count": 50,
+      "api_peak_count": 49,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02345",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02346",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02348",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02354",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02356",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02377",
+      "source_peak_count": 18,
+      "api_peak_count": 17,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02378",
+      "source_peak_count": 18,
+      "api_peak_count": 17,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02386",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02396",
+      "source_peak_count": 88,
+      "api_peak_count": 87,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02426",
+      "source_peak_count": 18,
+      "api_peak_count": 17,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02427",
+      "source_peak_count": 18,
+      "api_peak_count": 17,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02428",
+      "source_peak_count": 18,
+      "api_peak_count": 17,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02434",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02436",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02460",
+      "source_peak_count": 18,
+      "api_peak_count": 17,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02466",
+      "source_peak_count": 45,
+      "api_peak_count": 44,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02467",
+      "source_peak_count": 52,
+      "api_peak_count": 51,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02477",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02478",
+      "source_peak_count": 36,
+      "api_peak_count": 35,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02506",
+      "source_peak_count": 63,
+      "api_peak_count": 62,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02517",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02518",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02520",
+      "source_peak_count": 131,
+      "api_peak_count": 130,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02534",
+      "source_peak_count": 43,
+      "api_peak_count": 42,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02550",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02551",
+      "source_peak_count": 28,
+      "api_peak_count": 27,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02569",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02570",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02571",
+      "source_peak_count": 24,
+      "api_peak_count": 23,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02572",
+      "source_peak_count": 166,
+      "api_peak_count": 165,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02587",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02605",
+      "source_peak_count": 22,
+      "api_peak_count": 21,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02606",
+      "source_peak_count": 45,
+      "api_peak_count": 44,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02614",
+      "source_peak_count": 238,
+      "api_peak_count": 237,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02615",
+      "source_peak_count": 240,
+      "api_peak_count": 238,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02621",
+      "source_peak_count": 28,
+      "api_peak_count": 27,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02624",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02630",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02631",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02632",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02637",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02638",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02645",
+      "source_peak_count": 52,
+      "api_peak_count": 51,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02646",
+      "source_peak_count": 82,
+      "api_peak_count": 81,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02648",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02654",
+      "source_peak_count": 71,
+      "api_peak_count": 70,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02655",
+      "source_peak_count": 81,
+      "api_peak_count": 80,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02656",
+      "source_peak_count": 73,
+      "api_peak_count": 72,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02662",
+      "source_peak_count": 334,
+      "api_peak_count": 332,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02746",
+      "source_peak_count": 24,
+      "api_peak_count": 23,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02747",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02757",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02759",
+      "source_peak_count": 43,
+      "api_peak_count": 42,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02766",
+      "source_peak_count": 81,
+      "api_peak_count": 80,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02781",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02782",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02783",
+      "source_peak_count": 28,
+      "api_peak_count": 27,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02797",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02800",
+      "source_peak_count": 942,
+      "api_peak_count": 941,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02807",
+      "source_peak_count": 59,
+      "api_peak_count": 58,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02814",
+      "source_peak_count": 38,
+      "api_peak_count": 37,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02816",
+      "source_peak_count": 100,
+      "api_peak_count": 99,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02838",
+      "source_peak_count": 28,
+      "api_peak_count": 27,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02839",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02840",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02845",
+      "source_peak_count": 85,
+      "api_peak_count": 83,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02847",
+      "source_peak_count": 75,
+      "api_peak_count": 74,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02848",
+      "source_peak_count": 94,
+      "api_peak_count": 93,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02862",
+      "source_peak_count": 68,
+      "api_peak_count": 67,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02863",
+      "source_peak_count": 138,
+      "api_peak_count": 137,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02864",
+      "source_peak_count": 716,
+      "api_peak_count": 714,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02881",
+      "source_peak_count": 74,
+      "api_peak_count": 73,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02882",
+      "source_peak_count": 90,
+      "api_peak_count": 89,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02883",
+      "source_peak_count": 76,
+      "api_peak_count": 74,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02884",
+      "source_peak_count": 40,
+      "api_peak_count": 39,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02905",
+      "source_peak_count": 75,
+      "api_peak_count": 74,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02906",
+      "source_peak_count": 79,
+      "api_peak_count": 78,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02907",
+      "source_peak_count": 48,
+      "api_peak_count": 47,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02908",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02914",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02915",
+      "source_peak_count": 70,
+      "api_peak_count": 68,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02916",
+      "source_peak_count": 75,
+      "api_peak_count": 74,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02921",
+      "source_peak_count": 38,
+      "api_peak_count": 37,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02922",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02923",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02930",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02931",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02939",
+      "source_peak_count": 41,
+      "api_peak_count": 40,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02940",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02947",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02953",
+      "source_peak_count": 71,
+      "api_peak_count": 70,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02954",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02956",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02961",
+      "source_peak_count": 66,
+      "api_peak_count": 65,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02962",
+      "source_peak_count": 123,
+      "api_peak_count": 122,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02963",
+      "source_peak_count": 90,
+      "api_peak_count": 89,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02969",
+      "source_peak_count": 47,
+      "api_peak_count": 46,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02970",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02971",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02972",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02979",
+      "source_peak_count": 26,
+      "api_peak_count": 25,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02980",
+      "source_peak_count": 39,
+      "api_peak_count": 38,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA02996",
+      "source_peak_count": 32,
+      "api_peak_count": 31,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03001",
+      "source_peak_count": 52,
+      "api_peak_count": 50,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03022",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03023",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03058",
+      "source_peak_count": 127,
+      "api_peak_count": 126,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03059",
+      "source_peak_count": 139,
+      "api_peak_count": 138,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03060",
+      "source_peak_count": 86,
+      "api_peak_count": 85,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03070",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03071",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03072",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03081",
+      "source_peak_count": 142,
+      "api_peak_count": 141,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03091",
+      "source_peak_count": 45,
+      "api_peak_count": 44,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03092",
+      "source_peak_count": 82,
+      "api_peak_count": 81,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03099",
+      "source_peak_count": 92,
+      "api_peak_count": 91,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03100",
+      "source_peak_count": 34,
+      "api_peak_count": 33,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03106",
+      "source_peak_count": 29,
+      "api_peak_count": 28,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03107",
+      "source_peak_count": 23,
+      "api_peak_count": 22,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03108",
+      "source_peak_count": 26,
+      "api_peak_count": 25,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03113",
+      "source_peak_count": 65,
+      "api_peak_count": 63,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03114",
+      "source_peak_count": 69,
+      "api_peak_count": 68,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03116",
+      "source_peak_count": 66,
+      "api_peak_count": 65,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03121",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03122",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03123",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03130",
+      "source_peak_count": 46,
+      "api_peak_count": 45,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03137",
+      "source_peak_count": 46,
+      "api_peak_count": 45,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03138",
+      "source_peak_count": 41,
+      "api_peak_count": 40,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03145",
+      "source_peak_count": 271,
+      "api_peak_count": 270,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03154",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03155",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03165",
+      "source_peak_count": 125,
+      "api_peak_count": 124,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03168",
+      "source_peak_count": 609,
+      "api_peak_count": 607,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03174",
+      "source_peak_count": 685,
+      "api_peak_count": 684,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03175",
+      "source_peak_count": 190,
+      "api_peak_count": 188,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03176",
+      "source_peak_count": 121,
+      "api_peak_count": 118,
+      "missing_zero_intensity_peaks": 3
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03184",
+      "source_peak_count": 790,
+      "api_peak_count": 788,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03231",
+      "source_peak_count": 71,
+      "api_peak_count": 70,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03232",
+      "source_peak_count": 88,
+      "api_peak_count": 87,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03237",
+      "source_peak_count": 453,
+      "api_peak_count": 452,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03238",
+      "source_peak_count": 406,
+      "api_peak_count": 404,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03239",
+      "source_peak_count": 170,
+      "api_peak_count": 169,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03254",
+      "source_peak_count": 51,
+      "api_peak_count": 50,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03255",
+      "source_peak_count": 73,
+      "api_peak_count": 71,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03263",
+      "source_peak_count": 47,
+      "api_peak_count": 46,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03264",
+      "source_peak_count": 28,
+      "api_peak_count": 27,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03269",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03270",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03271",
+      "source_peak_count": 61,
+      "api_peak_count": 60,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03272",
+      "source_peak_count": 46,
+      "api_peak_count": 45,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03280",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03289",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03290",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03291",
+      "source_peak_count": 25,
+      "api_peak_count": 24,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03292",
+      "source_peak_count": 31,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03301",
+      "source_peak_count": 18,
+      "api_peak_count": 17,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03324",
+      "source_peak_count": 41,
+      "api_peak_count": 40,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03342",
+      "source_peak_count": 54,
+      "api_peak_count": 53,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03344",
+      "source_peak_count": 97,
+      "api_peak_count": 96,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03349",
+      "source_peak_count": 75,
+      "api_peak_count": 74,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03350",
+      "source_peak_count": 42,
+      "api_peak_count": 40,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03351",
+      "source_peak_count": 53,
+      "api_peak_count": 52,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03352",
+      "source_peak_count": 45,
+      "api_peak_count": 44,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03358",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03360",
+      "source_peak_count": 67,
+      "api_peak_count": 66,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03366",
+      "source_peak_count": 113,
+      "api_peak_count": 112,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03367",
+      "source_peak_count": 46,
+      "api_peak_count": 45,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03369",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03370",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03372",
+      "source_peak_count": 31,
+      "api_peak_count": 30,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03377",
+      "source_peak_count": 293,
+      "api_peak_count": 292,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03379",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03386",
+      "source_peak_count": 251,
+      "api_peak_count": 249,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03398",
+      "source_peak_count": 69,
+      "api_peak_count": 68,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03400",
+      "source_peak_count": 80,
+      "api_peak_count": 79,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03405",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03406",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03408",
+      "source_peak_count": 359,
+      "api_peak_count": 358,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03413",
+      "source_peak_count": 73,
+      "api_peak_count": 72,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03415",
+      "source_peak_count": 87,
+      "api_peak_count": 86,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03433",
+      "source_peak_count": 75,
+      "api_peak_count": 73,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03434",
+      "source_peak_count": 88,
+      "api_peak_count": 86,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03441",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03442",
+      "source_peak_count": 45,
+      "api_peak_count": 44,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03443",
+      "source_peak_count": 173,
+      "api_peak_count": 172,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03470",
+      "source_peak_count": 49,
+      "api_peak_count": 48,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03471",
+      "source_peak_count": 41,
+      "api_peak_count": 40,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03472",
+      "source_peak_count": 42,
+      "api_peak_count": 41,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03485",
+      "source_peak_count": 4073,
+      "api_peak_count": 4072,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03526",
+      "source_peak_count": 38,
+      "api_peak_count": 37,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03527",
+      "source_peak_count": 24,
+      "api_peak_count": 23,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03569",
+      "source_peak_count": 4165,
+      "api_peak_count": 4164,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03681",
+      "source_peak_count": 4242,
+      "api_peak_count": 4241,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03759",
+      "source_peak_count": 4175,
+      "api_peak_count": 4174,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03820",
+      "source_peak_count": 4300,
+      "api_peak_count": 4299,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03854",
+      "source_peak_count": 4364,
+      "api_peak_count": 4363,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03855",
+      "source_peak_count": 4322,
+      "api_peak_count": 4321,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03876",
+      "source_peak_count": 51,
+      "api_peak_count": 50,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03893",
+      "source_peak_count": 50,
+      "api_peak_count": 49,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03894",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03896",
+      "source_peak_count": 40,
+      "api_peak_count": 39,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA03942",
+      "source_peak_count": 40,
+      "api_peak_count": 39,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04009",
+      "source_peak_count": 99,
+      "api_peak_count": 98,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04010",
+      "source_peak_count": 87,
+      "api_peak_count": 86,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04011",
+      "source_peak_count": 44,
+      "api_peak_count": 43,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04349",
+      "source_peak_count": 26,
+      "api_peak_count": 25,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04350",
+      "source_peak_count": 44,
+      "api_peak_count": 42,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04351",
+      "source_peak_count": 46,
+      "api_peak_count": 45,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04357",
+      "source_peak_count": 4064,
+      "api_peak_count": 4063,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04359",
+      "source_peak_count": 14,
+      "api_peak_count": 13,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04360",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04385",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04394",
+      "source_peak_count": 49,
+      "api_peak_count": 48,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04395",
+      "source_peak_count": 40,
+      "api_peak_count": 39,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04396",
+      "source_peak_count": 32,
+      "api_peak_count": 31,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04513",
+      "source_peak_count": 5065,
+      "api_peak_count": 5064,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04516",
+      "source_peak_count": 19,
+      "api_peak_count": 18,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04542",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04577",
+      "source_peak_count": 40,
+      "api_peak_count": 39,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04578",
+      "source_peak_count": 40,
+      "api_peak_count": 38,
+      "missing_zero_intensity_peaks": 2
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04584",
+      "source_peak_count": 38,
+      "api_peak_count": 37,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04591",
+      "source_peak_count": 44,
+      "api_peak_count": 43,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04615",
+      "source_peak_count": 17,
+      "api_peak_count": 16,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04629",
+      "source_peak_count": 30,
+      "api_peak_count": 29,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04737",
+      "source_peak_count": 15,
+      "api_peak_count": 14,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA04791",
+      "source_peak_count": 44,
+      "api_peak_count": 43,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05039",
+      "source_peak_count": 50,
+      "api_peak_count": 49,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05042",
+      "source_peak_count": 55,
+      "api_peak_count": 54,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05064",
+      "source_peak_count": 35,
+      "api_peak_count": 34,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05075",
+      "source_peak_count": 36,
+      "api_peak_count": 35,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05077",
+      "source_peak_count": 50,
+      "api_peak_count": 49,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05084",
+      "source_peak_count": 54,
+      "api_peak_count": 53,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05144",
+      "source_peak_count": 19,
+      "api_peak_count": 18,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05152",
+      "source_peak_count": 22,
+      "api_peak_count": 21,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05153",
+      "source_peak_count": 16,
+      "api_peak_count": 15,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05159",
+      "source_peak_count": 18,
+      "api_peak_count": 17,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05207",
+      "source_peak_count": 48,
+      "api_peak_count": 47,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05208",
+      "source_peak_count": 75,
+      "api_peak_count": 74,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05239",
+      "source_peak_count": 12,
+      "api_peak_count": 11,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05240",
+      "source_peak_count": 27,
+      "api_peak_count": 26,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05247",
+      "source_peak_count": 3671,
+      "api_peak_count": 3670,
+      "missing_zero_intensity_peaks": 1
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA05249",
+      "source_peak_count": 18,
+      "api_peak_count": 17,
+      "missing_zero_intensity_peaks": 1
+    }
+  ],
+  "method": "Reconstructed normalized API peak lists from the lossless stored differences and original source peaks, then compared every row and order with the nonzero-intensity source subset.",
+  "database_verification": {
+    "peaks": 680,
+    "records": 606,
+    "all_affected_accessions_match": true,
+    "canonical_table": "public.massbank-peaks",
+    "values_present_in_database": true
+  },
+  "cause": {
+    "repository": "MassBank/MassBank-export-api",
+    "file": "src/main/resources/shared-api.sql",
+    "line": 124,
+    "view": "massbank_api.record_data",
+    "filter": "mz > 0 AND intensity > 0",
+    "effect": "The full-record JSON view removes stored zero-intensity peaks; this is not missing importer data."
+  }
+}
