@@ -1,0 +1,109 @@
+{
+  "report": "2026-10-31-primary-all-fields.json",
+  "release": "2026.03",
+  "records": 103,
+  "field_groups": 39,
+  "api_commit": "a2ea3ada06ddbe616a7aa958200b7508e5b8a046",
+  "new_api_complete_matches": 22,
+  "http_errors": {
+    "old": 0,
+    "new": 0
+  },
+  "source_present_by_field": {
+    "date": 103,
+    "copyright": 64,
+    "compound_classes": 103,
+    "peak_header": 103,
+    "peak_count": 103,
+    "peaks": 103,
+    "accession": 103,
+    "deprecated": 0,
+    "title": 103,
+    "authors.text": 103,
+    "authors.roles": 3,
+    "license": 103,
+    "publication": 35,
+    "projects": 4,
+    "comments": 81,
+    "compound.names": 103,
+    "compound.formula": 103,
+    "compound.mass": 103,
+    "compound.smiles": 103,
+    "compound.inchi": 103,
+    "compound.links": 102,
+    "species.name": 3,
+    "species.lineage": 1,
+    "species.links": 3,
+    "species.samples": 4,
+    "acquisition.instrument": 103,
+    "acquisition.instrument_type": 103,
+    "acquisition.ms_type": 103,
+    "acquisition.ion_mode": 103,
+    "acquisition.mass_spectrometry": 90,
+    "acquisition.chromatography": 71,
+    "acquisition.general": 0,
+    "acquisition.ion_mobility": 0,
+    "mass_spectrometry.focused_ion": 90,
+    "mass_spectrometry.data_processing": 58,
+    "peak.splash": 103,
+    "annotation.header": 37,
+    "annotation.rows": 37,
+    "unmapped_source_fields": 0
+  },
+  "findings": [
+    {
+      "field": "comments",
+      "affected_records": 81,
+      "source_records_with_field": 81,
+      "source_comment_lines": 207,
+      "example": {
+        "accession": "MSBNK-IPB_Halle-PB011601",
+        "source": "COMMENT: CONFIDENCE Predicted",
+        "api": "comments field absent"
+      },
+      "cause": "pkg/mb3server/convert.go:271-278 writes comments back into the input record, not result.Comments",
+      "status": "confirmed; application code unchanged by this audit"
+    },
+    {
+      "field": "authors.roles",
+      "affected_records": 3,
+      "source_records_with_field": 3,
+      "accessions": [
+        "MSBNK-EAWAG-EC103102",
+        "MSBNK-MLU-ED035508",
+        "MSBNK-EAWAG-ED058452"
+      ],
+      "cause": "pkg/massbank/parser.go:127-140 keeps bracketed MARC roles in name strings instead of populating marc-relator",
+      "content_loss": false,
+      "structured_role_missing": true,
+      "status": "confirmed; application code unchanged by this audit"
+    },
+    {
+      "field": "mass_spectrometry.data_processing",
+      "affected_records": 2,
+      "accessions": [
+        "MSBNK-AAFC-AC000848",
+        "MSBNK-AAFC-AC000589"
+      ],
+      "source_line": "MS$DATA_PROCESSING: INTENSITY CUTOFF 0.05 Base Peak",
+      "reference_split": [
+        "INTENSITY",
+        "CUTOFF 0.05 Base Peak"
+      ],
+      "api_split": [
+        "INTENSITY CUTOFF",
+        "0.05 Base Peak"
+      ],
+      "content_loss": false,
+      "status": "text-preserving legacy subtag boundary difference, not a lost value"
+    }
+  ],
+  "scope_limits": [
+    "103 sampled active full records, not all139006 records",
+    "No source examples for AC$GENERAL or AC$ION_MOBILITY",
+    "No deprecated record response, aggregate/search endpoint or derived neutral-loss audit",
+    "AUTHORS text preservation does not assert an unambiguous semantic split of every name and affiliation",
+    "Annotation m/z compared numerically; other annotation columns retained verbatim"
+  ],
+  "deployment_changed": false
+}

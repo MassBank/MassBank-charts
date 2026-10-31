@@ -333,6 +333,58 @@ The new API's split class lists, source-precision peak numbers, copyright and
 peak headers are correct for these source records even where the old API differs.
 Do not restore the old API's rounding or missing fields to obtain equality.
 
+### Extended record-field comparison
+
+Add `--all-fields` to the primary-data checker command above to also compare
+accession/title, authors and MARC roles, license/publication/projects/comments,
+compound names/formula/exact mass/structures/links, species information,
+instrument and acquisition parameters, chromatography, focused-ion and
+processing parameters, SPLASH and annotations. There are 39 comparison groups,
+including the original checks, an active-record deprecation check and detection
+of unmapped source tags. Source hashes are retained for every record.
+
+The checker reconstructs AUTHORS text and COMMENT lines, transposes the API's
+column-major annotations to source rows, and compares annotation m/z numerically.
+Other annotation columns remain literal text. It preserves array order and
+duplicates; order-only differences are explicitly identified. Legacy subtag
+boundary differences that reconstruct the same complete line are marked
+text-preserving, not confused with missing data. Optional absent source values
+are compared with empty API containers/text.
+
+The [extended report](comparison-results/2026-10-31-primary-all-fields.json)
+and [findings summary](comparison-results/primary-all-fields-summary.json) cover
+the same 103 original release-2026.03 records against the deployed APIs:
+
+| New API finding | Affected records | Interpretation |
+|---|---:|---|
+| Missing `comments` | 81 of 81 records containing COMMENT, 207 source lines | Confirmed content loss in the API response |
+| Missing structured `marc-relator` | 3 of 3 records with explicit roles | Roles remain in `authors[].name`; structured field is not populated |
+| `INTENSITY CUTOFF` subtag split | 2 | Full text is retained; not a lost processing value |
+
+For example, `MSBNK-IPB_Halle-PB011601` contains
+`COMMENT: CONFIDENCE Predicted` in both the original file and JPA document, but
+the API omits `comments`. `ConvertMb2RecordToMb3Record` in
+`MassBank3/pkg/mb3server/convert.go` writes the comments back to the input record
+instead of assigning `result.Comments`.
+For `MSBNK-EAWAG-EC103102`, `[dtc]`/`[com]` survive in the name strings, but
+`ParseRecordAuthorNames` in `MassBank3/pkg/massbank/parser.go` does not extract
+them into the dedicated role field. Both problems also occur in the old API.
+
+The remaining populated field groups match in the new API, including all
+annotations in 37 records. Overall, 22 of 103 new responses match every
+comparison group; the other 81 have missing comments, with the role and
+text-preserving split cases contained in that group. No HTTP errors occurred.
+This comparison made **no application, deployment or database changes**;
+the confirmed application defects are not fixed by this audit.
+
+Coverage remains a sample, not all 139,006 records. Biological fields occur in
+only 1-4 sampled records; projects in 4, publications in 35. No sampled source
+contains AC$GENERAL or AC$ION_MOBILITY, so matching empty values are not proof
+that these features work. Deprecated records, aggregate/search endpoints,
+database-generated peak IDs and derived neutral losses are outside this audit.
+The author's full text is checked, not an assumed unambiguous semantic split of
+every name and affiliation.
+
 ## Development Environment
 
 A development container with Podman is configured under `.devcontainer/` providing all necessary tools for Helm chart development (`helm`, plugins `diff` and `unittest`, `kubectl`, `yq`, `kubeconform`, `helm-docs`, and `chart-testing`).

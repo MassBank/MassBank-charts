@@ -1,7 +1,7 @@
 import unittest
 from decimal import Decimal
 
-from compare_primary_data import api_fields, primary_fields, source_date
+from compare_primary_data import api_fields, order_only, primary_fields, source_date, subtag_text_equal
 
 
 class PrimaryDataTests(unittest.TestCase):
@@ -51,6 +51,101 @@ PK$PEAK: m/z int. rel.int.
         for text in ("DEPRECATED: 2025-01-17\n", "ACCESSION: MSBNK-Test-A1\n"):
             with self.assertRaises(ValueError):
                 primary_fields(text)
+
+    def test_all_fields_and_column_major_annotations(self):
+        source = """ACCESSION: MSBNK-Test-A1
+RECORD_TITLE: Test; ESI-QTOF; MS2
+DATE: 2025.01.17
+AUTHORS: One [dtc], Two [com]
+LICENSE: CC0
+COPYRIGHT: Test
+PUBLICATION: Reference
+PROJECT: Project
+COMMENT: CONFIDENCE Reference standard
+COMMENT: Free text
+CH$NAME: Test
+CH$COMPOUND_CLASS: Natural Product; Lipid Standard
+CH$FORMULA: CH4
+CH$EXACT_MASS: 16.0313
+CH$SMILES: C
+CH$IUPAC: InChI=1S/CH4/h1H4
+CH$LINK: PUBCHEM CID:297
+SP$SCIENTIFIC_NAME: Species
+SP$LINEAGE: A; B
+SP$LINK: TAXON 123
+SP$SAMPLE: Leaf
+AC$INSTRUMENT: Instrument
+AC$INSTRUMENT_TYPE: ESI-QTOF
+AC$MASS_SPECTROMETRY: MS_TYPE MS2
+AC$MASS_SPECTROMETRY: ION_MODE POSITIVE
+AC$MASS_SPECTROMETRY: COLLISION_ENERGY 10
+AC$CHROMATOGRAPHY: SOLVENT A water
+AC$CHROMATOGRAPHY: SOLVENT B methanol
+AC$GENERAL: GENERAL Example
+AC$ION_MOBILITY: CCS 100
+MS$FOCUSED_ION: PRECURSOR_M/Z 17
+MS$DATA_PROCESSING: WHOLE Test
+PK$SPLASH: splash-test
+PK$ANNOTATION: m/z formula
+  15.000 CH3+
+PK$NUM_PEAK: 1
+PK$PEAK: m/z int. rel.int.
+  15.000 1000 999
+//
+"""
+        record = {
+            "accession": "MSBNK-Test-A1", "title": "Test; ESI-QTOF; MS2",
+            "date": {"updated": "2025-01-17"},
+            "authors": [{"name": "One", "marc-relator": "dtc"}, {"name": " Two", "marc-relator": "com"}],
+            "license": "CC0", "copyright": "Test", "publication": "Reference", "project": "Project",
+            "comments": [{"subtag": "CONFIDENCE", "value": "Reference standard"}, "Free text"],
+            "compound": {"names": ["Test"], "classes": ["Natural Product", "Lipid Standard"],
+                         "formula": "CH4", "mass": 16.0313, "smiles": "C", "inchi": "InChI=1S/CH4/h1H4",
+                         "link": [{"database": "PUBCHEM", "identifier": "CID:297"}]},
+            "species": {"name": "Species", "lineage": ["A", "B"],
+                        "link": [{"database": "TAXON", "identifier": "123"}], "sample": ["Leaf"]},
+            "acquisition": {
+                "instrument": "Instrument", "instrument_type": "ESI-QTOF",
+                "mass_spectrometry": {"ms_type": "MS2", "ion_mode": "POSITIVE",
+                                      "subtags": [{"subtag": "COLLISION_ENERGY", "value": "10"}]},
+                "chromatography": [{"subtag": "SOLVENT", "value": "A water"}, {"subtag": "SOLVENT", "value": "B methanol"}],
+                "general": [{"subtag": "GENERAL", "value": "Example"}],
+                "ion_mobility": [{"subtag": "CCS", "value": "100"}],
+            },
+            "mass_spectrometry": {"focused_ion": [{"subtag": "PRECURSOR_M/Z", "value": "17"}],
+                                 "data_processing": [{"subtag": "WHOLE", "value": "Test"}]},
+            "peak": {"splash": "splash-test", "numPeak": 1,
+                     "annotation": {"header": ["m/z", "formula"], "values": [["15"], ["CH3+"]]},
+                     "peak": {"header": ["m/z", "int.", "rel.int."],
+                              "values": [{"id": 321, "mz": 15, "intensity": 1000, "rel": 999}]}},
+        }
+        expected = primary_fields(source, all_fields=True)
+        actual = api_fields(record, all_fields=True)
+        self.assertEqual(expected, actual)
+        del record["comments"]
+        record["authors"][0] = {"name": "One [dtc]"}
+        actual = api_fields(record, all_fields=True)
+        self.assertNotEqual(expected["comments"], actual["comments"])
+        self.assertEqual(expected["authors.text"], actual["authors.text"])
+        self.assertNotEqual(expected["authors.roles"], actual["authors.roles"])
+        record["peak"]["annotation"]["values"] = [["15"]]
+        self.assertIn("malformed_api_columns", api_fields(record, all_fields=True)["annotation.rows"])
+        unknown = primary_fields(source.replace("CH$FORMULA:", "NEW_TAG: value\nCH$FORMULA:"), all_fields=True)
+        self.assertEqual(unknown["unmapped_source_fields"], {"NEW_TAG": ["value"]})
+
+    def test_order_diagnostics_preserve_duplicates_and_decimal_equality(self):
+        self.assertTrue(order_only([["x", Decimal("1.00")], ["y", Decimal("2")]],
+                                   [["y", Decimal("2.0")], ["x", Decimal("1")]]))
+        self.assertFalse(order_only(["x", "x", "y"], ["x", "y", "y"]))
+
+    def test_multiword_legacy_subtags_do_not_imply_data_loss(self):
+        self.assertTrue(subtag_text_equal(
+            [["INTENSITY", "CUTOFF 0.05 Base Peak"]],
+            [["INTENSITY CUTOFF", "0.05 Base Peak"]]))
+        self.assertFalse(subtag_text_equal(
+            [["INTENSITY", "CUTOFF 0.05 Base Peak"]],
+            [["INTENSITY CUTOFF", "0.5 Base Peak"]]))
+        self.assertFalse(subtag_text_equal(["Free text"], []))
 
 
 if __name__ == "__main__":
