@@ -2,7 +2,7 @@ apiVersion: v2
 name: massbank
 description: A umbrella chart for MassBank
 type: application
-version: 0.2.0
+version: 0.2.1
 
 dependencies:
   - name: massbank-data
@@ -15,7 +15,7 @@ dependencies:
     version: 2026.10.31
     repository: "file://../massbank-api"
   - name: massbank-export-api
-    version: 2.6.0
+    version: 2.6.1
     repository: "file://../massbank-export-api"
   - name: massbank-frontend
     version: 2025.12.4

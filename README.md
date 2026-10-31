@@ -76,6 +76,8 @@ helm upgrade massbank-dev ./charts/massbank -n massbank-dev \
 The export API waits for the import completion marker before starting. The Go
 API's readiness probe checks the database, not just its version endpoint. Both
 API Deployments restart when their connection ConfigMaps change.
+The importer bulk-builds the Bingo index after loading all JPA records; readiness
+remains false until the index and database statistics are complete.
 
 Imports **replace** the configured dataset and require a maintenance window.
 Jobs use a chart-versioned name, no automatic retry, and no default TTL: retaining
