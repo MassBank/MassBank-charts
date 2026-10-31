@@ -109,13 +109,15 @@ class Client:
 
     def get(self, endpoint):
         time.sleep(self.delay)
+        # Fresh connections avoid asymmetric ingress idle timeouts between pairs.
+        self.connection.close()
         start = time.perf_counter_ns()
         status = None
         body = b""
         try:
             self.connection.request(
                 "GET", self.url.path + endpoint,
-                headers={"Accept": "application/json", "Accept-Encoding": "identity",
+                headers={"Accept": "application/json", "Accept-Encoding": "identity", "Connection": "close",
                          "User-Agent": "MassBank-API-comparison/1.0"},
             )
             response = self.connection.getresponse()
@@ -147,12 +149,30 @@ def comparison(old, new, endpoint):
                 "error": {"old": old.error, "new": new.error}}
     left, right = normalize(old.data, endpoint), normalize(new.data, endpoint)
     changes = list(islice(differences(left, right), 21))
-    return {
+    result = {
         "json_equal": encoded(old.data) == encoded(new.data),
         "semantic_equal": encoded(left) == encoded(right),
         "old_semantic_sha256": digest(left), "new_semantic_sha256": digest(right),
         "differences": changes[:20], "differences_truncated": len(changes) > 20,
     }
+    if endpoint.split("?", 1)[0] == "/records/search":
+        rows = [value.get("data", []) for value in [old.data, new.data] if isinstance(value, dict)]
+        if len(rows) != 2 or any(
+            not isinstance(items, list) or any(
+                not isinstance(item, dict) or not isinstance(item.get("accession"), str) for item in items
+            ) for items in rows
+        ):
+            result["search_inventory"] = {"error": "Invalid search hit shape"}
+        else:
+            old_map, new_map = [{item["accession"]: item for item in items} for items in rows]
+            result["search_inventory"] = {
+                "old_hits": len(rows[0]), "new_hits": len(rows[1]),
+                "old_duplicate_accessions": len(rows[0]) - len(old_map),
+                "new_duplicate_accessions": len(rows[1]) - len(new_map),
+                "only_old": sorted(old_map.keys() - new_map.keys()),
+                "only_new": sorted(new_map.keys() - old_map.keys()),
+            }
+    return result
 
 
 def distribution(responses):
@@ -249,10 +269,15 @@ def run(args, report):
 
     try:
         initial = pair("/records/search")
+        report["preflight"] = {"inventory": {side: response.summary() for side, response in initial.items()}}
         ids = {side: inventory(response) for side, response in initial.items()}
         del initial
         counts = pair("/records/count")
         metadata = pair("/metadata")
+        report["preflight"].update({
+            "counts": {side: response.summary() for side, response in counts.items()},
+            "metadata": {side: response.summary() for side, response in metadata.items()},
+        })
         for responses in [counts, metadata]:
             if any(response.error for response in responses.values()):
                 raise ValueError(f"Preflight failed: { {s: r.summary() for s, r in responses.items()} }")
@@ -384,7 +409,7 @@ def main():
         "methodology": {
             "concurrency": 1, "order": "alternating old/new for each pair",
             "timing": "HTTP request through complete response body; excludes JSON decoding and pause",
-            "connection": "one persistent verified-TLS connection per API; reconnects included",
+            "connection": "fresh connection per request with verified TLS; TCP/TLS setup included",
             "compression": "identity", "percentile": "nearest-rank p95 of successful measured requests",
             "scope": "end-to-end public deployment latency, not isolated database or throughput benchmark",
             "normalization": "unordered search hits/peakPairs, record lists and top-level metadata/browse lists only",

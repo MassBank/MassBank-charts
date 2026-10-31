@@ -1,0 +1,76 @@
+{
+  "checked_at": "2026-10-31T16:56:11.934479+00:00",
+  "old_api": "https://msbi.ipb-halle.de/MassBank-api",
+  "old_active_count": 139006,
+  "releases": {
+    "2025.10": {
+      "source": "https://github.com/MassBank/MassBank-data/releases/tag/2025.10",
+      "files": 134674,
+      "active": 134440,
+      "deprecated": 234,
+      "only_old_api_count": 4566,
+      "only_release_count": 0,
+      "accessions_equal": false,
+      "active_accessions_sha256": "e7d9e486d4e600a033778242a257439e47cf97f7d9fe4d88323a52f0572242bf"
+    },
+    "2026.03": {
+      "source": "https://github.com/MassBank/MassBank-data/releases/tag/2026.03",
+      "files": 139240,
+      "active": 139006,
+      "deprecated": 234,
+      "only_old_api_count": 0,
+      "only_release_count": 0,
+      "accessions_equal": true,
+      "active_accessions_sha256": "65f40b067d45b8b3082bba9c485954b8889e423d9732846bbb4e20058c397c03"
+    }
+  },
+  "changed_record_evidence": [
+    {
+      "accession": "MSBNK-AAFC-AC000916",
+      "field": "compound.link.ChemOnt",
+      "present_in_2025_10": false,
+      "2026_03_value": "CHEMONTID:0001816; Organic compounds; Organoheterocyclic compounds; Furofurans",
+      "old_api_value": "CHEMONTID:0001816; Organic compounds; Organoheterocyclic compounds; Furofurans",
+      "matches_2026_03": true
+    },
+    {
+      "accession": "MSBNK-ACES_SU-AS001102",
+      "field": "compound.link.ChemOnt",
+      "present_in_2025_10": false,
+      "2026_03_value": "CHEMONTID:0000392; Organic compounds; Organoheterocyclic compounds; Oxazinanes; Morpholines",
+      "old_api_value": "CHEMONTID:0000392; Organic compounds; Organoheterocyclic compounds; Oxazinanes; Morpholines",
+      "matches_2026_03": true
+    },
+    {
+      "accession": "MSBNK-Eawag-EQ314001",
+      "field": "compound.link.ChemOnt",
+      "present_in_2025_10": false,
+      "2026_03_value": "CHEMONTID:0000011; Organic compounds; Organic oxygen compounds; Organooxygen compounds; Carbohydrates and carbohydrate conjugates",
+      "old_api_value": "CHEMONTID:0000011; Organic compounds; Organic oxygen compounds; Organooxygen compounds; Carbohydrates and carbohydrate conjugates",
+      "matches_2026_03": true
+    },
+    {
+      "accession": "MSBNK-Fac_Eng_Univ_Tokyo-JP000144",
+      "field": "compound.link.ChemOnt",
+      "present_in_2025_10": false,
+      "2026_03_value": "CHEMONTID:0000147; Organic compounds; Phenylpropanoids and polyketides; Macrolides and analogues",
+      "old_api_value": "CHEMONTID:0000147; Organic compounds; Phenylpropanoids and polyketides; Macrolides and analogues",
+      "matches_2026_03": true
+    },
+    {
+      "accession": "MSBNK-mFam-MC01_000001",
+      "field": "compound.link.ChemOnt",
+      "present_in_2025_10": false,
+      "2026_03_value": "CHEMONTID:0003566; Organic compounds; Lipids and lipid-like molecules; Steroids and steroid derivatives; Cholestane steroids",
+      "old_api_value": "CHEMONTID:0003566; Organic compounds; Lipids and lipid-like molecules; Steroids and steroid derivatives; Cholestane steroids",
+      "matches_2026_03": true
+    }
+  ],
+  "old_metadata": {
+    "version": "2025.10",
+    "timestamp": "2025-10-24T10:33:06Z",
+    "spectra_count": 134756,
+    "compound_count": 20549
+  },
+  "conclusion": "Use release 2026.03: complete active accession inventory matches; five changed-record probes confirm 2026.03 additions. Old metadata version 2025.10 is stale. This is not a full field-by-field comparison of every record."
+}

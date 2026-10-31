@@ -111,6 +111,7 @@ and counts, then deterministically samples records across contributor prefixes.
 It compares full/simple records, metadata, browse filters, formula/name/mass
 searches, Bingo substructure, peak and neutral-loss searches, and a filtered record
 list. Defaults target `/MassBank-api` (old) and `/MassBank3-api` (new).
+Python 3.10 or later is required.
 
 ```sh
 python3 -m unittest discover -s scripts -p 'test_*.py'
@@ -130,9 +131,10 @@ also recorded. `--all-records` checks every common full/simple record instead of
 sampling, generating many requests; only three sampled full/simple records and
 the non-record cases receive repeated performance measurements.
 
-Requests are sequential, with alternating old/new order, separate persistent TLS
-connections, no compression, warmups excluded, and a pause before every request.
-Timing includes the complete HTTP body but excludes JSON processing. Errors are
+Requests are sequential, with alternating old/new order, a fresh TLS connection
+per request, no compression, warmups excluded, and a pause before every request.
+Fresh connections avoid asymmetric ingress keep-alive expiry between pairs.
+Timing includes TCP/TLS setup and the complete HTTP body, but excludes JSON processing. Errors are
 retained, not retried or counted as fast successful responses. Inventories/counts
 are checked again after measurement to detect dataset changes. Exit status is
 `0` for matching stable results, `1` for differences/errors, and `2` for a failed
@@ -142,6 +144,58 @@ when its accession inventory matches; the script exposes both.
 This measures public end-to-end deployment latency, not isolated database speed
 or throughput. CPU limits, PostgreSQL versions, caches, ingress and concurrent
 traffic differ; small-sample p95 values are descriptive, not confidence bounds.
+
+### Comparison results, 2026-10-31
+
+[Release provenance](comparison-results/data-release-provenance.json) confirms
+that the old API contains all **139,006** active accessions of **2026.03**, with
+no extras or omissions. Release 2025.10 has only 134,440 active records.
+Five changed-record probes also confirm ChemOnt links added after 2025.10.
+The old `/metadata.version` is stale; it does not identify the installed dataset.
+The development instance was reimported from 2026.03: 139,006 active records,
+234 deprecated records, zero failed imports. The old installation was not changed.
+
+[Full comparison and timing samples](comparison-results/2026-10-31-release-2026.03.json)
+cover 100 contributor-stratified records (full and simple), 215 cases total,
+and 21 repeatedly measured cases with two warmups and ten measured requests per
+API. Inventories remained identical and stable; there were no HTTP/transport
+failures or unstable measured responses. The initial keep-alive client encountered
+an expired connection during preflight; the recorded complete run uses fresh TLS
+connections and no retries.
+
+| Case | Old median / p95 (ms) | Shared JPA median / p95 (ms) | New / old median |
+|---|---:|---:|---:|
+| Record count | 122.12 / 143.19 | 129.68 / 136.64 | 1.06 |
+| All accessions | 2422.45 / 2940.84 | 4599.36 / 4767.02 | 1.90 |
+| Metadata | 328.86 / 364.29 | 1055.39 / 1510.76 | 3.21 |
+| Full record PB011601 | 133.38 / 137.79 | 118.05 / 127.83 | 0.89 |
+| Formula search | 86.36 / 100.24 | 204.80 / 229.09 | 2.37 |
+| Bingo substructure | 106.83 / 121.97 | 93.43 / 97.68 | 0.87 |
+| Peak search | 964.05 / 1068.45 | 1909.82 / 2109.73 | 1.98 |
+| Neutral-loss search | 228.25 / 270.64 | 13330.33 / 13706.05 | 58.40 |
+
+This is **not full output compatibility**: 204/215 cases differ under the
+documented normalization (all 200 full/simple record responses, metadata,
+the filtered record list, peak search and neutral-loss search). Observations:
+
+- Peak IDs differ between imports, and legacy float rounding differs from JPA
+  numeric values; peak-pair identifiers therefore differ too.
+- Date formatting differs; PB011601 additionally has `date.modified` equal to
+  year 0001 in the new API instead of the legacy fallback date 2019-06-20.
+- Compound class splitting differs, including metadata histograms
+  (1,886 versus 1,794 class entries). Optional fields and peak headers also differ.
+- Peak search `107.04000091552734`, intensity 1, returns 23,163 old versus 23,164
+  new hits. The extra accession is `MSBNK-PFOS_research_group-FFF00074`:
+  the old peak is `106.73999786376953`, the new peak `106.740001`, on opposite
+  sides of the default 0.3 tolerance boundary.
+- Neutral-loss search has the same 2,378 accessions but different peak IDs and
+  a pronounced latency regression. The script returns exit status 1 for these
+  differences; it does not hide them or change the applications to match.
+
+The old API has a 1 CPU / 400 MiB limit, the new API 2 CPU / 1 GiB.
+PostgreSQL versions are 17.9 and 17.11 respectively, with no explicit container
+resource limits. These are measurements of the actual deployments, not a
+hardware-controlled database benchmark. Record samples are not exhaustive.
 
 ## Development Environment
 

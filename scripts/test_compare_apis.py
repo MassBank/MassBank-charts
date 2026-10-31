@@ -40,6 +40,15 @@ class ComparisonTests(unittest.TestCase):
         result = comparison(old, new, "/records/search")
         self.assertFalse(result["json_equal"])
         self.assertTrue(result["semantic_equal"])
+        self.assertEqual(result["search_inventory"]["only_new"], [])
+
+    def test_search_diagnostics_identify_extra_hits_without_shifted_list_noise(self):
+        old = Response(200, 1, 1, "a", {"data": [{"accession": "B"}]})
+        new = Response(200, 1, 1, "b", {"data": [{"accession": "A"}, {"accession": "B"}]})
+        result = comparison(old, new, "/records/search")
+        self.assertEqual(result["search_inventory"]["only_new"], ["A"])
+        self.assertEqual(result["search_inventory"]["old_hits"], 1)
+        self.assertEqual(result["search_inventory"]["new_hits"], 2)
 
     def test_difference_paths(self):
         result = list(differences({"a": [1], "b": None}, {"a": [2, 3]}))
@@ -93,7 +102,15 @@ class ClientTests(unittest.TestCase):
         client = self.client()
         client.connection.getresponse.side_effect = http.client.RemoteDisconnected("closed")
         self.assertIn("RemoteDisconnected", client.get("/status").error)
-        client.connection.close.assert_called_once()
+        client.connection.close.assert_called()
+
+    def test_each_request_uses_a_fresh_connection_without_retries(self):
+        client = self.client()
+        client.get("/status")
+        client.get("/status")
+        self.assertEqual(client.connection.close.call_count, 2)
+        self.assertEqual(client.connection.request.call_count, 2)
+        self.assertEqual(client.connection.request.call_args.kwargs["headers"]["Connection"], "close")
 
     def test_rejects_credential_urls(self):
         with self.assertRaises(ValueError):
