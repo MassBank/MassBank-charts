@@ -1,0 +1,559 @@
+{
+  "release": "2026.03",
+  "snapshot_commit": "9edb938bf5",
+  "snapshot_active_records": 143342,
+  "snapshot_deprecated_records": 234,
+  "snapshot_date_variants": {
+    "plain": 107085,
+    "created": 7855,
+    "created_and_modified": 28402
+  },
+  "deployed_active_records": 139006,
+  "helm_revision": 14,
+  "api_commit": "a2ea3ada06ddbe616a7aa958200b7508e5b8a046",
+  "frontend_commit": "14cc8a824d7c318448033640cb105189240454e0",
+  "import_timestamp_unchanged": "2026-10-31T16:44:19.223093Z",
+  "checked_records": 103,
+  "new_api_matches_release_source": 103,
+  "checked_fields": [
+    "date",
+    "copyright",
+    "compound_classes",
+    "peak_header",
+    "peak_count",
+    "peaks"
+  ],
+  "snapshot_differences_in_checked_fields": [
+    {
+      "accession": "MSBNK-mFam-MC23_000336",
+      "release_vs_snapshot": [
+        {
+          "path": "$.compound_classes[0]",
+          "kind": "value",
+          "old": "NA",
+          "new": "Sulfated steroids"
+        }
+      ]
+    }
+  ],
+  "release_source_files": [
+    {
+      "accession": "MSBNK-IPB_Halle-PB011601",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/IPB_Halle/MSBNK-IPB_Halle-PB011601.txt",
+      "sha256": "bdafdc077a77e94f39a341ee464184abb5356291686d5248c22198fbf852d1e0"
+    },
+    {
+      "accession": "MSBNK-RIKEN_IMS-LQB00025",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/RIKEN_IMS/MSBNK-RIKEN_IMS-LQB00025.txt",
+      "sha256": "16cd93ac4c6f13bba44a8288f604f65359958b57061f082523a0676e19910a82"
+    },
+    {
+      "accession": "MSBNK-Univ_Connecticut-CO000126",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Univ_Connecticut/MSBNK-Univ_Connecticut-CO000126.txt",
+      "sha256": "a41a91aedfbacfd23094a387eb7997d6e5bee5f80d33bfebe8f90c27508ec1bc"
+    },
+    {
+      "accession": "MSBNK-Osaka_Univ-OUF00014",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Osaka_Univ/MSBNK-Osaka_Univ-OUF00014.txt",
+      "sha256": "38e2fee9b182eefd254df89a2f6f0ed939e124704dd969537ec4945b74487a32"
+    },
+    {
+      "accession": "MSBNK-ISAS_Dortmund-IA000163",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/ISAS_Dortmund/MSBNK-ISAS_Dortmund-IA000163.txt",
+      "sha256": "4da3163d19fb263f25d0aef1a11974d09bddf3e25b9f22faceede17d187ca94b"
+    },
+    {
+      "accession": "MSBNK-Boise_State_Univ-BSU00002",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Boise_State_Univ/MSBNK-Boise_State_Univ-BSU00002.txt",
+      "sha256": "43f1b83e06e18ced4044deb6243c0c55bfa169a2b4fb2da070ddc8cfc2bea8b4"
+    },
+    {
+      "accession": "MSBNK-Eawag_Additional_Specs-ET080203",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Eawag_Additional_Specs/MSBNK-Eawag_Additional_Specs-ET080203.txt",
+      "sha256": "79a3f6e6395863610734cdd7db737c520f4a737b8daccdae9a03ad26be89176e"
+    },
+    {
+      "accession": "MSBNK-KWR-KW104904",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/KWR/MSBNK-KWR-KW104904.txt",
+      "sha256": "c50f0e4d35ad145f80e6a79f949c150a214624ecf7e386cce2c3e4c111ec6d24"
+    },
+    {
+      "accession": "MSBNK-EAWAG-EC103102",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Eawag/MSBNK-EAWAG-EC103102.txt",
+      "sha256": "909890f88dcfdf3c9571b44216da1a36cd5559b24a7f56975f3310889511e468"
+    },
+    {
+      "accession": "MSBNK-Antwerp_Univ-AN120025",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Antwerp_Univ/MSBNK-Antwerp_Univ-AN120025.txt",
+      "sha256": "c0ad778426fb1445994d37fdb88300fe2119f1a8b102f919e2ab0583106efbf1"
+    },
+    {
+      "accession": "MSBNK-CPU-ACYL_PAS_000004",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/CPU/MSBNK-CPU-ACYL_PAS_000004.txt",
+      "sha256": "d52da0d772b446c25c694f2a4acc6827511df6f8a7aa77fb7ccf4d940b79702a"
+    },
+    {
+      "accession": "MSBNK-Tottori_Univ-TT000129",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Tottori_Univ/MSBNK-Tottori_Univ-TT000129.txt",
+      "sha256": "308ff0fa23c7241401505306e40bd5c2a5f7a0701302e95d205d5c907f9ce6e7"
+    },
+    {
+      "accession": "MSBNK-LCSB-LU045156",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/LCSB/MSBNK-LCSB-LU045156.txt",
+      "sha256": "8cd84214c1a86b44ba6659aa3275c98cd2d847541fe95a76e4112b3cdd8816ac"
+    },
+    {
+      "accession": "MSBNK-CASMI_2012-SMI00032",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/CASMI_2012/MSBNK-CASMI_2012-SMI00032.txt",
+      "sha256": "0091071371d15221a5ee789f56fb0b6525d486f077dbb092e79ab70d1128f60a"
+    },
+    {
+      "accession": "MSBNK-JEOL_Ltd-JEL00044",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/JEOL_Ltd/MSBNK-JEOL_Ltd-JEL00044.txt",
+      "sha256": "97c570a07a4400bcd7eeb4776f69f1aecdc35c6df8bdfec2ad4c17748029263f"
+    },
+    {
+      "accession": "MSBNK-Waters-WA002903",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Waters/MSBNK-Waters-WA002903.txt",
+      "sha256": "04b7dff29981ea74e973d893d341614510e1734b8d26c8fcd33fe48feecb1317"
+    },
+    {
+      "accession": "MSBNK-BS-BS001100",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/BS/MSBNK-BS-BS001100.txt",
+      "sha256": "88d55fba5dd61b79212f70ef14399e790f26cdd7e7b1d88ead6725d27779fcd7"
+    },
+    {
+      "accession": "MSBNK-UoB-XB000800",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/UoB/MSBNK-UoB-XB000800.txt",
+      "sha256": "36a66b0137a89fc98fcaf623a375e3a9e039eb8890d849d6c763de6a145dd7ad"
+    },
+    {
+      "accession": "MSBNK-NILU-NL0112",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/NILU/MSBNK-NILU-NL0112.txt",
+      "sha256": "0d38d60b9f78c62996c3dc8be258d7d38a099356b45f596051f2af2368af0d6e"
+    },
+    {
+      "accession": "MSBNK-ACES_SU-AS001537",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/ACES_SU/MSBNK-ACES_SU-AS001537.txt",
+      "sha256": "d345ee78d2de8fbc20ced4c3e5ecfa52da3bc71859ae59d362055ebe29190afd"
+    },
+    {
+      "accession": "MSBNK-RIKEN_ReSpect-PS081403",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/RIKEN_ReSpect/MSBNK-RIKEN_ReSpect-PS081403.txt",
+      "sha256": "793fe0ac418ce385c6d3f0b2a8370a146d583908e9d60e5a16dceac78941788e"
+    },
+    {
+      "accession": "MSBNK-NaToxAq-NA001437",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/NaToxAq/MSBNK-NaToxAq-NA001437.txt",
+      "sha256": "d76c4f2ffa7d403cea4dd5d0ae8ebe470ed5e082e1e2e069f2851ec679297163"
+    },
+    {
+      "accession": "MSBNK-Osaka_MCHRI-MCH00020",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Osaka_MCHRI/MSBNK-Osaka_MCHRI-MCH00020.txt",
+      "sha256": "4cb6f16f9160a83fcff37be677f23ad7cec53ab2f361856e8c7201f9e150b0dd"
+    },
+    {
+      "accession": "MSBNK-Literature_Specs-LIT00029",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Literature_Specs/MSBNK-Literature_Specs-LIT00029.txt",
+      "sha256": "0ae43b8f40f339ed8afdd78b8735c8e418fd026fd2b89564f0c9f74dd812209c"
+    },
+    {
+      "accession": "MSBNK-UPAO-UPA00016",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/UPAO/MSBNK-UPAO-UPA00016.txt",
+      "sha256": "c30db3b2ab9f22c6ba7fe03cd8434fca4392f67a4882ac3eaa1a810da10d80e3"
+    },
+    {
+      "accession": "MSBNK-Chubu_Univ-UT000284",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Chubu_Univ/MSBNK-Chubu_Univ-UT000284.txt",
+      "sha256": "ce1aba9e25b5d156a87fe8325ad1a15f2a1a857cea3b3e070c27a691478e1c05"
+    },
+    {
+      "accession": "MSBNK-MetaboLights-ML003901",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/MetaboLights/MSBNK-MetaboLights-ML003901.txt",
+      "sha256": "0e7ca4cd025d00f76981708807dd81c2cdfa298ab1abce065d1b7e67f2693cbc"
+    },
+    {
+      "accession": "MSBNK-mFam-MC20_000889",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/mFam/MSBNK-mFam-MC20_000889.txt",
+      "sha256": "789cb42c569b5c5afb7a0074ca7a0985e4554821d8c54b922f3796f8d33883a5"
+    },
+    {
+      "accession": "MSBNK-MPI_for_Chemical_Ecology-CE000322",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/MPI_for_Chemical_Ecology/MSBNK-MPI_for_Chemical_Ecology-CE000322.txt",
+      "sha256": "0ab073744c1c91689dd3b54c81aeda3434c56fca4abb99b4ef810c6e82be6ced"
+    },
+    {
+      "accession": "MSBNK-SMB_Measured-HSA032R0205001",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/SMB_Measured/MSBNK-SMB_Measured-HSA032R0205001.txt",
+      "sha256": "6a42fccfd3a7b92ef1adb353c85b87a0065adf4690941d6ff8e60ac404b96afe"
+    },
+    {
+      "accession": "MSBNK-UFZ-UF413601",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/UFZ/MSBNK-UFZ-UF413601.txt",
+      "sha256": "b41ae8934562bd3aabaf71d77e382ab8944247e22e0cfd33ac8bd393a04a60f6"
+    },
+    {
+      "accession": "MSBNK-BGC_Munich-RP020403",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/BGC_Munich/MSBNK-BGC_Munich-RP020403.txt",
+      "sha256": "0a0b046c6e6e308f7e6e632f284d55683b14f91cd2bf1c53891e0f4fe94a961f"
+    },
+    {
+      "accession": "MSBNK-MSSJ-MSJ01565",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/MSSJ/MSBNK-MSSJ-MSJ01565.txt",
+      "sha256": "8b1b9be8ddcbbcb8f21837f5d311e0b5d4516a7bd2be708bd7ca4b7961fa91a6"
+    },
+    {
+      "accession": "MSBNK-UOEH-UO000024",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/UOEH/MSBNK-UOEH-UO000024.txt",
+      "sha256": "5d79845d1761fd084500bcb703ff922be54adf006f248172c53a398fba88443c"
+    },
+    {
+      "accession": "MSBNK-EPA-ENTACT_AGILENT001831",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/ENTACT_AGILENT/MSBNK-EPA-ENTACT_AGILENT001831.txt",
+      "sha256": "69b32249f2c6433ff4c10306e5a9eceb65194c00d4eec0c945f0351c34c7bace"
+    },
+    {
+      "accession": "MSBNK-CASMI_2016-SM860752",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/CASMI_2016/MSBNK-CASMI_2016-SM860752.txt",
+      "sha256": "9a73f6a86888a418b9b8fbc1a4d5fa8d4230fd1642f8226f6242902eea2b61cd"
+    },
+    {
+      "accession": "MSBNK-IPB_Halle-PN000074",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/IPB_Halle/MSBNK-IPB_Halle-PN000074.txt",
+      "sha256": "803957cfb23dfb265de281ef02ac469f186a8e6aaf82fbc0de889922a4062f97"
+    },
+    {
+      "accession": "MSBNK-Nihon_Univ-NU000538",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Nihon_Univ/MSBNK-Nihon_Univ-NU000538.txt",
+      "sha256": "eb5f9bc5ff12f0fb4d58ba0bd781436a34768b65eefaf0684cf23a854b4b7ee4"
+    },
+    {
+      "accession": "MSBNK-AAFC-AC000848",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/AAFC/MSBNK-AAFC-AC000848.txt",
+      "sha256": "e094dcc6ae5b1f35f865fa30e8116a267eb153b5fc19c0c4e2660abd9dc8e370"
+    },
+    {
+      "accession": "MSBNK-MLU-ED035508",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Eawag/MSBNK-MLU-ED035508.txt",
+      "sha256": "24739ba818a5ae42d05312c96c1858107521e906dadac04757c6f7a2f1fabaef"
+    },
+    {
+      "accession": "MSBNK-Univ_Toyama-TY000161",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Univ_Toyama/MSBNK-Univ_Toyama-TY000161.txt",
+      "sha256": "9e0a4f7cc16844c3204552a1821cf8d31f26c7c0aced8c0914e97af9001b1ba9"
+    },
+    {
+      "accession": "MSBNK-RIKEN_NPDepo-NGA00877",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/RIKEN_NPDepo/MSBNK-RIKEN_NPDepo-NGA00877.txt",
+      "sha256": "74550b371f36d2393b086f2060183708b65ee06e660188019c9276a9e5a71311"
+    },
+    {
+      "accession": "MSBNK-Env_Anal_Chem_U_Tuebingen-TUE00163",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Env_Anal_Chem_U_Tuebingen/MSBNK-Env_Anal_Chem_U_Tuebingen-TUE00163.txt",
+      "sha256": "a8570e5bdca23af8f8905cb89bdf03165dca6e56b4ceeee4e2a8b9a7efa51a38"
+    },
+    {
+      "accession": "MSBNK-Washington_State_Univ-BML82241",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Washington_State_Univ/MSBNK-Washington_State_Univ-BML82241.txt",
+      "sha256": "a287df130692ec52dc907183d684895fc67d120d15eba394fed74b1cafcb0855"
+    },
+    {
+      "accession": "MSBNK-Fukuyama_Univ-FU000208",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Fukuyama_Univ/MSBNK-Fukuyama_Univ-FU000208.txt",
+      "sha256": "b8d70749ba003958ec411905255842ac367205e42ba25b78b044d1a766fe878c"
+    },
+    {
+      "accession": "MSBNK-UvA_IBED-UI000201",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/UvA_IBED/MSBNK-UvA_IBED-UI000201.txt",
+      "sha256": "578be4789344f81f9e197ddd70de077199559b6ae7dcd6ade7ce66dbf2b0a59b"
+    },
+    {
+      "accession": "MSBNK-Fac_Eng_Univ_Tokyo-JP006991",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Fac_Eng_Univ_Tokyo/MSBNK-Fac_Eng_Univ_Tokyo-JP006991.txt",
+      "sha256": "c7146ac9b59feef6a08042f8495c959a4a09fb442adf48a52e23f37b27cee128"
+    },
+    {
+      "accession": "MSBNK-RIKEN-PR304707",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/RIKEN/MSBNK-RIKEN-PR304707.txt",
+      "sha256": "4213d8a992c5226e0320a77ba847e82a947a33a4321a49fdd760fec1c36b05d0"
+    },
+    {
+      "accession": "MSBNK-Keio_Univ-KO000258",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Keio_Univ/MSBNK-Keio_Univ-KO000258.txt",
+      "sha256": "4a2342b93e53cd1ba100886bd7359ab237616339ac26643ab21fb94d7062ba85"
+    },
+    {
+      "accession": "MSBNK-HBM4EU-HB002721",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/HBM4EU/MSBNK-HBM4EU-HB002721.txt",
+      "sha256": "51307802f62cc5526187b0e5536b42811299de8b98ea36d5de5104622644eee0"
+    },
+    {
+      "accession": "MSBNK-Eawag-EQ360606",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Eawag/MSBNK-Eawag-EQ360606.txt",
+      "sha256": "8332ceb6691ef4fd4b6ea110fc6c213edc92bb86e08d323df85beffc4b40e990"
+    },
+    {
+      "accession": "MSBNK-Qingdao_University-QDU00001",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Qingdao_University/MSBNK-Qingdao_University-QDU00001.txt",
+      "sha256": "1b19b7c188ba794b25e7c341de2e5849f063be31108ad0e8471294354d8f2840"
+    },
+    {
+      "accession": "MSBNK-GL_Sciences_Inc-GLS00159",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/GL_Sciences_Inc/MSBNK-GL_Sciences_Inc-GLS00159.txt",
+      "sha256": "a3116c41af3103e0d72d0ab570fa1548ebf847a95d5504a6a32958ee27e5c209"
+    },
+    {
+      "accession": "MSBNK-Athens_Univ-AU239502",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Athens_Univ/MSBNK-Athens_Univ-AU239502.txt",
+      "sha256": "d21db88e0e5bf3d7fbc038ce6840637ad115588112d9dd74647b628838602158"
+    },
+    {
+      "accession": "MSBNK-Kazusa-KZ000047",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Kazusa/MSBNK-Kazusa-KZ000047.txt",
+      "sha256": "67a97be071d33c0fbfb4f05db068c35d7f41c01fa5a4db06704cb7efbe7fc290"
+    },
+    {
+      "accession": "MSBNK-Fiocruz-FIO00797",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Fiocruz/MSBNK-Fiocruz-FIO00797.txt",
+      "sha256": "b84b9bd29bde0315104cb6c4620c74c343048c8af892b6b5c20a2d3dcd80f6cc"
+    },
+    {
+      "accession": "MSBNK-PFOS_research_group-FFF00277",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/PFOS_research_group/MSBNK-PFOS_research_group-FFF00277.txt",
+      "sha256": "c04307898a5c141a36096f46deccf4bec7c5ccb7ff317965fe2bb17c503b67dc"
+    },
+    {
+      "accession": "MSBNK-NAIST-KNA00775",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/NAIST/MSBNK-NAIST-KNA00775.txt",
+      "sha256": "4a5f042ae300014e5a2448c7bbb4aaa6129d3316b550feff74e6aa00f00808d0"
+    },
+    {
+      "accession": "MSBNK-AGILENT-AG000026",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Agilent/MSBNK-AGILENT-AG000026.txt",
+      "sha256": "d955594e30b85c7922ce0e873aa0e140bc7156d1bd4fff9208cd0aef3e03bfcd"
+    },
+    {
+      "accession": "MSBNK-Kyoto_Univ-CA000120",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Kyoto_Univ/MSBNK-Kyoto_Univ-CA000120.txt",
+      "sha256": "725b0cd90dc539d2f702207d908c3431a179e94a7397e4f606182df91c061da2"
+    },
+    {
+      "accession": "MSBNK-Metabolon-MT000116",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Metabolon/MSBNK-Metabolon-MT000116.txt",
+      "sha256": "45c25c1ed5b6817ce5182d1554f344494a621f1619ee871613ca866fc6658d0e"
+    },
+    {
+      "accession": "MSBNK-BAFG-CSL2311091517",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/BAFG/MSBNK-BAFG-CSL2311091517.txt",
+      "sha256": "6eb92759a63043d5164302011b2a2440a8f24f3c48fdaac5ad9dc80dd18df178"
+    },
+    {
+      "accession": "MSBNK-RIKEN_IMS-LQB00389",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/RIKEN_IMS/MSBNK-RIKEN_IMS-LQB00389.txt",
+      "sha256": "b110ec1e98a191a9639df2da004324662eab1fb65a159074d85053557569cdbc"
+    },
+    {
+      "accession": "MSBNK-Univ_Connecticut-CO000321",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Univ_Connecticut/MSBNK-Univ_Connecticut-CO000321.txt",
+      "sha256": "7a227aa5fa0d9591105c02c2ab2598bdd108514a1d332f0441f6b38abf859ebf"
+    },
+    {
+      "accession": "MSBNK-Osaka_Univ-OUF00428",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Osaka_Univ/MSBNK-Osaka_Univ-OUF00428.txt",
+      "sha256": "309b76c70b34ec7bbf026c561f2d8d3d9672882ac400eda3f968559832358de1"
+    },
+    {
+      "accession": "MSBNK-ISAS_Dortmund-IA000477",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/ISAS_Dortmund/MSBNK-ISAS_Dortmund-IA000477.txt",
+      "sha256": "7df147ca02958c27f210568097f544a74651539aeed8afca16ed34075a691220"
+    },
+    {
+      "accession": "MSBNK-Boise_State_Univ-BSU00003",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Boise_State_Univ/MSBNK-Boise_State_Univ-BSU00003.txt",
+      "sha256": "d6e9cbc17e223b0499b079e54d86f9c9e543255046a042255b788f23480e62ed"
+    },
+    {
+      "accession": "MSBNK-Eawag_Additional_Specs-ET090002",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Eawag_Additional_Specs/MSBNK-Eawag_Additional_Specs-ET090002.txt",
+      "sha256": "0c6ff242f2cf1f682a976603ebf22bc93bea24756a857bef7784a64e43e5cf0e"
+    },
+    {
+      "accession": "MSBNK-KWR-KW105702",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/KWR/MSBNK-KWR-KW105702.txt",
+      "sha256": "a9932b2c6b975577c3fae66a1d7a94ae3e2d7ddfb7f3f7bfcd11891425fa8698"
+    },
+    {
+      "accession": "MSBNK-EAWAG-ED058452",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Eawag/MSBNK-EAWAG-ED058452.txt",
+      "sha256": "14c9896744c35dece970b533e0f1c6a44808c6298be886497e141e0a9cb5a35c"
+    },
+    {
+      "accession": "MSBNK-Antwerp_Univ-METOX_N101807_EF88",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Antwerp_Univ/MSBNK-Antwerp_Univ-METOX_N101807_EF88.txt",
+      "sha256": "6e378939990b3173d9f564af8132013fea811183c4de7cc94024e8d968f9a9f3"
+    },
+    {
+      "accession": "MSBNK-CPU-ACYL_PAS_000002",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/CPU/MSBNK-CPU-ACYL_PAS_000002.txt",
+      "sha256": "3447cfe4898ae61eb88d8265a287966ee4c07c77124d9283a77e3bc81884b9c2"
+    },
+    {
+      "accession": "MSBNK-Tottori_Univ-TT000151",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Tottori_Univ/MSBNK-Tottori_Univ-TT000151.txt",
+      "sha256": "82ec2df56661ef4b649dfb5e01dc577c1f7d334004a91e92edd28a79ceccc0c8"
+    },
+    {
+      "accession": "MSBNK-LCSB-LU129556",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/LCSB/MSBNK-LCSB-LU129556.txt",
+      "sha256": "9a5110a38bbc192864c704d8a545f11f71fa79020fc6c3fb68895f5e65163d13"
+    },
+    {
+      "accession": "MSBNK-CASMI_2012-SMI00034",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/CASMI_2012/MSBNK-CASMI_2012-SMI00034.txt",
+      "sha256": "8ecd283fad1041ad5622ee052d444f08e32143c86ec343e9301c708fe25d818e"
+    },
+    {
+      "accession": "MSBNK-JEOL_Ltd-JEL00023",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/JEOL_Ltd/MSBNK-JEOL_Ltd-JEL00023.txt",
+      "sha256": "108ed3f7ce606526f7f25c0e1b58a6a3a5a9699729553a07c940201375f40006"
+    },
+    {
+      "accession": "MSBNK-Waters-WA001586",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Waters/MSBNK-Waters-WA001586.txt",
+      "sha256": "5fcd97c03367887a24a1eeb529616e41d869d1c98bcf188f59fda93bc691d533"
+    },
+    {
+      "accession": "MSBNK-BS-BS003383",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/BS/MSBNK-BS-BS003383.txt",
+      "sha256": "c0d8d1368da50e03d238a151bef22fcb21710453aad2528e515decdfb2caf2b9"
+    },
+    {
+      "accession": "MSBNK-UoB-XB000205",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/UoB/MSBNK-UoB-XB000205.txt",
+      "sha256": "643f03791e1cfa48ad2df65c1a270937d914501841303f5d20ce295e7a5bc19f"
+    },
+    {
+      "accession": "MSBNK-NILU-NL0062",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/NILU/MSBNK-NILU-NL0062.txt",
+      "sha256": "3d3ec6714e469956a865b0e09aba3b73d795e29ac24c7b0180bf9532ab99c0f2"
+    },
+    {
+      "accession": "MSBNK-ACES_SU-AS001247",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/ACES_SU/MSBNK-ACES_SU-AS001247.txt",
+      "sha256": "09f592bf1190357ae1de8bb7d70976725e81566d3692f3f94dc0e6b105e6475f"
+    },
+    {
+      "accession": "MSBNK-RIKEN_ReSpect-PS067405",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/RIKEN_ReSpect/MSBNK-RIKEN_ReSpect-PS067405.txt",
+      "sha256": "589a3d644daad020c8f8a770c3fdaad4d9debbf193d7193b6f2f510e1ba8e259"
+    },
+    {
+      "accession": "MSBNK-NaToxAq-NA001007",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/NaToxAq/MSBNK-NaToxAq-NA001007.txt",
+      "sha256": "2ff887ecd0613b44c9451bd55a63f3e8a301cffd9b4265c7b4d8c88b16872445"
+    },
+    {
+      "accession": "MSBNK-Osaka_MCHRI-MCH00005",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Osaka_MCHRI/MSBNK-Osaka_MCHRI-MCH00005.txt",
+      "sha256": "36a017d6911d1fc250788ce7cf5a9fa6b9a71d78a0be1b01b9e8a052841031f0"
+    },
+    {
+      "accession": "MSBNK-Literature_Specs-LIT00009",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Literature_Specs/MSBNK-Literature_Specs-LIT00009.txt",
+      "sha256": "5f67d813824ac8a255322372407d0f787b048a73da3fbaf59438106087ea139d"
+    },
+    {
+      "accession": "MSBNK-UPAO-UPA00022",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/UPAO/MSBNK-UPAO-UPA00022.txt",
+      "sha256": "fffe5122113ce0bef7ee4f3f593d286b629cb240a727909d094643efa44215ce"
+    },
+    {
+      "accession": "MSBNK-Chubu_Univ-UT001757",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Chubu_Univ/MSBNK-Chubu_Univ-UT001757.txt",
+      "sha256": "42bb5b16a76a50c2b72fc1a01f7c826401039c01594b1eb888f5b45691e34c75"
+    },
+    {
+      "accession": "MSBNK-MetaboLights-ML004651",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/MetaboLights/MSBNK-MetaboLights-ML004651.txt",
+      "sha256": "12206df680212ab5d56035a87f9c13a46161603121bc4dbed045594c4bfb85d7"
+    },
+    {
+      "accession": "MSBNK-mFam-MC23_000336",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/mFam/MSBNK-mFam-MC23_000336.txt",
+      "sha256": "5d12211db60a17fc0a1e7b8abdf56e4ec39a966fe4127abf2432672583fc6e9c"
+    },
+    {
+      "accession": "MSBNK-MPI_for_Chemical_Ecology-CE000338",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/MPI_for_Chemical_Ecology/MSBNK-MPI_for_Chemical_Ecology-CE000338.txt",
+      "sha256": "9f60e089d5f8b968b8ffb5ddcf94cbe3088a5d0651c174e46129992297756284"
+    },
+    {
+      "accession": "MSBNK-SMB_Measured-HSA022R0218000",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/SMB_Measured/MSBNK-SMB_Measured-HSA022R0218000.txt",
+      "sha256": "0cbf9a062f832759beaebdfa1fc2b461bcfb868cca90d639547c1593c81f0e10"
+    },
+    {
+      "accession": "MSBNK-UFZ-UF406102",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/UFZ/MSBNK-UFZ-UF406102.txt",
+      "sha256": "95e3dfdd12e61418003bfb4a24e3902a70c840853f2728ca18e22bf0405a7625"
+    },
+    {
+      "accession": "MSBNK-BGC_Munich-RP018512",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/BGC_Munich/MSBNK-BGC_Munich-RP018512.txt",
+      "sha256": "18f9df82a6c210e522e420c615cb8edb39a02df385364d31e323f546803f74ef"
+    },
+    {
+      "accession": "MSBNK-MSSJ-MSJ04113",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/MSSJ/MSBNK-MSSJ-MSJ04113.txt",
+      "sha256": "a0e475b2c740d270661ae385afe1ce6c8434b5ac584fee27dfaa90cd03cde05a"
+    },
+    {
+      "accession": "MSBNK-UOEH-UO000023",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/UOEH/MSBNK-UOEH-UO000023.txt",
+      "sha256": "df37605c39c980ca2d3d1a231104c35861f732f49bda42225fac5c17a500e38b"
+    },
+    {
+      "accession": "MSBNK-EPA-ENTACT_AGILENT002366",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/ENTACT_AGILENT/MSBNK-EPA-ENTACT_AGILENT002366.txt",
+      "sha256": "a2612fb7b7774da98947af526d5b5b8695031d294e4373feecde978c77cbc0c1"
+    },
+    {
+      "accession": "MSBNK-CASMI_2016-SM830451",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/CASMI_2016/MSBNK-CASMI_2016-SM830451.txt",
+      "sha256": "3858bf5533341e1dc5329bf2e7ed08e8f416ef52fda5f001e17572f6de144f39"
+    },
+    {
+      "accession": "MSBNK-IPB_Halle-PB006007",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/IPB_Halle/MSBNK-IPB_Halle-PB006007.txt",
+      "sha256": "57a588190d7b55d6012c2c8594912412b66e873ec3786a864d328e1648278fbf"
+    },
+    {
+      "accession": "MSBNK-Nihon_Univ-NU000653",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Nihon_Univ/MSBNK-Nihon_Univ-NU000653.txt",
+      "sha256": "2e5dec6eb4e004ca0d98cd25a896483bde346984622a74aef1c5a3ca5c3d00cf"
+    },
+    {
+      "accession": "MSBNK-AAFC-AC000589",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/AAFC/MSBNK-AAFC-AC000589.txt",
+      "sha256": "368413edb492eb1a6fe823f4c456640c473c5abc29720757bded251f336a3da6"
+    },
+    {
+      "accession": "MSBNK-Osaka_Univ-OUF00405",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Osaka_Univ/MSBNK-Osaka_Univ-OUF00405.txt",
+      "sha256": "f63ef6b4058211bdbde66356abebc61353602b0abc8dabbcbe03c8052526a371"
+    },
+    {
+      "accession": "MSBNK-Osaka_Univ-OUF01017",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/Osaka_Univ/MSBNK-Osaka_Univ-OUF01017.txt",
+      "sha256": "963a707bde7966d953f06ef23016732cfc6337d0491ea33b180ecc373ef3f60d"
+    },
+    {
+      "accession": "MSBNK-PFOS_research_group-FFF00074",
+      "url": "https://raw.githubusercontent.com/MassBank/MassBank-data/2026.03/PFOS_research_group/MSBNK-PFOS_research_group-FFF00074.txt",
+      "sha256": "29f4bcfb809ca3c6d84ebb95b17db9d8ad909e186aec3e110bf6a5f8a2559fa6"
+    }
+  ],
+  "browser_date_variants_verified": 3,
+  "bulk_records_verified": 6,
+  "simple_records_with_zero_intensity_verified": 3
+}

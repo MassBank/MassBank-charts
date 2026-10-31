@@ -46,7 +46,7 @@ their source and packaged versions can be tested before publishing releases:
 
 ```sh
 helm dependency build ./charts/massbank
-helm lint ./charts/massbank-api ./charts/massbank-export-api ./charts/massbank
+helm lint ./charts/massbank-api ./charts/massbank-export-api ./charts/massbank-frontend ./charts/massbank
 helm unittest ./charts/massbank-api ./charts/massbank-export-api ./charts/massbank
 helm template massbank-dev ./charts/massbank -n massbank-dev -f msbi-values-dev.yaml
 ```
@@ -56,8 +56,9 @@ helm template massbank-dev ./charts/massbank -n massbank-dev -f msbi-values-dev.
 `msbi-values-dev.yaml` configures the complete system at
 **https://msbi.ipb-halle.de/MassBank3/**, using `massbank_shared` and the full
 official **2026.03** release on `massbank-dev-massbank-data-pvc`, also used by the
-old installation at `/MassBank/`. It preserves the existing CSP-enabled
-frontend image. The older `massbank` and `records` databases are not removed.
+old installation at `/MassBank/`. The matching frontend image retains the
+previously deployed CSP behavior and displays source dates without invented
+historical dates. The older `massbank` and `records` databases are not removed.
 The current development values disable the importer for software-only upgrades
 of this already populated database. Set `massbank-export-api.dataImport.enabled=true`
 explicitly for a fresh installation or a deliberate new dataset import.
@@ -264,6 +265,73 @@ also completed successfully and refreshed the projections with no stale peak IDs
 The trade-off is derived storage and import-time work: the shared database grew
 from approximately 1,409 to 2,064 MB (neutral-loss projection plus index: 488 MB;
 names: 22 MB; metadata: 280 kB). There is still only one authoritative JPA dataset.
+
+### Source fidelity: DATE and zero-valued peaks
+
+Primary files, not legacy API output, are the correctness reference. The
+[record format](https://github.com/MassBank/MassBank-documentation/blob/dev/MassBankRecordFormat.md)
+and the three allowed DATE forms are mapped as follows:
+
+| Source DATE | API `date` |
+|---|---|
+| `2012.10.22 (Created 2008.05.12)` | `{"updated":"2012-10-22","created":"2008-05-12"}` |
+| `2016.01.19 (Created 2006.12.21, modified 2011.05.06)` | `{"updated":"2016-01-19","created":"2006-12-21","modified":"2011-05-06"}` |
+| `2025.01.17` | `{"updated":"2025-01-17"}` |
+
+The leading date does not establish a separate creation/modification history.
+Only explicit historical dates are returned; missing values are omitted, not
+replaced by year 0001 or copied from another date. Dates use the API's documented
+`YYYY-MM-DD` format without an invented time or timezone. The frontend displays
+the leading date and `N/A` for unavailable history; the export API retains the
+complete original DATE text. Peak rows now explicitly retain zero-valued `mz`,
+`intensity` and `rel` fields instead of dropping them through `omitempty`.
+These intentional response changes follow the performance-only measurements
+above; their unchanged-response hashes describe that earlier rollout.
+
+The local snapshot at `9edb938bf5` contains 143,342 active and 234 deprecated
+records. The parser accepted every active DATE, covering 107,085 plain dates,
+7,855 with `Created` only and 28,402 with both historical fields. The real export
+import parser also preserves all three forms unchanged.
+
+The independent [primary-data checker](scripts/compare_primary_data.py) compares
+DATE, copyright, compound classes, peak header/count and every numeric peak
+value in each sampled full record. It ignores database-generated peak IDs, not
+numeric precision, missing zero values or peak order. It is not a full-field or
+exhaustive-record audit. Example:
+
+```sh
+python3 scripts/compare_primary_data.py \
+  --source-data /path/to/MassBank-data \
+  --source-reference 2026.03 \
+  --sample-report comparison-results/2026-10-31-after-covering-indexes.json \
+  --accession MSBNK-Osaka_Univ-OUF00405 \
+  --accession MSBNK-Osaka_Univ-OUF01017 \
+  --accession MSBNK-PFOS_research_group-FFF00074 \
+  --output /tmp/primary-data-comparison.json
+```
+
+Exit status 1 reports a mismatch or HTTP error on either API, including existing
+legacy differences. Invalid/missing source input fails explicitly before calls.
+Both APIs are read-only during this check. Use the actual imported release as
+the source reference; newer snapshots can contain genuine content changes.
+
+After the software-only upgrade (Helm revision 14), **all 103 new-API records
+match the original release-2026.03 files in every checked field**, with no HTTP
+errors. The three DATE forms also render correctly in the browser with CSP
+enabled. Counts, release and import timestamp are unchanged; no reimport ran.
+The [before report](comparison-results/2026-10-31-primary-before-date-fix.json)
+uses the local snapshot; the
+[after report](comparison-results/2026-10-31-primary-after-date-fix.json)
+uses original release files. The
+[summary and source hashes](comparison-results/primary-data-fidelity-summary.json)
+document the distinction: among these 103 records, only the class of
+`MSBNK-mFam-MC23_000336` differs between those sources (`NA` in 2026.03 versus
+`Sulfated steroids` in the newer snapshot). Both deployed APIs correctly retain
+the release value; that is not a conversion defect.
+
+The new API's split class lists, source-precision peak numbers, copyright and
+peak headers are correct for these source records even where the old API differs.
+Do not restore the old API's rounding or missing fields to obtain equality.
 
 ## Development Environment
 
