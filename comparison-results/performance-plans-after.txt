@@ -1,0 +1,128 @@
+SET
+SET
+SET
+ALL ACCESSIONS
+                                                                             QUERY PLAN                                                                              
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Gather Merge  (cost=1000.44..34829.35 rows=139006 width=61) (actual rows=139006 loops=1)
+   Workers Planned: 2
+   Workers Launched: 2
+   Buffers: shared hit=1701
+   ->  Parallel Index Only Scan using shared_records_browse_cover_idx on "massbank-records" r  (cost=0.42..17784.59 rows=57919 width=61) (actual rows=46335 loops=3)
+         Heap Fetches: 0
+         Buffers: shared hit=1701
+ Planning:
+   Buffers: shared hit=270 read=1
+ Planning Time: 30.701 ms
+ Execution Time: 262.321 ms
+(11 rows)
+
+FORMULA
+                                                                 QUERY PLAN                                                                 
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=7.05..7.10 rows=19 width=61) (actual rows=6 loops=1)
+   Sort Key: (split_part((r.accession)::text, '-'::text, 2)), r.accession
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=3 read=1
+   ->  Index Only Scan using shared_records_formula_idx on "massbank-records" r  (cost=0.42..6.65 rows=19 width=61) (actual rows=6 loops=1)
+         Index Cond: (ch_formula = 'C28H24O5'::text)
+         Heap Fetches: 0
+         Buffers: shared hit=3 read=1
+ Planning Time: 0.278 ms
+ Execution Time: 0.185 ms
+(10 rows)
+
+NEUTRAL LOSS
+                                                                                QUERY PLAN                                                                                
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Nested Loop  (cost=143.99..3212.42 rows=1713 width=61) (actual rows=2378 loops=1)
+   Buffers: shared hit=13907 read=397, temp read=16 written=39
+   ->  Nested Loop  (cost=143.57..2015.62 rows=1713 width=81) (actual rows=2378 loops=1)
+         Buffers: shared hit=6772 read=397, temp read=16 written=39
+         ->  HashAggregate  (cost=143.15..191.96 rows=1713 width=56) (actual rows=2378 loops=1)
+               Group Key: neutral_loss_index.spectrum_id
+               Planned Partitions: 4  Batches: 5  Memory Usage: 1377kB  Disk Usage: 224kB
+               Buffers: shared hit=33 read=1, temp read=16 written=39
+               ->  Index Only Scan using shared_neutral_loss_difference_cover_idx on neutral_loss_index  (cost=0.43..64.81 rows=1753 width=40) (actual rows=3027 loops=1)
+                     Index Cond: ((difference >= '333.8296990844726'::double precision) AND (difference <= '334.42969908447265'::double precision))
+                     Filter: (rel_intensity >= 1)
+                     Rows Removed by Filter: 46
+                     Heap Fetches: 0
+                     Buffers: shared hit=33 read=1
+         ->  Index Only Scan using shared_records_accession_cover_idx on "massbank-records"  (cost=0.42..1.05 rows=1 width=25) (actual rows=1 loops=2378)
+               Index Cond: (accession = (neutral_loss_index.spectrum_id)::text)
+               Heap Fetches: 0
+               Buffers: shared hit=6739 read=396
+   ->  Index Only Scan using shared_records_accession_cover_idx on "massbank-records" r  (cost=0.42..0.45 rows=1 width=35) (actual rows=1 loops=2378)
+         Index Cond: (accession = ("massbank-records".accession)::text)
+         Heap Fetches: 0
+         Buffers: shared hit=7135
+ Planning:
+   Buffers: shared hit=129 read=4
+ Planning Time: 2.397 ms
+ Execution Time: 88.054 ms
+(26 rows)
+
+METADATA COMPOUNDS
+                                         QUERY PLAN                                         
+--------------------------------------------------------------------------------------------
+ Seq Scan on metadata_statistics  (cost=0.00..61.67 rows=1 width=8) (actual rows=1 loops=1)
+   Filter: (kind = 'compound'::text)
+   Rows Removed by Filter: 2533
+   Buffers: shared read=30
+ Planning:
+   Buffers: shared hit=11
+ Planning Time: 0.234 ms
+ Execution Time: 0.707 ms
+(8 rows)
+
+METADATA CLASSES
+                                               QUERY PLAN                                                
+---------------------------------------------------------------------------------------------------------
+ Sort  (cost=158.63..163.12 rows=1794 width=56) (actual rows=1794 loops=1)
+   Sort Key: value
+   Sort Method: quicksort  Memory: 142kB
+   Buffers: shared hit=30
+   ->  Seq Scan on metadata_statistics  (cost=0.00..61.67 rows=1794 width=56) (actual rows=1794 loops=1)
+         Filter: (kind = 'class'::text)
+         Rows Removed by Filter: 740
+         Buffers: shared hit=30
+ Planning:
+   Buffers: shared hit=28
+ Planning Time: 0.236 ms
+ Execution Time: 5.239 ms
+(12 rows)
+
+METADATA CHEMONT
+                                              QUERY PLAN                                               
+-------------------------------------------------------------------------------------------------------
+ Sort  (cost=96.83..98.68 rows=738 width=56) (actual rows=738 loops=1)
+   Sort Key: count DESC
+   Sort Method: quicksort  Memory: 118kB
+   Buffers: shared hit=33
+   ->  Seq Scan on metadata_statistics  (cost=0.00..61.67 rows=738 width=56) (actual rows=738 loops=1)
+         Filter: (kind = 'chemont'::text)
+         Rows Removed by Filter: 1796
+         Buffers: shared hit=30
+ Planning:
+   Buffers: shared hit=10
+ Planning Time: 0.115 ms
+ Execution Time: 0.481 ms
+(12 rows)
+
+BROWSE FACETS
+                                                                         QUERY PLAN                                                                          
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+ HashAggregate  (cost=6403.51..6577.28 rows=13901 width=62) (actual rows=245 loops=1)
+   Group Key: (split_part((r.accession)::text, '-'::text, 2)), r.ac_instrument_type, r.ac_mass_spectrometry_ms_type, r.ac_mass_spectrometry_ion_mode
+   Batches: 1  Memory Usage: 433kB
+   Buffers: shared hit=1699
+   ->  Index Only Scan using shared_records_browse_cover_idx on "massbank-records" r  (cost=0.42..4318.43 rows=139006 width=79) (actual rows=139006 loops=1)
+         Heap Fetches: 0
+         Buffers: shared hit=1699
+ Planning:
+   Buffers: shared hit=17
+ Planning Time: 0.392 ms
+ Execution Time: 88.117 ms
+(11 rows)
+

@@ -77,7 +77,8 @@ massbank-export-api:
   useSharedData: true
   sharedDataPvcName: "{{ .Release.Name }}-massbank-data-pvc"
   dataImport:
-    enabled: true
+    # Software-only upgrades reuse the imported release. Enable explicitly to import.
+    enabled: false
     dataVersion: "2026.03"
   resources:
     requests:

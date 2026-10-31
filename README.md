@@ -29,7 +29,9 @@ The umbrella chart uses one PostgreSQL database for the API and export API.
 Only the export API's `/app-import.jar` creates the JPA tables and imports the
 records. The legacy `massbank-dbtool` is no longer an umbrella dependency.
 PostgreSQL initialization installs Bingo in the shared database; the importer
-adds the API's live read views and Bingo index. The frontend's internal and
+adds read views, search indexes and derived neutral-loss/name/metadata projections
+in the same database. Only the importer refreshes these before enabling readiness.
+The frontend's internal and
 public API URLs target these two services, not the old databases.
 
 The example values use one `massbankDatabase` YAML anchor for
@@ -56,6 +58,18 @@ helm template massbank-dev ./charts/massbank -n massbank-dev -f msbi-values-dev.
 official **2026.03** release on `massbank-dev-massbank-data-pvc`, also used by the
 old installation at `/MassBank/`. It preserves the existing CSP-enabled
 frontend image. The older `massbank` and `records` databases are not removed.
+The current development values disable the importer for software-only upgrades
+of this already populated database. Set `massbank-export-api.dataImport.enabled=true`
+explicitly for a fresh installation or a deliberate new dataset import.
+
+Existing shared databases need the matching export API branch's
+`src/main/resources/shared-api.sql` migration before these optimized images are
+started. With no import running, apply that file transactionally using
+`psql -v ON_ERROR_STOP=1 --single-transaction`. It builds initial derived search
+data from the existing JPA records; no record reimport is necessary. Then
+vacuum/analyze the record and peak tables and analyze the three materialized
+views. The export API README documents this migration and its regression test.
+This migration has already been applied to the development deployment.
 
 PostgreSQL init scripts run only for an empty data volume. For an existing PVC,
 first create `massbank_shared` owned by `massbank`, run the installed
@@ -99,9 +113,10 @@ For the currently pinned chart versions:
 ```sh
 kubectl -n massbank-dev delete \
   job/massbank-dev-massbank-data-download-2026-10-28 \
-  job/massbank-dev-massbank-export-api-import-2-6-1
+  job/massbank-dev-massbank-export-api-import-2-6-2 --ignore-not-found
 helm upgrade massbank-dev ./charts/massbank -n massbank-dev \
-  -f msbi-values-dev.yaml --reset-values --wait --wait-for-jobs --timeout 2h
+  -f msbi-values-dev.yaml --set massbank-export-api.dataImport.enabled=true \
+  --reset-values --wait --wait-for-jobs --timeout 2h
 ```
 
 ### Comparing the old and shared-database APIs
@@ -196,6 +211,59 @@ The old API has a 1 CPU / 400 MiB limit, the new API 2 CPU / 1 GiB.
 PostgreSQL versions are 17.9 and 17.11 respectively, with no explicit container
 resource limits. These are measurements of the actual deployments, not a
 hardware-controlled database benchmark. Record samples are not exhaustive.
+
+### Performance optimization and repeat measurements
+
+The [unchanged repeat](comparison-results/2026-10-31-repeat-before-optimization.json)
+confirmed the regressions, including 13,134 ms for neutral loss versus 235 ms
+on the old API. [Query plans before](comparison-results/performance-plans-before.txt)
+identified repeated precursor JSON/regex parsing across almost three million
+peaks, per-result formula parsing, full formula scans and repeated metadata
+aggregation.
+
+The deployed correction uses covering expression indexes for atom counts,
+browse/formula/peak lookups, and importer-maintained neutral-loss, name-search
+and metadata projections. The final covering indexes also eliminate heap reads
+for neutral-loss hits and browse facets. The Go API reads the prepared metadata
+aggregates; the legacy mode is unchanged. The importer refreshes all projections
+before marking the database ready, and refresh failures keep readiness false.
+Canonical records, peak IDs, release and import timestamp were not changed.
+
+[Final measurements](comparison-results/2026-10-31-after-covering-indexes.json),
+again two warmups and ten measured requests per API:
+
+| Case | Shared before (median ms) | Shared after (median / p95 ms) | Old API, final run (median ms) |
+|---|---:|---:|---:|
+| Neutral loss | 13134.27 | 226.81 / 276.50 | 235.75 |
+| All accessions | 4888.86 | 1114.05 / 1281.62 | 2396.43 |
+| Metadata | 1093.20 | 168.09 / 180.96 | 327.31 |
+| Browse filters | 642.68 | 376.78 / 442.80 | 444.79 |
+| Formula search | 192.47 | 88.14 / 91.52 | 86.35 |
+| Name search | 990.31 | 467.27 / 501.18 | 528.97 |
+| Peak search | 2005.74 | 422.23 / 451.47 | 940.28 |
+
+Neutral loss is about 58 times faster than the repeated pre-fix measurement and
+now comparable to the old API. The large regressions are removed; this does not
+mean every route is faster (the three simple-record examples still take roughly
+5-8% longer than the old API). Resource limits and the primary dataset were
+unchanged throughout the optimization.
+
+All **215 normalized candidate response hashes** match the pre-fix run; all
+215 control hashes also match. No HTTP failures, dataset drift or unstable
+responses occurred. The previously documented cross-API content differences
+remain; performance work does not silently change their semantics.
+The [intermediate run](comparison-results/2026-10-31-after-optimization.json),
+[final query plans](comparison-results/performance-plans-after.txt) and
+[machine-readable summary](comparison-results/performance-optimization-summary.json)
+retain the evidence and raw timings.
+
+SQL regression checks compare the complete neutral-loss multiset, metadata
+aggregates and names, including invalid/single peaks, invalid/multiple precursors,
+MS types and special characters. A real 677-record import with the final image
+also completed successfully and refreshed the projections with no stale peak IDs.
+The trade-off is derived storage and import-time work: the shared database grew
+from approximately 1,409 to 2,064 MB (neutral-loss projection plus index: 488 MB;
+names: 22 MB; metadata: 280 kB). There is still only one authoritative JPA dataset.
 
 ## Development Environment
 

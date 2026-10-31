@@ -1,0 +1,252 @@
+{
+  "reports": [
+    "comparison-results/2026-10-31-repeat-before-optimization.json",
+    "comparison-results/2026-10-31-after-optimization.json",
+    "comparison-results/2026-10-31-after-covering-indexes.json"
+  ],
+  "release": "2026.03",
+  "active_records": 139006,
+  "candidate_outputs_unchanged_in_all_215_cases": true,
+  "http_errors": 0,
+  "measured_repetitions": 10,
+  "warmups": 2,
+  "api_commit": "607bbbaf7eec9cc211a393b9b0f3fbf596def5bb",
+  "export_commit": "f8fa0e2b19d1235739cfbb4468656441e507475f",
+  "helm_revision": 13,
+  "migration": "same canonical data and import timestamp; only derived projections and indexes added",
+  "caveat": "End-to-end public HTTP timing with fresh TLS; deployment resource limits unchanged, not a hardware-controlled database benchmark. Existing cross-API content differences remain.",
+  "cases": [
+    {
+      "case": "status",
+      "endpoint": "/status",
+      "new_before_median_ms": 90.3668,
+      "new_after_median_ms": 95.609679,
+      "old_api_median_ms": 92.3882435,
+      "new_after_p95_ms": 98.408166,
+      "old_api_p95_ms": 106.577666,
+      "candidate_speedup": 0.9451637213424804,
+      "new_over_old_ratio": 1.0348684570456197
+    },
+    {
+      "case": "count",
+      "endpoint": "/records/count",
+      "new_before_median_ms": 100.2232965,
+      "new_after_median_ms": 99.1340885,
+      "old_api_median_ms": 122.806691,
+      "new_after_p95_ms": 101.835176,
+      "old_api_p95_ms": 130.474478,
+      "candidate_speedup": 1.0109872195980296,
+      "new_over_old_ratio": 0.8072368670856868
+    },
+    {
+      "case": "metadata",
+      "endpoint": "/metadata",
+      "new_before_median_ms": 1093.202327,
+      "new_after_median_ms": 168.09452299999998,
+      "old_api_median_ms": 327.31462050000005,
+      "new_after_p95_ms": 180.961328,
+      "old_api_p95_ms": 352.392568,
+      "candidate_speedup": 6.503497600573221,
+      "new_over_old_ratio": 0.5135564147523314
+    },
+    {
+      "case": "browse",
+      "endpoint": "/filter/browse",
+      "new_before_median_ms": 642.684902,
+      "new_after_median_ms": 376.777833,
+      "old_api_median_ms": 444.785003,
+      "new_after_p95_ms": 442.800449,
+      "old_api_p95_ms": 577.427651,
+      "candidate_speedup": 1.7057396845318127,
+      "new_over_old_ratio": 0.8471010273698458
+    },
+    {
+      "case": "all-accessions",
+      "endpoint": "/records/search",
+      "new_before_median_ms": 4888.8576035,
+      "new_after_median_ms": 1114.054977,
+      "old_api_median_ms": 2396.4307315,
+      "new_after_p95_ms": 1281.616788,
+      "old_api_p95_ms": 2792.882345,
+      "candidate_speedup": 4.388345013874481,
+      "new_over_old_ratio": 0.4648809424600721
+    },
+    {
+      "case": "record:MSBNK-IPB_Halle-PB011601",
+      "endpoint": "/records/MSBNK-IPB_Halle-PB011601",
+      "new_before_median_ms": 116.67281249999999,
+      "new_after_median_ms": 116.01787,
+      "old_api_median_ms": 127.66896299999999,
+      "new_after_p95_ms": 128.767429,
+      "old_api_p95_ms": 150.776228,
+      "candidate_speedup": 1.0056451863837872,
+      "new_over_old_ratio": 0.908739816426644
+    },
+    {
+      "case": "simple:MSBNK-IPB_Halle-PB011601",
+      "endpoint": "/records/MSBNK-IPB_Halle-PB011601/simple",
+      "new_before_median_ms": 114.158041,
+      "new_after_median_ms": 108.789789,
+      "old_api_median_ms": 104.17793449999999,
+      "new_after_p95_ms": 122.502678,
+      "old_api_p95_ms": 108.798723,
+      "candidate_speedup": 1.0493451825703972,
+      "new_over_old_ratio": 1.0442690145675715
+    },
+    {
+      "case": "record:MSBNK-RIKEN_IMS-LQB00025",
+      "endpoint": "/records/MSBNK-RIKEN_IMS-LQB00025",
+      "new_before_median_ms": 90.96058,
+      "new_after_median_ms": 91.1439605,
+      "old_api_median_ms": 111.6829295,
+      "new_after_p95_ms": 92.9998,
+      "old_api_p95_ms": 118.02478,
+      "candidate_speedup": 0.9979880126012297,
+      "new_over_old_ratio": 0.8160957176539679
+    },
+    {
+      "case": "simple:MSBNK-RIKEN_IMS-LQB00025",
+      "endpoint": "/records/MSBNK-RIKEN_IMS-LQB00025/simple",
+      "new_before_median_ms": 91.601459,
+      "new_after_median_ms": 91.480444,
+      "old_api_median_ms": 84.7788855,
+      "new_after_p95_ms": 94.646455,
+      "old_api_p95_ms": 88.403815,
+      "candidate_speedup": 1.0013228510346976,
+      "new_over_old_ratio": 1.079047494673659
+    },
+    {
+      "case": "record:MSBNK-Univ_Connecticut-CO000126",
+      "endpoint": "/records/MSBNK-Univ_Connecticut-CO000126",
+      "new_before_median_ms": 89.9680755,
+      "new_after_median_ms": 88.9397995,
+      "old_api_median_ms": 112.195443,
+      "new_after_p95_ms": 106.780048,
+      "old_api_p95_ms": 127.03636,
+      "candidate_speedup": 1.0115614832255158,
+      "new_over_old_ratio": 0.7927220314999782
+    },
+    {
+      "case": "simple:MSBNK-Univ_Connecticut-CO000126",
+      "endpoint": "/records/MSBNK-Univ_Connecticut-CO000126/simple",
+      "new_before_median_ms": 89.20661150000001,
+      "new_after_median_ms": 88.988212,
+      "old_api_median_ms": 83.76745700000001,
+      "new_after_p95_ms": 95.241471,
+      "old_api_p95_ms": 88.240761,
+      "candidate_speedup": 1.0024542520305948,
+      "new_over_old_ratio": 1.0623243821284918
+    },
+    {
+      "case": "formula",
+      "endpoint": "/records/search?formula=C28H24O5",
+      "new_before_median_ms": 192.468827,
+      "new_after_median_ms": 88.13584399999999,
+      "old_api_median_ms": 86.35184050000001,
+      "new_after_p95_ms": 91.524771,
+      "old_api_p95_ms": 101.810003,
+      "candidate_speedup": 2.183774708051812,
+      "new_over_old_ratio": 1.0206597044101218
+    },
+    {
+      "case": "name",
+      "endpoint": "/records/search?compound_name=%2820S%29-14-oxapentacyclo%5B20.2.2.210%2C13.115%2C19.02%2C7%5Dnonacosa-1%2824%29%2C2%287%29%2C3%2C5%2C10%2829%29%2C11%2C13%2828%29%2C15%2C17%2C19%2827%29%2C22%2C25-dodecaene-5%2C16%2C20%2C24-tetrol",
+      "new_before_median_ms": 990.3134225,
+      "new_after_median_ms": 467.270357,
+      "old_api_median_ms": 528.9693609999999,
+      "new_after_p95_ms": 501.178726,
+      "old_api_p95_ms": 594.346654,
+      "candidate_speedup": 2.1193585419329306,
+      "new_over_old_ratio": 0.8833599664763949
+    },
+    {
+      "case": "exact-mass",
+      "endpoint": "/records/search?exact_mass=440.162&mass_tolerance=0.01",
+      "new_before_median_ms": 248.8620955,
+      "new_after_median_ms": 191.2012025,
+      "old_api_median_ms": 210.817613,
+      "new_after_p95_ms": 200.937133,
+      "old_api_p95_ms": 245.589419,
+      "candidate_speedup": 1.3015718115057358,
+      "new_over_old_ratio": 0.9069507987456437
+    },
+    {
+      "case": "contributor",
+      "endpoint": "/records/search?contributor=IPB_Halle",
+      "new_before_median_ms": 250.9794185,
+      "new_after_median_ms": 112.24295699999999,
+      "old_api_median_ms": 127.50996,
+      "new_after_p95_ms": 124.310168,
+      "old_api_p95_ms": 134.464115,
+      "candidate_speedup": 2.2360371216877333,
+      "new_over_old_ratio": 0.8802681531701523
+    },
+    {
+      "case": "ion-mode",
+      "endpoint": "/records/search?ion_mode=POSITIVE",
+      "new_before_median_ms": 3289.1094494999998,
+      "new_after_median_ms": 850.082346,
+      "old_api_median_ms": 1771.6476975,
+      "new_after_p95_ms": 937.852872,
+      "old_api_p95_ms": 1866.313161,
+      "candidate_speedup": 3.8691656931550953,
+      "new_over_old_ratio": 0.4798258407693384
+    },
+    {
+      "case": "ms-type",
+      "endpoint": "/records/search?ms_type=MS2",
+      "new_before_median_ms": 3920.8591930000002,
+      "new_after_median_ms": 998.010364,
+      "old_api_median_ms": 2164.6386365,
+      "new_after_p95_ms": 1057.765307,
+      "old_api_p95_ms": 2275.469024,
+      "candidate_speedup": 3.9286758278594394,
+      "new_over_old_ratio": 0.46105171882808166
+    },
+    {
+      "case": "records-by-formula",
+      "endpoint": "/records?formula=C28H24O5",
+      "new_before_median_ms": 304.28423050000004,
+      "new_after_median_ms": 160.0426105,
+      "old_api_median_ms": 154.5231305,
+      "new_after_p95_ms": 174.850122,
+      "old_api_p95_ms": 162.040316,
+      "candidate_speedup": 1.9012701026893088,
+      "new_over_old_ratio": 1.0357194420158347
+    },
+    {
+      "case": "bingo-substructure",
+      "endpoint": "/records/search?substructure=C1CC2%3DC%28C%3DCC%28%3DC2%29O%29C3%3DC%28C%3DC%28C%5BC%40%40H%5D%28C4%3DCC%28%3DC%28C%3DC4%29O%29OC5%3DCC%3DC1C%3DC5%29O%29C%3DC3%29O",
+      "new_before_median_ms": 115.7041935,
+      "new_after_median_ms": 93.851618,
+      "old_api_median_ms": 103.1355255,
+      "new_after_p95_ms": 108.695761,
+      "old_api_p95_ms": 121.323702,
+      "candidate_speedup": 1.2328417555891258,
+      "new_over_old_ratio": 0.9099834178864004
+    },
+    {
+      "case": "peak",
+      "endpoint": "/records/search?peaks=107.04000091552734&intensity=1",
+      "new_before_median_ms": 2005.737695,
+      "new_after_median_ms": 422.2344355,
+      "old_api_median_ms": 940.2846525,
+      "new_after_p95_ms": 451.465598,
+      "old_api_p95_ms": 1121.443248,
+      "candidate_speedup": 4.750293975016161,
+      "new_over_old_ratio": 0.4490495876726011
+    },
+    {
+      "case": "neutral-loss",
+      "endpoint": "/records/search?neutral_loss=334.12969908447263&intensity=1",
+      "new_before_median_ms": 13134.272497,
+      "new_after_median_ms": 226.80914,
+      "old_api_median_ms": 235.752147,
+      "new_after_p95_ms": 276.502409,
+      "old_api_p95_ms": 269.786969,
+      "candidate_speedup": 57.9089206766535,
+      "new_over_old_ratio": 0.9620660633898702
+    }
+  ],
+  "control_outputs_unchanged_in_all_215_cases": true
+}

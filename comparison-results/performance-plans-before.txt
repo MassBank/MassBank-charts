@@ -1,0 +1,170 @@
+SET
+SET
+SET
+ALL ACCESSIONS
+                                                   QUERY PLAN                                                    
+-----------------------------------------------------------------------------------------------------------------
+ Sort  (cost=72013.20..72363.17 rows=139990 width=61) (actual rows=139006 loops=1)
+   Sort Key: (split_part((r.accession)::text, '-'::text, 2)), r.accession
+   Sort Method: external merge  Disk: 6792kB
+   Buffers: shared hit=5142 read=15087, temp read=849 written=851
+   ->  Seq Scan on "massbank-records" r  (cost=0.00..56964.38 rows=139990 width=61) (actual rows=139006 loops=1)
+         Buffers: shared hit=5139 read=15087
+ Planning:
+   Buffers: shared hit=132 read=61
+ Planning Time: 25.714 ms
+ Execution Time: 3943.247 ms
+(10 rows)
+
+FORMULA
+                                               QUERY PLAN                                               
+--------------------------------------------------------------------------------------------------------
+ Sort  (cost=21972.08..21972.12 rows=19 width=61) (actual rows=6 loops=1)
+   Sort Key: (split_part((r.accession)::text, '-'::text, 2)), r.accession
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=5164 read=15053
+   ->  Seq Scan on "massbank-records" r  (cost=0.00..21971.67 rows=19 width=61) (actual rows=6 loops=1)
+         Filter: ((ch_formula)::text = 'C28H24O5'::text)
+         Rows Removed by Filter: 139000
+         Buffers: shared hit=5164 read=15053
+ Planning Time: 0.235 ms
+ Execution Time: 81.029 ms
+(10 rows)
+
+NEUTRAL LOSS
+                                                                                                                                                                                                                                                                                                                                                           QUERY PLAN                                                                                                                                                                                                                                                                                                                                                            
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Nested Loop  (cost=64511.40..67772.37 rows=1603 width=61) (actual rows=2378 loops=1)
+   Buffers: shared hit=1215071 read=62756
+   ->  Nested Loop  (cost=64510.98..66393.67 rows=1603 width=82) (actual rows=2378 loops=1)
+         Buffers: shared hit=1206926 read=61389
+         ->  GroupAggregate  (cost=64510.56..64546.62 rows=1603 width=57) (actual rows=2378 loops=1)
+               Group Key: peak_differences.spectrum_id
+               Buffers: shared hit=1200044 read=61136
+               ->  Sort  (cost=64510.56..64514.56 rows=1603 width=41) (actual rows=3027 loops=1)
+                     Sort Key: peak_differences.spectrum_id
+                     Sort Method: quicksort  Memory: 272kB
+                     Buffers: shared hit=1200044 read=61136
+                     ->  Subquery Scan on peak_differences  (cost=0.85..64425.22 rows=1603 width=41) (actual rows=3027 loops=1)
+                           Buffers: shared hit=1200044 read=61136
+                           ->  Nested Loop  (cost=0.85..64409.19 rows=1603 width=53) (actual rows=3027 loops=1)
+                                 Join Filter: ((abs(((p.mz)::double precision - CASE WHEN (("Record_msFocusedIon".ms_focused_ion ->> 'value'::text) ~ '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?$'::text) THEN (("Record_msFocusedIon".ms_focused_ion ->> 'value'::text))::double precision ELSE NULL::double precision END)) >= '333.8296990844726'::double precision) AND (abs(((p.mz)::double precision - CASE WHEN (("Record_msFocusedIon".ms_focused_ion ->> 'value'::text) ~ '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?$'::text) THEN (("Record_msFocusedIon".ms_focused_ion ->> 'value'::text))::double precision ELSE NULL::double precision END)) <= '334.42969908447265'::double precision))
+                                 Rows Removed by Join Filter: 2946671
+                                 Buffers: shared hit=1200044 read=61136
+                                 ->  Nested Loop  (cost=0.42..59068.79 rows=455 width=98) (actual rows=107066 loops=1)
+                                       Buffers: shared hit=772243 read=30899
+                                       ->  Seq Scan on "Record_msFocusedIon"  (cost=0.00..13228.35 rows=1608 width=73) (actual rows=113270 loops=1)
+                                             Filter: (((ms_focused_ion ->> 'key'::text) = 'PRECURSOR_M/Z'::text) AND (CASE WHEN ((ms_focused_ion ->> 'value'::text) ~ '^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?$'::text) THEN ((ms_focused_ion ->> 'value'::text))::double precision ELSE NULL::double precision END IS NOT NULL))
+                                             Rows Removed by Filter: 209987
+                                             Buffers: shared read=4342
+                                       ->  Index Scan using "massbank-records_pkey" on "massbank-records" r_1  (cost=0.42..28.51 rows=1 width=25) (actual rows=1 loops=113270)
+                                             Index Cond: ((accession)::text = ("Record_msFocusedIon"."Record_accession")::text)
+                                             Filter: (((ac_mass_spectrometry_ms_type)::text = ANY ('{MS2,MS3,MS4}'::text[])) AND ((SubPlan 1) > 1))
+                                             Rows Removed by Filter: 0
+                                             Buffers: shared hit=772243 read=26557
+                                             SubPlan 1
+                                               ->  Aggregate  (cost=26.29..26.30 rows=1 width=8) (actual rows=1 loops=112954)
+                                                     Buffers: shared hit=338978 read=6742
+                                                     ->  Index Only Scan using shared_peaks_record_idx on "massbank-peaks" q  (cost=0.43..25.98 rows=124 width=0) (actual rows=27 loops=112954)
+                                                           Index Cond: (record_id = (r_1.accession)::text)
+                                                           Heap Fetches: 214689
+                                                           Buffers: shared hit=338978 read=6742
+                                 ->  Index Scan using shared_peaks_record_idx on "massbank-peaks" p  (cost=0.43..4.98 rows=122 width=39) (actual rows=28 loops=107066)
+                                       Index Cond: ((record_id)::text = (r_1.accession)::text)
+                                       Filter: ((mz > '0'::numeric) AND (intensity > '0'::numeric) AND (rel_intensity >= 1))
+                                       Rows Removed by Filter: 1
+                                       Buffers: shared hit=427801 read=30237
+         ->  Index Only Scan using "massbank-records_pkey" on "massbank-records"  (cost=0.42..1.14 rows=1 width=25) (actual rows=1 loops=2378)
+               Index Cond: (accession = (peak_differences.spectrum_id)::text)
+               Heap Fetches: 0
+               Buffers: shared hit=6882 read=253
+   ->  Index Scan using "massbank-records_pkey" on "massbank-records" r  (cost=0.42..0.61 rows=1 width=35) (actual rows=1 loops=2378)
+         Index Cond: ((accession)::text = ("massbank-records".accession)::text)
+         Buffers: shared hit=8145 read=1367
+ Planning:
+   Buffers: shared hit=300 read=33
+ Planning Time: 5.247 ms
+ Execution Time: 13097.494 ms
+(51 rows)
+
+METADATA COMPOUNDS
+                                                         QUERY PLAN                                                         
+----------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=23298.77..23298.78 rows=1 width=8) (actual rows=1 loops=1)
+   Buffers: shared hit=5989 read=14866
+   ->  Sort  (cost=23239.23..23269.00 rows=11909 width=126) (actual rows=20549 loops=1)
+         Sort Key: "massbank-records".ch_iupac
+         Sort Method: quicksort  Memory: 769kB
+         Buffers: shared hit=5986 read=14866
+         ->  HashAggregate  (cost=22313.91..22433.00 rows=11909 width=126) (actual rows=20549 loops=1)
+               Group Key: "massbank-records".ch_iupac
+               Batches: 1  Memory Usage: 5137kB
+               Buffers: shared hit=5593 read=14866
+               ->  Seq Scan on "massbank-records"  (cost=0.00..21966.88 rows=138814 width=126) (actual rows=137883 loops=1)
+                     Filter: ((ch_iupac)::text <> 'N/A'::text)
+                     Rows Removed by Filter: 1123
+                     Buffers: shared hit=5398 read=14819
+ Planning:
+   Buffers: shared hit=6 read=8
+ Planning Time: 0.406 ms
+ Execution Time: 302.446 ms
+(18 rows)
+
+METADATA CLASSES
+                                                               QUERY PLAN                                                               
+----------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=67510.75..67511.25 rows=200 width=40) (actual rows=1794 loops=1)
+   Sort Key: (jsonb_array_elements_text("massbank-records".ch_compound_class))
+   Sort Method: quicksort  Memory: 142kB
+   Buffers: shared hit=5434 read=14783
+   ->  HashAggregate  (cost=67501.11..67503.11 rows=200 width=40) (actual rows=1794 loops=1)
+         Group Key: (jsonb_array_elements_text("massbank-records".ch_compound_class))
+         Batches: 1  Memory Usage: 337kB
+         Buffers: shared hit=5434 read=14783
+         ->  Gather  (cost=1000.00..65401.26 rows=139990 width=260) (actual rows=209344 loops=1)
+               Workers Planned: 2
+               Workers Launched: 2
+               Buffers: shared hit=5434 read=14783
+               ->  ProjectSet  (cost=0.00..50402.26 rows=5832900 width=260) (actual rows=69781 loops=3)
+                     Buffers: shared hit=5434 read=14783
+                     ->  Parallel Seq Scan on "massbank-records"  (cost=0.00..20800.29 rows=58329 width=31) (actual rows=46335 loops=3)
+                           Buffers: shared hit=5434 read=14783
+ Planning:
+   Buffers: shared hit=12 read=3
+ Planning Time: 0.372 ms
+ Execution Time: 133.530 ms
+(20 rows)
+
+METADATA CHEMONT
+                                                                QUERY PLAN                                                                 
+-------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=15562.94..15570.25 rows=2926 width=40) (actual rows=738 loops=1)
+   Sort Key: (count((("Record_chLink".ch_link ->> 'value'::text)))) DESC
+   Sort Method: quicksort  Memory: 118kB
+   Buffers: shared hit=74 read=10042, temp read=4474 written=4484
+   ->  Finalize GroupAggregate  (cost=15015.02..15394.48 rows=2926 width=40) (actual rows=738 loops=1)
+         Group Key: (("Record_chLink".ch_link ->> 'value'::text))
+         Buffers: shared hit=71 read=10042, temp read=4474 written=4484
+         ->  Gather Merge  (cost=15015.02..15344.88 rows=2604 width=40) (actual rows=1858 loops=1)
+               Workers Planned: 2
+               Workers Launched: 2
+               Buffers: shared hit=71 read=10042, temp read=4474 written=4484
+               ->  Partial GroupAggregate  (cost=14015.00..14044.29 rows=1302 width=40) (actual rows=619 loops=3)
+                     Group Key: (("Record_chLink".ch_link ->> 'value'::text))
+                     Buffers: shared hit=71 read=10042, temp read=4474 written=4484
+                     ->  Sort  (cost=14015.00..14018.25 rows=1302 width=102) (actual rows=45857 loops=3)
+                           Sort Key: (("Record_chLink".ch_link ->> 'value'::text))
+                           Sort Method: external merge  Disk: 14152kB
+                           Buffers: shared hit=71 read=10042, temp read=4474 written=4484
+                           Worker 0:  Sort Method: external merge  Disk: 10856kB
+                           Worker 1:  Sort Method: external merge  Disk: 10784kB
+                           ->  Parallel Seq Scan on "Record_chLink"  (cost=0.00..13947.64 rows=1302 width=102) (actual rows=45857 loops=3)
+                                 Filter: ((ch_link ->> 'key'::text) = 'ChemOnt'::text)
+                                 Rows Removed by Filter: 160503
+                                 Buffers: shared read=10039
+ Planning:
+   Buffers: shared hit=24 read=12
+ Planning Time: 0.616 ms
+ Execution Time: 352.305 ms
+(28 rows)
+
