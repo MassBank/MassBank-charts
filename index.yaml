@@ -400,6 +400,21 @@ entries:
     version: 0.1.0
   massbank-api:
   - apiVersion: v2
+    appVersion: v2026.11.1
+    created: "2026-11-06T12:34:35.697614996Z"
+    dependencies:
+    - condition: withPostgres
+      name: postgres
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.21.2
+    description: A Helm chart for massbank-api
+    digest: 4bf1e050bcb1651664dcd2b8182d4665b16613cc6c22515267ba79335656a401
+    name: massbank-api
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-api-2026.11.0/massbank-api-2026.11.0.tgz
+    version: 2026.11.0
+  - apiVersion: v2
     appVersion: v2025.12.1
     created: "2026-10-29T11:55:19.120524925Z"
     dependencies:
@@ -799,6 +814,21 @@ entries:
     version: 2025.10.0
   massbank-dbtool:
   - apiVersion: v2
+    appVersion: v2026.11.1
+    created: "2026-11-06T12:34:35.863638411Z"
+    dependencies:
+    - condition: withPostgres
+      name: postgres
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.21.2
+    description: A Helm chart for Kubernetes
+    digest: ad1c6b6ab837d5d58072438252aff74feb54f2686a3eb867158b73565ba7606b
+    name: massbank-dbtool
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-dbtool-2026.11.0/massbank-dbtool-2026.11.0.tgz
+    version: 2026.11.0
+  - apiVersion: v2
     appVersion: v2025.12.1
     created: "2026-10-29T11:55:19.459116484Z"
     dependencies:
@@ -1136,6 +1166,16 @@ entries:
     version: 0.1.0
   massbank-frontend:
   - apiVersion: v2
+    appVersion: v2026.11.1
+    created: "2026-11-06T12:34:36.023948216Z"
+    description: A Helm chart for massbank-frontend
+    digest: 263f39e8dcda436979a0d0c4b178d2d1606f463af9bbb13376773b4d077ca502
+    name: massbank-frontend
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-frontend-2026.11.0/massbank-frontend-2026.11.0.tgz
+    version: 2026.11.0
+  - apiVersion: v2
     appVersion: v2025.12.1
     created: "2026-10-30T15:26:28.4606187Z"
     description: A Helm chart for massbank-frontend
@@ -1363,4 +1403,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2026-10-30T15:31:50.084311566Z"
+generated: "2026-11-06T12:34:36.024338063Z"
