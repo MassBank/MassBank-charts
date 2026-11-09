@@ -2,11 +2,11 @@ apiVersion: v2
 name: massbank
 description: A umbrella chart for MassBank
 type: application
-version: 0.1.17
+version: 0.1.18
 
 dependencies:
   - name: massbank-data
-    version: 2026.10.28
+    version: 2026.11.1
     repository: "https://massbank.github.io/MassBank-charts"
   - name: postgres
     version: 0.21.2
