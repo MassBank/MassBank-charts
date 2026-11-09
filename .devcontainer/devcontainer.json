@@ -7,7 +7,10 @@
   "workspaceFolder": "/workspaces/MassBank-charts",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/MassBank-charts,type=bind,Z",
   "mounts": [
-    "source=${localEnv:HOME}/.kube,target=/home/vscode/.kube,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.kube,target=/home/vscode/.kube,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/GIT/MassBank-export-api,target=/workspaces/MassBank-export-api,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/GIT/MassBank-similarity-api,target=/workspaces/MassBank-similarity-api,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/GIT/MassBank3,target=/workspaces/MassBank3,type=bind,consistency=cached"
   ],
   "runArgs": [
     "--userns=keep-id:uid=1000,gid=1000",
