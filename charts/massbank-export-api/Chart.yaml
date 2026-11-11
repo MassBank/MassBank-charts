@@ -3,8 +3,8 @@ name: massbank-export-api
 description: A Helm chart for massbank-export-api
 
 type: application
-version: 2.5.3
-appVersion: "v2.5"
+version: 2.6.0
+appVersion: "v2.6"
 
 dependencies:
   - name: postgres
