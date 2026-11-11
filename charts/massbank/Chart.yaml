@@ -15,7 +15,7 @@ dependencies:
     version: 2026.11.0
     repository: "https://massbank.github.io/MassBank-charts"
   - name: massbank-export-api
-    version: 2.6.0
+    version: 2.6.1
     repository: "https://massbank.github.io/MassBank-charts"
   - name: massbank-frontend
     version: 2026.11.0
