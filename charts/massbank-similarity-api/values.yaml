@@ -78,7 +78,7 @@ ingress:
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
 livenessProbe:
   httpGet:
-    path: "/{{ .Values.pathPrefix }}-similarity/version"
+    path: "/{{ .Values.pathPrefix }}-similarity/liveness"
     port: http
   initialDelaySeconds: 150
   periodSeconds: 60
@@ -86,7 +86,7 @@ livenessProbe:
   failureThreshold: 6
 readinessProbe:
   httpGet:
-    path: "/{{ .Values.pathPrefix }}-similarity/version"
+    path: "/{{ .Values.pathPrefix }}-similarity/readiness"
     port: http
   initialDelaySeconds: 120
   periodSeconds: 10
