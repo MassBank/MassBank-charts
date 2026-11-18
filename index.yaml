@@ -2,6 +2,37 @@ apiVersion: v1
 entries:
   massbank:
   - apiVersion: v2
+    created: "2026-11-18T14:15:53.055363347Z"
+    dependencies:
+    - name: massbank-data
+      repository: https://massbank.github.io/MassBank-charts
+      version: 2026.11.1
+    - name: postgres
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.21.2
+    - name: massbank-api
+      repository: https://massbank.github.io/MassBank-charts
+      version: 2026.11.1
+    - name: massbank-export-api
+      repository: https://massbank.github.io/MassBank-charts
+      version: 2.6.2
+    - name: massbank-frontend
+      repository: https://massbank.github.io/MassBank-charts
+      version: 2026.11.1
+    - name: massbank-similarity-api
+      repository: https://massbank.github.io/MassBank-charts
+      version: 1.8.9
+    - name: massbank-dbtool
+      repository: https://massbank.github.io/MassBank-charts
+      version: 2026.11.1
+    description: A umbrella chart for MassBank
+    digest: fbb132651363c7afbd0f0af654374f6e3b651a038b85789ee98a6b8c7e8c8642
+    name: massbank
+    type: application
+    urls:
+    - https://github.com/MassBank/MassBank-charts/releases/download/massbank-0.1.22/massbank-0.1.22.tgz
+    version: 0.1.22
+  - apiVersion: v2
     created: "2026-11-12T10:48:05.75039801Z"
     dependencies:
     - name: massbank-data
@@ -1653,4 +1684,4 @@ entries:
     urls:
     - https://github.com/MassBank/MassBank-charts/releases/download/massbank-similarity-api-0.1.0/massbank-similarity-api-0.1.0.tgz
     version: 0.1.0
-generated: "2026-11-18T13:34:51.187477919Z"
+generated: "2026-11-18T14:15:53.055535996Z"
