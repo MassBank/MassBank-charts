@@ -25,14 +25,8 @@ Some example values files can be found in the root of this repo.
 
 ## Development Environment
 
-A development container with Podman is configured under `.devcontainer/` providing all necessary tools for Helm chart development (`helm`, plugins `diff` and `unittest`, `kubectl`, `yq`, `kubeconform`, `helm-docs`, and `chart-testing`).
+A development container is configured under `.devcontainer/` and provides all necessary tools for Helm chart development (`helm`, plugins `diff` and `unittest`, `kubectl`, `yq`, `kubeconform`, `helm-docs`, and `chart-testing`).
 
-To open a shell or run commands inside the container using Podman:
-```bash
-./.devcontainer/run.sh
-./.devcontainer/run.sh helm lint ./charts/massbank-frontend
-```
+See `.devcontainer/README.md` for instructions on opening the project in the development container and running commands there.
 
-See `.devcontainer/README.md` for complete documentation.
-
-Opening the project in PyCharm does not start the devcontainer automatically. Open `.devcontainer/devcontainer.json` to create or connect to the devcontainer. The helper script above starts separate, disposable containers for commands and shells.
+Opening the project in PyCharm does not start the devcontainer automatically. Open `.devcontainer/devcontainer.json` to create or connect to the devcontainer.

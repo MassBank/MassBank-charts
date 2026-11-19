@@ -27,34 +27,13 @@ The container is based on `mcr.microsoft.com/devcontainers/base:ubuntu26.04` and
 
 ## Using with Podman
 
-### Option 1: Via the Helper Script (`.devcontainer/run.sh`)
-
-A helper script is provided at `.devcontainer/run.sh` to run commands or start an interactive shell inside the container using Podman:
+### Using Podman CLI
 
 ```bash
-# Open an interactive shell inside the container
-./.devcontainer/run.sh
-
-# Lint a chart inside the container
-./.devcontainer/run.sh helm lint ./charts/massbank-frontend
-
-# Render templates with development values
-./.devcontainer/run.sh helm template massbank ./charts/massbank -f msbi-values-dev.yaml
-
-# Run chart-testing
-./.devcontainer/run.sh ct lint --all
-
-# Force rebuild of the container image
-./.devcontainer/run.sh --build
-```
-
-### Option 2: Using Podman CLI Directly
-
-```bash
-# 1. Build the image
+# Build the image
 podman build -t massbank-charts-dev -f .devcontainer/Dockerfile .devcontainer
 
-# 2. Run container with rootless user namespace mapping and workspace volume mount
+# Run container with rootless user namespace mapping and workspace volume mount
 podman run -it --rm \
   --userns=keep-id:uid=1000,gid=1000 \
   --security-opt label=disable \
@@ -70,16 +49,10 @@ podman run -it --rm \
 
 The configuration disables Dev Containers' automatic remote-user UID/GID rewrite (`updateRemoteUserUID: false`). With rootless Podman, the build-time recursive `chown` can fail for files in the base image.
 
-Use `--userns=keep-id:uid=1000,gid=1000` so the host user is mapped to the image user `vscode` (1000/1000). Bare `--userns=keep-id` keeps the host numeric IDs, which breaks writes for UIDs that are not 1000. `--security-opt=label=disable` is set for JetBrains + SELinux, matching `run.sh` and the `:Z` workspace mount.
+Use `--userns=keep-id:uid=1000,gid=1000` so the host user is mapped to the image user `vscode` (1000/1000). Bare `--userns=keep-id` keeps the host numeric IDs, which breaks writes for UIDs that are not 1000. `--security-opt=label=disable` supports JetBrains with SELinux alongside the `:Z` workspace mount.
 
-### IDE state, sign-in, and chat history
+### Using an IDE
 
-When using native Dev Container support in PyCharm (**Settings -> Advanced Settings -> Open devcontainer projects natively**), the IDE runs on the host and uses the container directly for tooling and runtime operations. Settings, sign-ins (e.g. GitHub Copilot, JetBrains AI), and chat histories remain with your host IDE without requiring container-side volume persistence.
+Use native Dev Container support in PyCharm (**Settings -> Advanced Settings -> Open devcontainer projects natively**) or VS Code's **Dev Containers: Reopen in Container** command. The IDE runs on the host and uses the container directly for tooling and runtime operations; settings, sign-ins, and chat histories remain with the host IDE.
 
-For disposable shells or commands, `.devcontainer/run.sh` starts a container with `--rm`.
-
-## AI Agent Guidance
-
-When an AI Agent is tasked with modifying or validating Helm charts in this repository:
-- All commands (linting, templating, validation, chart updates) should be run inside this container environment.
-- Use `./.devcontainer/run.sh <command>` to execute commands in the container from the host, or attach the agent runner directly to the running container.
+Run development and validation commands from a shell inside the running devcontainer. When using an AI agent, attach its runner to that container so commands use the same environment.

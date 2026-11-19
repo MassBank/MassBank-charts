@@ -73,8 +73,4 @@ All required CLI tools (`helm`, plugins `diff` and `unittest`, `kubectl`, `yq`, 
 
 - **Inside Devcontainer (Default execution environment):**
   Execute all commands directly in the shell (e.g. `helm lint ./charts/massbank`, `kubectl get pods`).
-  Do NOT execute `./.devcontainer/run.sh` from within the container, as this causes redundant nesting and runtime failures.
-
-- **Host Environment Only:**
-  Use `./.devcontainer/run.sh <command>` only when executing commands from the host system outside of the container.
-
+  Do not start a nested container for development commands.
