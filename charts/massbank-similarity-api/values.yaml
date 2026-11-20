@@ -75,22 +75,29 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-# This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+# The API starts listening only after its reference data has loaded.
+startupProbe:
+  httpGet:
+    path: "/{{ .Values.pathPrefix }}-similarity/liveness"
+    port: http
+  periodSeconds: 10
+  timeoutSeconds: 3
+  failureThreshold: 60
+
+# These endpoints are served under the configured application context path.
 livenessProbe:
   httpGet:
     path: "/{{ .Values.pathPrefix }}-similarity/liveness"
     port: http
-  initialDelaySeconds: 150
-  periodSeconds: 60
-  timeoutSeconds: 10
-  failureThreshold: 6
+  periodSeconds: 10
+  timeoutSeconds: 3
+  failureThreshold: 3
 readinessProbe:
   httpGet:
     path: "/{{ .Values.pathPrefix }}-similarity/readiness"
     port: http
-  initialDelaySeconds: 120
   periodSeconds: 10
-  timeoutSeconds: 6
+  timeoutSeconds: 3
   failureThreshold: 3
 
 autoscaling:

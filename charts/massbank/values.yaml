@@ -144,7 +144,7 @@ massbank-similarity-api:
 #      memory: 1600Mi
 #  autoscaling:
 #    enabled: true
-#    minReplicas: 2
+#    minReplicas: 1
 #    maxReplicas: 8
 #    targetCPUUtilizationPercentage: 50
 
