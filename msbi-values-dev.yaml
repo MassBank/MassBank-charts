@@ -50,6 +50,9 @@ postgres:
     scriptsConfigMap: "postgres-config"
 
 massbank-api:
+  image:
+    tag: dev
+    pullPolicy: Always
   host: *commonHost
   pathPrefix: *commonPathPrefix
   withPostgres: false
@@ -91,6 +94,9 @@ massbank-export-api:
 
 
 massbank-frontend:
+  image:
+    tag: dev
+    pullPolicy: Always
   host: *commonHost
   pathPrefix: *commonPathPrefix
   HTML_HEAD_FILE: "/html-insert/html-head.html"
